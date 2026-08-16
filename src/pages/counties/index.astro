@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { counties } from "../../data/counties";
+---
+<BaseLayout
+  title="Counties Served"
+  description="Yakubu Law serves clients across Bucks, Chester, Delaware, Montgomery, and Philadelphia counties in Pennsylvania."
+>
+  <section class="bg-navy-950 pt-16 pb-10 sm:pt-20 sm:pb-14 text-center" style="background-color:#070f21;">
+    <p class="text-gold-400 text-xs tracking-wide-lg uppercase" style="color:#d9bf7c;">Counties Served</p>
+    <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl mt-2" style="color:#faf8f4;">
+      Five Counties. One Direct Line.
+    </h1>
+  </section>
+
+  <section class="bg-cream-50 py-14 sm:py-20" style="background-color:#faf8f4;">
+    <div class="mx-auto max-w-4xl px-6 grid sm:grid-cols-2 gap-x-10 gap-y-8">
+      {counties.map((c) => (
+        <a href={`/counties/${c.slug}`} class="block border-t pt-5 group" style="border-color: rgba(196,162,74,0.3);">
+          <h2 class="font-serif text-xl text-navy-900 group-hover:text-gold-600 transition-colors" style="color:#0a1630;">{c.name}</h2>
+          <p class="text-sm text-navy-900/60 mt-1.5" style="color:rgba(10,22,48,0.6);">
+            {c.status === "single-court" ? c.courtCountNote : `${c.courtCount} Magisterial District Courts`}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

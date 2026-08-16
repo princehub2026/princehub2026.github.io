@@ -1,0 +1,57 @@
+---
+import { practiceAreas } from "../data/practiceAreas";
+import { counties } from "../data/counties";
+const PHONE = "484-944-0834";
+const PHONE_TEL = PHONE.replace(/\D/g, "");
+---
+<footer class="bg-navy-950 text-cream-100/80 pt-16 pb-28 lg:pb-16" style="background-color:#070f21; color:rgba(244,240,232,0.8);">
+  <div class="mx-auto max-w-7xl px-6 sm:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <img src="/images/logo-crest.png" alt="Yakubu Law crest" class="h-14 w-auto mb-4" />
+        <p class="font-serif text-lg text-cream-50" style="color:#faf8f4;">YAKUBU LAW</p>
+        <p class="text-xs tracking-wide-sm uppercase mt-1" style="color:#d9bf7c;">Trial Ready Criminal Defense</p>
+        <p class="text-[11px] tracking-wide-sm uppercase mt-3 text-cream-100/50" style="color:rgba(244,240,232,0.5);">Swift. Sharp. Strategic.</p>
+      </div>
+
+      <div>
+        <p class="text-gold-400 text-xs tracking-wide-sm uppercase mb-4" style="color:#d9bf7c;">Practice Areas</p>
+        <ul class="space-y-2 text-sm">
+          {practiceAreas.map((pa) => (
+            <li><a href={`/practice-areas/${pa.slug}`} class="hover:text-gold-400">{pa.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-gold-400 text-xs tracking-wide-sm uppercase mb-4" style="color:#d9bf7c;">Counties Served</p>
+        <ul class="space-y-2 text-sm">
+          {counties.map((c) => (
+            <li><a href={`/counties/${c.slug}`} class="hover:text-gold-400">{c.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-gold-400 text-xs tracking-wide-sm uppercase mb-4" style="color:#d9bf7c;">Contact</p>
+        <p class="text-sm">
+          <a href={`tel:${PHONE_TEL}`} class="hover:text-gold-400">{PHONE}</a>
+        </p>
+        <p class="text-sm mt-2 text-cream-100/60" style="color:rgba(244,240,232,0.6);">
+          [Address on file — placeholder]<br/>
+          Pennsylvania
+        </p>
+        <a href="/contact" class="inline-block mt-4 text-xs tracking-wide-sm uppercase border-b border-gold-500 pb-0.5" style="border-color:#c4a24a; color:#d9bf7c;">
+          Free Consultation →
+        </a>
+      </div>
+    </div>
+
+    <div class="hairline-static my-10"></div>
+
+    <div class="flex flex-col sm:flex-row justify-between gap-3 text-[11px] text-cream-100/45" style="color:rgba(244,240,232,0.45);">
+      <p>&copy; {new Date().getUTCFullYear()} Yakubu Law. All rights reserved.</p>
+      <p>Attorney Advertising. Prior results do not guarantee a similar outcome. This site does not create an attorney-client relationship.</p>
+    </div>
+  </div>
+</footer>

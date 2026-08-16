@@ -1,0 +1,43 @@
+---
+import { counties } from "../data/counties";
+---
+<section class="bg-cream-50 py-16 sm:py-24" style="background-color:#faf8f4;">
+  <div class="mx-auto max-w-5xl px-6 text-center">
+    <p class="text-gold-600 text-xs sm:text-sm tracking-wide-lg uppercase mb-4" style="color:#a9873a;">
+      Serving Clients Across Five Counties
+    </p>
+    <div class="hairline max-w-xs mx-auto mb-10 sm:mb-14"></div>
+
+    <!-- Desktop: single restrained row -->
+    <div class="hidden sm:flex items-center justify-center flex-wrap gap-x-10 gap-y-4">
+      {counties.map((c, i) => (
+        <>
+          <a
+            href={`/counties/${c.slug}`}
+            class="font-serif text-xl md:text-2xl text-navy-900 tracking-wide-sm relative pb-1 border-b border-transparent hover:border-gold-500 transition-colors"
+            style="color:#0a1630;"
+          >
+            {c.name.replace(" County", "")}
+          </a>
+          {i < counties.length - 1 && (
+            <span class="text-gold-500/40 text-lg" style="color:rgba(196,162,74,0.4);" aria-hidden="true">·</span>
+          )}
+        </>
+      ))}
+    </div>
+
+    <!-- Mobile: stacked full-width tap targets -->
+    <div class="sm:hidden flex flex-col">
+      {counties.map((c) => (
+        <a
+          href={`/counties/${c.slug}`}
+          class="py-4 font-serif text-lg text-navy-900 flex items-center justify-between border-t last:border-b"
+          style="color:#0a1630; border-color: rgba(196,162,74,0.2); min-height: 48px;"
+        >
+          <span>{c.name.replace(" County", "")}</span>
+          <span class="text-gold-500" style="color:#c4a24a;" aria-hidden="true">&rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

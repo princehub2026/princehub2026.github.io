@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { counties } from "../data/counties";
+const PHONE = "484-944-0834";
+const PHONE_TEL = PHONE.replace(/\D/g, "");
+---
+<BaseLayout
+  title="Contact"
+  description="Contact Yakubu Law for a free consultation. Available 24/7 by phone."
+>
+  <section class="bg-navy-950 pt-16 pb-10 sm:pt-20 sm:pb-14 text-center" style="background-color:#070f21;">
+    <p class="text-gold-400 text-xs tracking-wide-lg uppercase" style="color:#d9bf7c;">Contact</p>
+    <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl mt-2" style="color:#faf8f4;">Free Consultation</h1>
+  </section>
+
+  <section class="bg-cream-50 py-14 sm:py-20" style="background-color:#faf8f4;">
+    <div class="mx-auto max-w-4xl px-6 grid sm:grid-cols-5 gap-12">
+      <div class="sm:col-span-2">
+        <a
+          href={`tel:${PHONE_TEL}`}
+          class="block text-center px-6 py-5 bg-navy-950 text-cream-50 mb-8"
+          style="background-color:#070f21; color:#faf8f4;"
+        >
+          <span class="block text-[11px] tracking-wide-lg uppercase text-gold-400 mb-1" style="color:#d9bf7c;">Call 24/7</span>
+          <span class="font-serif text-xl">{PHONE}</span>
+        </a>
+        <p class="text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">
+          We understand that contacting an attorney is often an important first step.
+          Leave your name, phone number, and a brief message, and we ask that you allow
+          up to two business days for a return call.
+        </p>
+        <div class="hairline-static my-8"></div>
+        <p class="text-navy-900/50 text-xs tracking-wide-sm uppercase mb-1" style="color:rgba(10,22,48,0.5);">Office</p>
+        <p class="text-navy-900/70 text-sm" style="color:rgba(10,22,48,0.7);">
+          [Address placeholder — to be replaced]<br/>Pennsylvania
+        </p>
+      </div>
+
+      <div class="sm:col-span-3">
+        <form id="contact-form" class="flex flex-col gap-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="name" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5" style="color:rgba(10,22,48,0.6);">Name</label>
+              <input id="name" name="name" type="text" required class="w-full border-0 border-b border-navy-900/25 bg-transparent py-2 focus:outline-none focus:border-gold-500" style="border-color: rgba(10,22,48,0.25);" />
+            </div>
+            <div>
+              <label for="phone" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5" style="color:rgba(10,22,48,0.6);">Phone</label>
+              <input id="phone" name="phone" type="tel" required class="w-full border-0 border-b border-navy-900/25 bg-transparent py-2 focus:outline-none focus:border-gold-500" style="border-color: rgba(10,22,48,0.25);" />
+            </div>
+          </div>
+          <div>
+            <label for="email" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5" style="color:rgba(10,22,48,0.6);">Email</label>
+            <input id="email" name="email" type="email" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-2 focus:outline-none focus:border-gold-500" style="border-color: rgba(10,22,48,0.25);" />
+          </div>
+          <div>
+            <label for="county" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5" style="color:rgba(10,22,48,0.6);">County</label>
+            <select id="county" name="county" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-2 focus:outline-none focus:border-gold-500" style="border-color: rgba(10,22,48,0.25);">
+              <option value="">Select a county</option>
+              {counties.map((c) => <option value={c.slug}>{c.name}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="message" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5" style="color:rgba(10,22,48,0.6);">Message</label>
+            <textarea id="message" name="message" rows="4" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-2 focus:outline-none focus:border-gold-500" style="border-color: rgba(10,22,48,0.25);"></textarea>
+          </div>
+          <button
+            type="submit"
+            class="self-start mt-2 px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
+            style="background-color:#0a1630; color:#faf8f4;"
+          >
+            Send
+          </button>
+          <p id="form-note" class="hidden text-sm text-navy-900/70 mt-2" style="color:rgba(10,22,48,0.7);">
+            Online submission isn't connected yet — please call <a href={`tel:${PHONE_TEL}`} class="underline">{PHONE}</a> in the meantime, and this form will route directly once set up.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const note = document.getElementById("form-note");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      note?.classList.remove("hidden");
+    });
+  </script>
+</BaseLayout>

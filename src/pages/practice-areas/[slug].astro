@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PracticeAreaBody from "../../components/PracticeAreaBody.astro";
+import { practiceAreas } from "../../data/practiceAreas";
+
+export function getStaticPaths() {
+  return practiceAreas.map((pa) => ({
+    params: { slug: pa.slug },
+    props: { area: pa },
+  }));
+}
+
+const { area } = Astro.props;
+---
+<BaseLayout title={area.name} description={area.intro}>
+  <PracticeAreaBody
+    area={area}
+    parentPath={`/practice-areas/${area.slug}`}
+    breadcrumb={[
+      { label: "Practice Areas", href: "/practice-areas" },
+      { label: area.name },
+    ]}
+  />
+</BaseLayout>
