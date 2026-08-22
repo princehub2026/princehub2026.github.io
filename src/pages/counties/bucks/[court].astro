@@ -62,9 +62,20 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
 
       <div>
         <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-2" style="color:rgba(244,240,232,0.5);">Police Departments in This District</p>
-        <p class="text-cream-100/60 text-sm leading-relaxed" style="color:rgba(244,240,232,0.6);">
-          [Police departments served by this court to be added.]
-        </p>
+        {court.policeDepartments && court.policeDepartments.length > 0 ? (
+          <ul class="text-cream-100/80 text-sm leading-relaxed space-y-1" style="color:rgba(244,240,232,0.8);">
+            {court.policeDepartments.map((dept) => (
+              <li>{dept}</li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-cream-100/60 text-sm leading-relaxed" style="color:rgba(244,240,232,0.6);">
+            We're still confirming which department(s) report to this court — check back soon, or call the attorney directly.
+          </p>
+        )}
+        {court.pspNote && (
+          <p class="text-cream-100/50 text-xs leading-relaxed mt-3" style="color:rgba(244,240,232,0.5);">{court.pspNote}</p>
+        )}
       </div>
     </div>
   </section>
@@ -73,7 +84,7 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
     <p class="text-navy-900 text-sm sm:text-base mb-6" style="color:#0a1630;">
       Have a hearing at this court? Speak directly with the attorney beforehand.
     </p>
-    <a
+    
       href={`tel:${PHONE_TEL}`}
       class="inline-block px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
       style="background-color:#0a1630; color:#faf8f4;"
