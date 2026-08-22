@@ -21,6 +21,7 @@ export type Facility = {
   cityStateZip: string;
   phone?: string;
   note?: string;
+  photo?: string; // hotlinked Wikimedia Commons image URL for the courthouse/jail photo band
 };
 
 export type DiversionProgram = {

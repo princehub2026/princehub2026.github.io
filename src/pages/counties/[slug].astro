@@ -79,20 +79,17 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
 
   {county.status === "sample" && county.courts && (
     <>
-      <section class="py-16 sm:py-20" style="background-color:#f4f0e8;">
-        <div class="mx-auto max-w-2xl px-6 text-center">
-          <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4" style="color:#a9873a;">If You've Just Been Arrested in {county.name}</p>
-          <p class="font-serif text-xl sm:text-2xl leading-relaxed text-navy-900" style="color:#0a1630;">
-            Stay calm, and be careful what you say and to whom — including on the phone from a
-            holding cell.
-          </p>
-          <p class="mt-6 text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">
-            Note your court date and the charges against you if you can. Don't discuss the details
-            of what happened with anyone except your attorney. Then call — the sooner you have
-            someone in your corner, the more options stay open.
-          </p>
-        </div>
-      </section>
+      {county.courthouse?.photo && (
+        <section class="relative h-[34vh] min-h-[260px] sm:h-[42vh] w-full overflow-hidden">
+          <img
+            src={county.courthouse.photo}
+            alt={`${county.courthouse.name}, ${county.name}`}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
+          <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(7,15,33,0.1) 0%, rgba(7,15,33,0.45) 100%);"></div>
+        </section>
+      )}
 
       <section class="bg-cream-50 py-14 sm:py-16" style="background-color:#faf8f4;">
         <div class="mx-auto max-w-3xl px-6">
@@ -126,6 +123,21 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
               )}
             </div>
           )}
+        </div>
+      </section>
+
+      <section class="py-16 sm:py-20" style="background-color:#f4f0e8;">
+        <div class="mx-auto max-w-2xl px-6 text-center">
+          <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4" style="color:#a9873a;">If You've Just Been Arrested in {county.name}</p>
+          <p class="font-serif text-xl sm:text-2xl leading-relaxed text-navy-900" style="color:#0a1630;">
+            Stay calm, and be careful what you say and to whom — including on the phone from a
+            holding cell.
+          </p>
+          <p class="mt-6 text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">
+            Note your court date and the charges against you if you can. Don't discuss the details
+            of what happened with anyone except your attorney. Then call — the sooner you have
+            someone in your corner, the more options stay open.
+          </p>
         </div>
       </section>
 
