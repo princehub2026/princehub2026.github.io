@@ -79,15 +79,53 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
 
   {county.status === "sample" && county.courts && (
     <>
+      <section class="py-16 sm:py-20" style="background-color:#f4f0e8;">
+        <div class="mx-auto max-w-2xl px-6 text-center">
+          <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4" style="color:#a9873a;">If You've Just Been Arrested in {county.name}</p>
+          <p class="font-serif text-xl sm:text-2xl leading-relaxed text-navy-900" style="color:#0a1630;">
+            Stay calm, and be careful what you say and to whom — including on the phone from a
+            holding cell.
+          </p>
+          <p class="mt-6 text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">
+            Note your court date and the charges against you if you can. Don't discuss the details
+            of what happened with anyone except your attorney. Then call — the sooner you have
+            someone in your corner, the more options stay open.
+          </p>
+        </div>
+      </section>
+
       <section class="bg-cream-50 py-14 sm:py-16" style="background-color:#faf8f4;">
         <div class="mx-auto max-w-3xl px-6">
           <p class="text-navy-900/80 leading-relaxed text-center" style="color:rgba(10,22,48,0.8);">
-            Bucks County criminal cases are heard across {county.courtCount} Magisterial District
+            {county.name} criminal cases are heard across {county.courtCount} Magisterial District
             Courts, each covering specific municipalities. Find the court handling your case below.
           </p>
-          <p class="mt-6 text-sm text-navy-900/50 text-center" style="color:rgba(10,22,48,0.5);">
-            [County jail / detention-facility information to be added here.]
-          </p>
+
+          {county.courthouse && (
+            <div class="mt-10 grid sm:grid-cols-2 gap-8 text-center sm:text-left">
+              <div>
+                <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-1" style="color:#a9873a;">Court of Common Pleas</p>
+                <p class="text-navy-900 font-medium" style="color:#0a1630;">{county.courthouse.name}</p>
+                <p class="text-navy-900/70 text-sm mt-1" style="color:rgba(10,22,48,0.7);">{county.courthouse.address}, {county.courthouse.cityStateZip}</p>
+                {county.courthouse.phone && (
+                  <a href={`tel:${county.courthouse.phone.replace(/\D/g, "")}`} class="text-navy-900/70 text-sm hover:text-gold-600" style="color:rgba(10,22,48,0.7);">{county.courthouse.phone}</a>
+                )}
+                {county.courthouse.note && (
+                  <p class="text-navy-900/60 text-sm mt-3 leading-relaxed" style="color:rgba(10,22,48,0.6);">{county.courthouse.note}</p>
+                )}
+              </div>
+              {county.jail && (
+                <div>
+                  <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-1" style="color:#a9873a;">County Jail</p>
+                  <p class="text-navy-900 font-medium" style="color:#0a1630;">{county.jail.name}</p>
+                  <p class="text-navy-900/70 text-sm mt-1" style="color:rgba(10,22,48,0.7);">{county.jail.address}, {county.jail.cityStateZip}</p>
+                  {county.jail.phone && (
+                    <a href={`tel:${county.jail.phone.replace(/\D/g, "")}`} class="text-navy-900/70 text-sm hover:text-gold-600" style="color:rgba(10,22,48,0.7);">{county.jail.phone}</a>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
@@ -113,6 +151,48 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
           </div>
         </div>
       </section>
+
+      {county.diversionPrograms && county.diversionPrograms.length > 0 && (
+        <section class="bg-cream-50 py-16 sm:py-20" style="background-color:#faf8f4;">
+          <div class="mx-auto max-w-3xl px-6">
+            <p class="text-gold-600 text-xs tracking-wide-lg uppercase text-center mb-10" style="color:#a9873a;">
+              Diversion Programs in {county.name}
+            </p>
+            <div class="flex flex-col gap-8">
+              {county.diversionPrograms.map((program) => (
+                <div>
+                  <h3 class="font-serif text-lg text-navy-900 mb-2" style="color:#0a1630;">{program.name}</h3>
+                  <p class="text-navy-900/70 text-sm leading-relaxed" style="color:rgba(10,22,48,0.7);">{program.description}</p>
+                </div>
+              ))}
+            </div>
+            <p class="text-navy-900/50 text-xs mt-8 text-center" style="color:rgba(10,22,48,0.5);">
+              Eligibility for any diversion program depends on the specific charge and record — this is general information, not a guarantee of eligibility or outcome.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {county.faq && county.faq.length > 0 && (
+        <section class="bg-navy-900 py-16 sm:py-20" style="background-color:#0a1630;">
+          <div class="mx-auto max-w-3xl px-6">
+            <p class="text-gold-400 text-xs tracking-wide-lg uppercase text-center mb-10" style="color:#d9bf7c;">
+              {county.name} — Frequently Asked Questions
+            </p>
+            <div class="flex flex-col gap-1">
+              {county.faq.map((item) => (
+                <details class="group border-b py-4" style="border-color: rgba(196,162,74,0.25);">
+                  <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 font-medium" style="color:#faf8f4;">
+                    {item.question}
+                    <span class="text-gold-400 text-lg group-open:rotate-45 transition-transform" style="color:#c4a24a;">+</span>
+                  </summary>
+                  <p class="text-cream-100/65 text-sm leading-relaxed mt-3" style="color:rgba(244,240,232,0.65);">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   )}
 
