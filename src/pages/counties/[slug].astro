@@ -17,31 +17,32 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   title={county.name}
   description={`Criminal defense representation in ${county.name}, Pennsylvania. Court directory, jail information, and direct access to the attorney.`}
 >
-  <section class="bg-navy-950 pt-16 pb-10 sm:pt-20 sm:pb-14 text-center" style="background-color:#070f21;">
-    <nav class="text-[11px] tracking-wide-sm uppercase text-cream-100/45 mb-5" style="color:rgba(244,240,232,0.45);">
+  <section class="bg-navy-950 glow-top noise pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+    <nav class="text-[11px] tracking-wide-sm uppercase text-cream-100/45 mb-5">
       <a href="/counties" class="hover:text-gold-400">Counties</a> <span aria-hidden="true">/</span> {county.name}
     </nav>
-    <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl" style="color:#faf8f4;">{county.name}</h1>
-    <p class="text-cream-100/70 text-sm mt-2" style="color:rgba(244,240,232,0.7);">
+    <h1 class="font-serif text-cream-50 text-4xl sm:text-5xl">{county.name}</h1>
+    <div class="glow-rule w-16 mx-auto mt-6"></div>
+    <p class="text-cream-100/70 text-sm mt-4">
       {county.status === "single-court" ? county.courtCountNote : `${county.courtCount} Magisterial District Courts`}
     </p>
   </section>
 
   {county.status === "single-court" && (
-    <section class="bg-cream-50 py-16 sm:py-20" style="background-color:#faf8f4;">
+    <section class="bg-cream-50 py-16 sm:py-20">
       <div class="mx-auto max-w-2xl px-6 text-center">
-        <p class="text-navy-900/80 leading-relaxed" style="color:rgba(10,22,48,0.8);">
+        <p class="text-navy-900/80 leading-relaxed">
           Criminal cases originating in Philadelphia are handled through the Philadelphia
           Municipal Court and Court of Common Pleas, rather than a network of Magisterial
           District Courts as in the surrounding counties.
         </p>
-        <p class="mt-6 text-sm text-navy-900/50" style="color:rgba(10,22,48,0.5);">
+        <p class="mt-6 text-sm text-navy-900/50">
           [Jail and detention-facility information for Philadelphia to be added here.]
         </p>
         <a
           href={`tel:${PHONE_TEL}`}
-          class="inline-block mt-10 px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
-          style="background-color:#0a1630; color:#faf8f4;"
+          class="inline-block mt-10 px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium"
+         
         >
           Call {PHONE}
         </a>
@@ -50,25 +51,25 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   )}
 
   {county.status === "coming-soon" && (
-    <section class="bg-cream-50 py-16 sm:py-20" style="background-color:#faf8f4;">
+    <section class="bg-cream-50 py-16 sm:py-20">
       <div class="mx-auto max-w-2xl px-6 text-center">
-        <p class="text-navy-900/80 leading-relaxed" style="color:rgba(10,22,48,0.8);">
+        <p class="text-navy-900/80 leading-relaxed">
           Yakubu Law represents clients throughout {county.name}. A full directory of this
           county's {county.courtCount} Magisterial District Courts — with judge, address, and
           jail information for each — is being built out next, following the same format as
           the Bucks County directory.
         </p>
         {county.courtCountNote && (
-          <p class="mt-4 text-sm text-navy-900/50" style="color:rgba(10,22,48,0.5);">{county.courtCountNote}</p>
+          <p class="mt-4 text-sm text-navy-900/50">{county.courtCountNote}</p>
         )}
-        <a href="/counties/bucks" class="inline-block mt-8 text-sm tracking-wide-sm uppercase border-b border-gold-500 pb-0.5" style="border-color:#c4a24a; color:#a9873a;">
+        <a href="/counties/bucks" class="inline-block mt-8 text-sm tracking-wide-sm uppercase border-b border-gold-500 pb-0.5 text-gold-600">
           View the Bucks County directory as an example →
         </a>
         <div>
           <a
             href={`tel:${PHONE_TEL}`}
-            class="inline-block mt-10 px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
-            style="background-color:#0a1630; color:#faf8f4;"
+            class="inline-block mt-10 px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium"
+           
           >
             Call {PHONE}
           </a>
@@ -85,15 +86,17 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
             src={county.courthouse.photo}
             alt={`${county.courthouse.name}, ${county.name}`}
             class="absolute inset-0 w-full h-full object-cover"
+            style="filter: grayscale(1) contrast(1.1) brightness(0.9);"
             loading="eager"
           />
-          <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(7,15,33,0.1) 0%, rgba(7,15,33,0.45) 100%);"></div>
+          <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.55;"></div>
+          <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,164,74,0.16) 0%, rgba(201,164,74,0) 60%), linear-gradient(180deg, rgba(6,13,29,0.25) 0%, rgba(6,13,29,0.55) 100%);"></div>
         </section>
       )}
 
-      <section class="bg-cream-50 py-14 sm:py-16" style="background-color:#faf8f4;">
+      <section class="bg-cream-50 py-14 sm:py-16">
         <div class="mx-auto max-w-3xl px-6">
-          <p class="text-navy-900/80 leading-relaxed text-center" style="color:rgba(10,22,48,0.8);">
+          <p class="text-navy-900/80 leading-relaxed text-center">
             {county.name} criminal cases are heard across {county.courtCount} Magisterial District
             Courts, each covering specific municipalities. Find the court handling your case below.
           </p>
@@ -101,23 +104,23 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
           {county.courthouse && (
             <div class="mt-10 grid sm:grid-cols-2 gap-8 text-center">
               <div>
-                <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-1" style="color:#a9873a;">Court of Common Pleas</p>
-                <p class="text-navy-900 font-medium" style="color:#0a1630;">{county.courthouse.name}</p>
-                <p class="text-navy-900/70 text-sm mt-1" style="color:rgba(10,22,48,0.7);">{county.courthouse.address}, {county.courthouse.cityStateZip}</p>
+                <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-1">Court of Common Pleas</p>
+                <p class="text-navy-900 font-medium">{county.courthouse.name}</p>
+                <p class="text-navy-900/70 text-sm mt-1">{county.courthouse.address}, {county.courthouse.cityStateZip}</p>
                 {county.courthouse.phone && (
-                  <a href={`tel:${county.courthouse.phone.replace(/\D/g, "")}`} class="text-navy-900/70 text-sm hover:text-gold-600" style="color:rgba(10,22,48,0.7);">{county.courthouse.phone}</a>
+                  <a href={`tel:${county.courthouse.phone.replace(/\D/g, "")}`} class="text-navy-900/70 text-sm hover:text-gold-600">{county.courthouse.phone}</a>
                 )}
                 {county.courthouse.note && (
-                  <p class="text-navy-900/60 text-sm mt-3 leading-relaxed" style="color:rgba(10,22,48,0.6);">{county.courthouse.note}</p>
+                  <p class="text-navy-900/60 text-sm mt-3 leading-relaxed">{county.courthouse.note}</p>
                 )}
               </div>
               {county.jail && (
                 <div>
-                  <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-1" style="color:#a9873a;">County Jail</p>
-                  <p class="text-navy-900 font-medium" style="color:#0a1630;">{county.jail.name}</p>
-                  <p class="text-navy-900/70 text-sm mt-1" style="color:rgba(10,22,48,0.7);">{county.jail.address}, {county.jail.cityStateZip}</p>
+                  <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-1">County Jail</p>
+                  <p class="text-navy-900 font-medium">{county.jail.name}</p>
+                  <p class="text-navy-900/70 text-sm mt-1">{county.jail.address}, {county.jail.cityStateZip}</p>
                   {county.jail.phone && (
-                    <a href={`tel:${county.jail.phone.replace(/\D/g, "")}`} class="text-navy-900/70 text-sm hover:text-gold-600" style="color:rgba(10,22,48,0.7);">{county.jail.phone}</a>
+                    <a href={`tel:${county.jail.phone.replace(/\D/g, "")}`} class="text-navy-900/70 text-sm hover:text-gold-600">{county.jail.phone}</a>
                   )}
                 </div>
               )}
@@ -126,14 +129,14 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
         </div>
       </section>
 
-      <section class="py-16 sm:py-20" style="background-color:#f4f0e8;">
+      <section class="py-16 sm:py-20 bg-cream-100">
         <div class="mx-auto max-w-2xl px-6 text-center">
-          <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4" style="color:#a9873a;">If You've Just Been Arrested in {county.name}</p>
-          <p class="font-serif text-xl sm:text-2xl leading-relaxed text-navy-900" style="color:#0a1630;">
+          <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4">If You've Just Been Arrested in {county.name}</p>
+          <p class="font-serif text-xl sm:text-2xl leading-relaxed text-navy-900">
             Stay calm, and be careful what you say and to whom — including on the phone from a
             holding cell.
           </p>
-          <p class="mt-6 text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">
+          <p class="mt-6 text-navy-900/75 text-sm leading-relaxed">
             Note your court date and the charges against you if you can. Don't discuss the details
             of what happened with anyone except your attorney. Then call — the sooner you have
             someone in your corner, the more options stay open.
@@ -141,23 +144,23 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
         </div>
       </section>
 
-      <section class="bg-navy-900 py-14 sm:py-20" style="background-color:#0a1630;">
+      <section class="bg-navy-900 glow-bottom noise py-14 sm:py-20">
         <div class="mx-auto max-w-5xl px-6">
-          <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-8 text-center" style="color:#d9bf7c;">
+          <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-8 text-center">
             Magisterial District Courts
           </p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
             {county.courts.map((court) => (
               <a
                 href={`/counties/${county.slug}/${court.slug}`}
-                class="block border-t pt-4 group"
-                style="border-color: rgba(196,162,74,0.25);"
+                class="block border-t pt-4 group border-gold-500/25"
+               
               >
-                <p class="text-gold-500 text-xs tracking-wide-sm uppercase" style="color:#c4a24a;">D.C. {court.dcNumber}</p>
-                <h3 class="font-serif text-cream-50 text-base mt-1 group-hover:text-gold-400 transition-colors" style="color:#faf8f4;">
+                <p class="text-gold-500 text-xs tracking-wide-sm uppercase">D.C. {court.dcNumber}</p>
+                <h3 class="font-serif text-cream-50 text-base mt-1 group-hover:text-gold-400 transition-colors">
                   {court.judge}
                 </h3>
-                <p class="text-cream-100/55 text-sm mt-1" style="color:rgba(244,240,232,0.55);">{court.cityStateZip}</p>
+                <p class="text-cream-100/55 text-sm mt-1">{court.cityStateZip}</p>
               </a>
             ))}
           </div>
@@ -165,20 +168,20 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
       </section>
 
       {county.diversionPrograms && county.diversionPrograms.length > 0 && (
-        <section class="bg-cream-50 py-16 sm:py-20" style="background-color:#faf8f4;">
+        <section class="bg-cream-50 py-16 sm:py-20">
           <div class="mx-auto max-w-3xl px-6">
-            <p class="text-gold-600 text-xs tracking-wide-lg uppercase text-center mb-10" style="color:#a9873a;">
+            <p class="text-gold-600 text-xs tracking-wide-lg uppercase text-center mb-10">
               Diversion Programs in {county.name}
             </p>
             <div class="flex flex-col gap-8">
               {county.diversionPrograms.map((program) => (
                 <div>
-                  <h3 class="font-serif text-lg text-navy-900 mb-2" style="color:#0a1630;">{program.name}</h3>
-                  <p class="text-navy-900/70 text-sm leading-relaxed" style="color:rgba(10,22,48,0.7);">{program.description}</p>
+                  <h3 class="font-serif text-lg text-navy-900 mb-2">{program.name}</h3>
+                  <p class="text-navy-900/70 text-sm leading-relaxed">{program.description}</p>
                 </div>
               ))}
             </div>
-            <p class="text-navy-900/50 text-xs mt-8 text-center" style="color:rgba(10,22,48,0.5);">
+            <p class="text-navy-900/50 text-xs mt-8 text-center">
               Eligibility for any diversion program depends on the specific charge and record — this is general information, not a guarantee of eligibility or outcome.
             </p>
           </div>
@@ -186,19 +189,19 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
       )}
 
       {county.faq && county.faq.length > 0 && (
-        <section class="bg-navy-900 py-16 sm:py-20" style="background-color:#0a1630;">
+        <section class="bg-navy-900 py-16 sm:py-20">
           <div class="mx-auto max-w-3xl px-6">
-            <p class="text-gold-400 text-xs tracking-wide-lg uppercase text-center mb-10" style="color:#d9bf7c;">
+            <p class="text-gold-400 text-xs tracking-wide-lg uppercase text-center mb-10">
               {county.name} — Frequently Asked Questions
             </p>
             <div class="flex flex-col gap-1">
               {county.faq.map((item) => (
-                <details class="group border-b py-4" style="border-color: rgba(196,162,74,0.25);">
-                  <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 font-medium" style="color:#faf8f4;">
+                <details class="group border-b py-4 border-gold-500/25">
+                  <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 font-medium">
                     {item.question}
-                    <span class="text-gold-400 text-lg group-open:rotate-45 transition-transform" style="color:#c4a24a;">+</span>
+                    <span class="text-gold-400 text-lg group-open:rotate-45 transition-transform">+</span>
                   </summary>
-                  <p class="text-cream-100/65 text-sm leading-relaxed mt-3" style="color:rgba(244,240,232,0.65);">{item.answer}</p>
+                  <p class="text-cream-100/65 text-sm leading-relaxed mt-3">{item.answer}</p>
                 </details>
               ))}
             </div>
@@ -208,14 +211,14 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
     </>
   )}
 
-  <section class="py-14 sm:py-16 text-center" style="background-color:#f4f0e8;">
-    <p class="text-navy-900 text-sm sm:text-base mb-6" style="color:#0a1630;">
+  <section class="py-14 sm:py-16 text-center bg-cream-100">
+    <p class="text-navy-900 text-sm sm:text-base mb-6">
       Facing charges in {county.name}? Speak directly with the attorney.
     </p>
     <a
       href={`tel:${PHONE_TEL}`}
-      class="inline-block px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
-      style="background-color:#0a1630; color:#faf8f4;"
+      class="inline-block px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium"
+     
     >
       Call {PHONE}
     </a>
