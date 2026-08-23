@@ -1,42 +1,95 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { faqTopics } from "../data/faq";
+import { practiceContent } from "../data/practiceContent";
 const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
+
+const pc = (slug: string) => practiceContent[slug]?.faq ?? [];
+const legacy = (slug: string) => faqTopics.find((t) => t.slug === slug);
+
+interface Category {
+  slug: string;
+  title: string;
+  summary?: string;
+  consequences?: string;
+  questions: { q: string; a: string }[];
+}
+
+const categories: Category[] = [
+  { slug: "criminal-process", title: "The Criminal Process", questions: pc("criminal-defense") },
+  { slug: "preliminary-hearings", title: "Preliminary Hearings", questions: pc("preliminary-hearings") },
+  { slug: "warrants", title: "Warrants", summary: legacy("warrants")?.summary, consequences: legacy("warrants")?.consequences, questions: legacy("warrants")?.questions ?? [] },
+  { slug: "dui", title: "DUI Defense", questions: pc("dui-defense") },
+  { slug: "traffic", title: "Traffic Violations", questions: pc("traffic-violations") },
+  { slug: "license-appeals", title: "License Appeals", questions: pc("license-appeal") },
+  { slug: "drug-charges", title: "Drug Charges", questions: pc("drug-charges") },
+  { slug: "firearms", title: "Firearms Charges", questions: pc("firearms") },
+  { slug: "gun-rights", title: "Gun Rights & Licensing", questions: [...pc("restoration-of-firearms-rights"), ...pc("firearm-purchase"), ...pc("license-to-carry"), ...pc("security-guard-act-235")] },
+  { slug: "violent-crimes", title: "Violent Crimes", questions: pc("violent-crimes") },
+  { slug: "computer-crimes", title: "Computer Crimes", questions: pc("computer-crimes") },
+  { slug: "probation-parole", title: "Probation & Parole", summary: legacy("vop")?.summary, consequences: legacy("vop")?.consequences, questions: [...pc("probation-parole-violations"), ...(legacy("vop")?.questions ?? [])] },
+  { slug: "juvenile", title: "Juvenile Defense", questions: pc("juvenile-defense") },
+  { slug: "return-of-property", title: "Return of Property", summary: legacy("return-of-property")?.summary, consequences: legacy("return-of-property")?.consequences, questions: [...pc("return-of-property"), ...(legacy("return-of-property")?.questions ?? [])] },
+  { slug: "pfa", title: "PFA Orders", summary: legacy("pfa")?.summary, consequences: legacy("pfa")?.consequences, questions: [...pc("pfa"), ...(legacy("pfa")?.questions ?? [])] },
+  { slug: "expungement", title: "Expungement & Clean Slate", questions: pc("expungement") },
+];
 ---
 <BaseLayout
   title="FAQ"
-  description="Answers to common questions about warrants, probation violations, return of property, and PFA orders in Pennsylvania."
+  description="Answers to common questions about Pennsylvania criminal cases — the court process, DUI, drug charges, firearms, PFA orders, expungement, warrants, and more."
 >
   <section class="bg-navy-950 glow-top noise pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
     <p class="text-gold-400 text-xs tracking-wide-lg uppercase">FAQ</p>
     <h1 class="font-serif text-cream-50 text-4xl sm:text-5xl mt-3">Common Questions</h1>
     <div class="glow-rule w-16 mx-auto mt-6"></div>
+    <p class="mt-6 text-cream-100/70 text-sm sm:text-base max-w-xl mx-auto px-6">
+      Choose a topic to go straight to its questions.
+    </p>
+  </section>
+
+  <section id="top" class="bg-navy-900 glow-bottom noise py-10 sm:py-14 border-b border-gold-500/15 scroll-mt-20">
+    <div class="mx-auto max-w-5xl px-5 sm:px-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        {categories.map((c) => (
+          <a href={`#${c.slug}`} class="group block bg-navy-950/60 border border-gold-500/20 px-4 py-4 sm:py-5 text-center transition-all hover:border-gold-500/60 hover:shadow-[0_0_22px_-4px_rgba(201,164,74,0.35)] min-h-[64px] flex flex-col items-center justify-center">
+            <span class="font-serif text-cream-50 text-[15px] sm:text-base leading-snug group-hover:text-gold-400 transition-colors">{c.title}</span>
+            <span class="text-cream-100/40 text-[10px] tracking-wide-sm uppercase mt-1">{c.questions.length} questions</span>
+          </a>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section class="bg-cream-50 py-14 sm:py-20">
-    <div class="mx-auto max-w-3xl px-6 space-y-16">
-      {faqTopics.map((topic) => (
-        <div id={topic.slug}>
-          <h2 class="font-serif text-2xl sm:text-3xl text-navy-900">{topic.title}</h2>
-          <p class="mt-3 text-navy-900/75 leading-relaxed">{topic.summary}</p>
-          <p class="mt-3 text-navy-900/60 text-sm leading-relaxed">
-            <span class="text-gold-600 font-medium">Consequences: </span>{topic.consequences}
-          </p>
-
-          <div class="mt-6 divide-y border-gold-500/25">
-            {topic.questions.map((item) => (
+    <div class="mx-auto max-w-3xl px-6">
+      {categories.map((c, i) => (
+        <div id={c.slug} class={`scroll-mt-28 ${i > 0 ? "mt-14 sm:mt-20 pt-10 border-t border-gold-500/25" : ""}`}>
+          <h2 class="font-serif text-2xl sm:text-3xl text-navy-900">{c.title}</h2>
+          <div class="glow-rule w-12 mt-4 mb-2"></div>
+          {c.summary && <p class="mt-4 text-navy-900/75 leading-relaxed">{c.summary}</p>}
+          {c.consequences && (
+            <p class="mt-3 text-navy-900/60 text-sm leading-relaxed">
+              <span class="text-gold-600 font-medium">Consequences: </span>{c.consequences}
+            </p>
+          )}
+          <div class="mt-4 divide-y border-gold-500/25">
+            {c.questions.map((item) => (
               <details class="group py-4 border-t border-gold-500/25">
                 <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
                   <span class="text-navy-900 font-medium text-[15px]">{item.q}</span>
-                  <span class="text-gold-500 shrink-0 group-open:rotate-45 transition-transform">+</span>
+                  <span class="text-gold-500 shrink-0 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
                 </summary>
                 <p class="mt-3 text-navy-900/70 text-sm leading-relaxed">{item.a}</p>
               </details>
             ))}
           </div>
+          <a href="#top" class="inline-block mt-5 text-[11px] tracking-wide-sm uppercase text-gold-600 border-b border-gold-500/50 pb-0.5 hover:text-gold-500">Back to topics &uarr;</a>
         </div>
       ))}
+      <p class="mt-14 text-navy-900/50 text-xs leading-relaxed text-center max-w-xl mx-auto">
+        This page provides general information about Pennsylvania law. It is not legal advice, and reading it does not create an attorney-client relationship. Every case is different — speak with an attorney about your specific situation.
+      </p>
     </div>
   </section>
 
@@ -44,11 +97,7 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
     <p class="text-cream-100/80 text-sm sm:text-base mb-6">
       Don't see your question? Speak directly with the attorney.
     </p>
-    <a
-      href={`tel:${PHONE_TEL}`}
-      class="inline-block px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium"
-     
-    >
+    <a href={`tel:${PHONE_TEL}`} class="inline-block px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium">
       Call {PHONE}
     </a>
   </section>
