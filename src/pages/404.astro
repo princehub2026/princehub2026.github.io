@@ -4,15 +4,15 @@ const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
 ---
 <BaseLayout title="Page Not Found" description="Page not found.">
-  <section class="bg-navy-950 py-28 sm:py-40 text-center" style="background-color:#070f21;">
-    <img src="/images/logo-crest.png" alt="" class="h-14 w-auto mx-auto mb-8 opacity-90" />
-    <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-3" style="color:#d9bf7c;">404</p>
-    <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl" style="color:#faf8f4;">Page Not Found</h1>
+  <section class="bg-navy-950 glow-top noise py-28 sm:py-40 text-center">
+    <img src="/images/logo-crest.png" alt="" class="h-14 w-auto mx-auto mb-8 opacity-90 crest-glow" />
+    <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-3">404</p>
+    <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl">Page Not Found</h1>
     <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="/" class="px-8 py-3.5 border border-cream-100/50 text-cream-50 text-sm tracking-wide-sm uppercase hover:border-gold-400 hover:text-gold-400 transition-colors" style="border-color: rgba(244,240,232,0.5); color:#faf8f4;">
+      <a href="/" class="px-8 py-3.5 border border-cream-100/50 text-cream-50 text-sm tracking-wide-sm uppercase hover:border-gold-400 hover:text-gold-400 transition-colors">
         Return Home
       </a>
-      <a href={`tel:${PHONE_TEL}`} class="px-8 py-3.5 bg-gold-500 text-navy-950 text-sm tracking-wide-sm uppercase font-medium hover:bg-gold-400 transition-colors" style="background-color:#c4a24a; color:#070f21;">
+      <a href={`tel:${PHONE_TEL}`} class="px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium">
         Call {PHONE}
       </a>
     </div>
