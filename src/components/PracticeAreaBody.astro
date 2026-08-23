@@ -1,5 +1,6 @@
 ---
 import type { PracticeArea } from "../data/practiceAreas";
+import { getPracticeContent } from "../data/practiceContent";
 
 interface Props {
   area: PracticeArea;
@@ -9,6 +10,37 @@ interface Props {
 const { area, parentPath, breadcrumb } = Astro.props;
 const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
+const content = getPracticeContent(area.slug);
+
+const schema = content
+  ? {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LegalService",
+          name: "Yakubu Law",
+          description: `${area.name} representation across Bucks, Chester, Delaware, Montgomery, and Philadelphia counties, Pennsylvania.`,
+          telephone: "+1-484-944-0834",
+          areaServed: [
+            { "@type": "AdministrativeArea", name: "Bucks County, Pennsylvania" },
+            { "@type": "AdministrativeArea", name: "Chester County, Pennsylvania" },
+            { "@type": "AdministrativeArea", name: "Delaware County, Pennsylvania" },
+            { "@type": "AdministrativeArea", name: "Montgomery County, Pennsylvania" },
+            { "@type": "AdministrativeArea", name: "Philadelphia, Pennsylvania" },
+          ],
+          knowsLanguage: "en",
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: content.faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        },
+      ],
+    }
+  : null;
 ---
 <section class="bg-navy-950 glow-top noise pt-14 pb-12 sm:pt-20 sm:pb-16">
   <div class="mx-auto max-w-4xl px-6">
@@ -36,11 +68,7 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
       </p>
       <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6">
         {area.children.map((c) => (
-          <a
-            href={`${parentPath}/${c.slug}`}
-            class="block border-t pt-4 group border-gold-500/30"
-           
-          >
+          <a href={`${parentPath}/${c.slug}`} class="block border-t pt-4 group border-gold-500/30">
             <h3 class="font-serif text-lg text-navy-900 group-hover:text-gold-600 transition-colors">{c.name}</h3>
             <p class="text-sm text-navy-900/60 mt-1">{c.short}</p>
           </a>
@@ -50,15 +78,63 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   </section>
 )}
 
+{content && (
+  <section class={`py-14 sm:py-20 ${area.children ? "bg-cream-100" : "bg-cream-50"}`}>
+    <div class="mx-auto max-w-3xl px-6">
+      {content.sections.map((s, i) => (
+        <div class={i > 0 ? "mt-12 sm:mt-16" : ""}>
+          <h2 class="font-serif text-2xl sm:text-3xl text-navy-900 leading-snug">{s.heading}</h2>
+          <div class="glow-rule w-12 mt-4 mb-6"></div>
+          {s.paragraphs.map((p) => (
+            p.includes("<strong>")
+              ? <p class="text-navy-900/80 text-[15.5px] sm:text-base leading-relaxed mt-4" set:html={p}></p>
+              : <p class="text-navy-900/80 text-[15.5px] sm:text-base leading-relaxed mt-4">{p}</p>
+          ))}
+          {s.list && (
+            <ul class="mt-5 space-y-2">
+              {s.list.map((item) => (
+                <li class="flex gap-3 text-navy-900/80 text-[15px] leading-relaxed">
+                  <span class="text-gold-500 shrink-0 mt-0.5" aria-hidden="true">&#183;</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+{content && content.faq.length > 0 && (
+  <section class="bg-navy-900 glow-bottom noise py-14 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-8 text-center">Common Questions</p>
+      <div class="flex flex-col gap-1">
+        {content.faq.map((item) => (
+          <details class="group border-b py-4 border-gold-500/25">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 text-sm sm:text-[15px] font-medium">
+              {item.q}
+              <span class="text-gold-400 text-lg shrink-0 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+            </summary>
+            <p class="text-cream-100/65 text-sm leading-relaxed mt-3">{item.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mt-10 text-cream-100/45 text-xs leading-relaxed text-center max-w-xl mx-auto">
+        This page provides general information about Pennsylvania law. It is not legal advice, and reading it does not create an attorney-client relationship. Every case is different — speak with an attorney about your specific situation.
+      </p>
+    </div>
+  </section>
+)}
+
 <section class="py-14 sm:py-16 text-center bg-cream-100">
   <p class="text-navy-900 text-sm sm:text-base mb-6">
     Facing a charge related to {area.name.toLowerCase()}? Speak directly with the attorney.
   </p>
-  <a
-    href={`tel:${PHONE_TEL}`}
-    class="inline-block px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium"
-   
-  >
+  <a href={`tel:${PHONE_TEL}`} class="inline-block px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium">
     Call {PHONE}
   </a>
 </section>
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>}
