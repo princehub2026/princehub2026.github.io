@@ -67,7 +67,7 @@ export const practiceAreas: PracticeArea[] = [
         name: "Drug Charges",
         short: "Possession, distribution, and manufacturing charges.",
         intro:
-          "Drug charges range from simple possession to distribution and manufacturing allegations, each carrying dramatically different exposure. Search and seizure issues are examined in every case.",
+          "Drug charges range from simple possession to distribution and manufacturing allegations, each carrying dramatically different penalties. Search and seizure issues are examined in every case.",
       },
       {
         slug: "violent-crimes",
