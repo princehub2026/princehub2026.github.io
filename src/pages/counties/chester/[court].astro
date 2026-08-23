@@ -2,11 +2,11 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCounty } from "../../../data/counties";
 
-const chester = getCounty("chester")!;
+const county = getCounty("chester")!;
 
 export function getStaticPaths() {
-  const chester = getCounty("chester")!;
-  return (chester.courts ?? []).map((court) => ({
+  const county = getCounty("chester")!;
+  return (county.courts ?? []).map((court) => ({
     params: { court: court.slug },
     props: { court },
   }));
@@ -19,11 +19,19 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
   `${court.address}, ${court.cityStateZip}`
 )}`;
 
-const muniCount = court.townships ? court.townships.split(",").length : 0;
+const NUMBER_WORDS: Record<number, string> = { 16: "sixteen", 18: "eighteen", 26: "twenty-six", 29: "twenty-nine" };
+const countWord = NUMBER_WORDS[county.courtCount] ?? String(county.courtCount);
 const city = court.cityStateZip.split(",")[0];
+const muniCount = court.townships ? court.townships.split(",").length : 0;
 const deptCount = court.policeDepartments ? court.policeDepartments.length : 0;
-const siblings = (chester.courts ?? []).filter((c) => c.slug !== court.slug);
+const siblings = (county.courts ?? []).filter((c) => c.slug !== court.slug);
 const isVacant = court.judge.toLowerCase().startsWith("vacant");
+
+const stats = [
+  muniCount > 0 && { value: String(muniCount), label: muniCount === 1 ? "Municipality" : "Municipalities" },
+  deptCount > 0 && { value: String(deptCount), label: deptCount === 1 ? "Police Department" : "Police Departments" },
+  court.criminalProceedings && { value: court.criminalProceedings.slice(0, 3), label: "Criminal Day" },
+].filter(Boolean);
 
 const faq = [
   court.townships && {
@@ -38,9 +46,9 @@ const faq = [
     q: "Is a preliminary hearing a trial?",
     a: "No. No one is found guilty or not guilty at a preliminary hearing. The Commonwealth only has to show there is enough evidence for the case to move forward to the Court of Common Pleas.",
   },
-  {
+  county.courthouse && {
     q: "Where does my case go if it is held for court?",
-    a: "Cases held for court move to the Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses and most traffic citations are decided at the magisterial district court and go no further.",
+    a: `Cases held for court move to the ${county.courthouse.name}, ${county.courthouse.address}, ${county.courthouse.cityStateZip}. Summary offenses and most traffic citations are decided at the magisterial district court and go no further.`,
   },
 ].filter(Boolean);
 
@@ -70,7 +78,6 @@ const schema = {
   title={`D.C. ${court.dcNumber} — Chester County Magisterial District Court`}
   description={`Magisterial District Court ${court.dcNumber} in Chester County, PA — Judge ${court.judge}. Address, phone, municipalities served, and directions.`}
 >
-  <!-- MASTHEAD -->
   <section class="bg-navy-950 pt-14 pb-12 sm:pt-16 sm:pb-14 relative overflow-hidden" style="background-color:#070f21;">
     <div class="absolute inset-0 opacity-[0.04] flex items-center justify-center pointer-events-none">
       <img src="/images/logo-crest.png" alt="" aria-hidden="true" class="h-[380px] w-auto" />
@@ -99,29 +106,19 @@ const schema = {
         {isVacant ? "Seat currently vacant — office operating as usual" : "Presiding Magisterial District Judge"}
       </p>
 
-      <!-- AT A GLANCE -->
-      <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-y-6 text-center border-t pt-8" style="border-color:rgba(196,162,74,0.2);">
-        <div>
-          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{muniCount || "—"}</p>
-          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Municipalities</p>
+      {stats.length > 0 && (
+        <div class="mt-10 flex flex-wrap justify-center gap-x-14 gap-y-6 text-center border-t pt-8" style="border-color:rgba(196,162,74,0.2);">
+          {stats.map((s) => (
+            <div>
+              <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{s.value}</p>
+              <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">{s.label}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{deptCount || "—"}</p>
-          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Police Departments</p>
-        </div>
-        <div>
-          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{court.criminalProceedings ? court.criminalProceedings.slice(0, 3) : "—"}</p>
-          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Criminal Day</p>
-        </div>
-        <div>
-          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">16</p>
-          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Courts in County</p>
-        </div>
-      </div>
+      )}
     </div>
   </section>
 
-  <!-- CONTACT / LOGISTICS -->
   <section class="py-12 sm:py-14" style="background-color:#faf8f4;">
     <div class="mx-auto max-w-3xl px-6">
       <div class="grid sm:grid-cols-2 gap-8">
@@ -164,39 +161,22 @@ const schema = {
     </div>
   </section>
 
-  <!-- ABOUT THIS COURT -->
   <section class="bg-navy-900 py-14 sm:py-16" style="background-color:#0a1630;">
     <div class="mx-auto max-w-3xl px-6">
       <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-6 text-center" style="color:#d9bf7c;">About This Court</p>
       <div class="text-cream-100/75 text-sm sm:text-base leading-relaxed space-y-5" style="color:rgba(244,240,232,0.75);">
         <p>
-          Magisterial District Court {court.dcNumber} is one of sixteen magisterial district courts in Chester County.
+          Magisterial District Court {court.dcNumber} is one of {countWord} magisterial district courts in Chester County.
           {isVacant ? " The seat is currently vacant; the office continues to operate at its regular address, with coverage assigned by the county." : ` Judge ${court.judge} presides.`}
           {muniCount > 0 && ` It serves ${muniCount === 1 ? "one municipality" : `${muniCount} municipalities`}, listed above.`}
           {court.criminalProceedings && ` Criminal proceedings are heard on ${court.criminalProceedings}s.`}
           {" "}If you were charged by an officer in one of those municipalities, this is almost certainly where your case begins.
         </p>
-        <p>
-          Magisterial district courts handle the earliest stages of nearly every criminal case in Chester County. After an
-          arrest, a preliminary arraignment sets bail and gives you your next court date — Chester County's district judges
-          rotate through an on-call night schedule, so this can happen outside normal business hours.
-        </p>
-        <p>
-          The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The
-          Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the
-          Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses
-          and most traffic citations are decided at this court and go no further.
-        </p>
-        <p>
-          One Chester County detail worth knowing early: the District Attorney's published ARD instructions direct DUI
-          defendants to apply for the program <em>at the preliminary hearing</em>, and admission requires waiving that hearing
-          and all pretrial motions. That makes a first appearance at this court more consequential than many people expect.
-        </p>
+        {(county.courtProse ?? []).map((para) => (<p>{para}</p>))}
       </div>
     </div>
   </section>
 
-  <!-- BEFORE YOUR COURT DATE -->
   <section class="py-14 sm:py-16" style="background-color:#f4f0e8;">
     <div class="mx-auto max-w-2xl px-6 text-center">
       <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4" style="color:#a9873a;">Before Your Court Date</p>
@@ -210,7 +190,6 @@ const schema = {
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="bg-navy-900 py-14 sm:py-16" style="background-color:#0a1630;">
     <div class="mx-auto max-w-3xl px-6">
       <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-8 text-center" style="color:#d9bf7c;">Common Questions</p>
@@ -228,7 +207,6 @@ const schema = {
     </div>
   </section>
 
-  <!-- SIBLING COURTS -->
   <section class="py-12 sm:py-14" style="background-color:#faf8f4;">
     <div class="mx-auto max-w-4xl px-6">
       <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-6 text-center" style="color:#a9873a;">Other Chester County Courts</p>
@@ -243,7 +221,6 @@ const schema = {
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="bg-navy-950 py-14 sm:py-16 text-center" style="background-color:#070f21;">
     <p class="text-cream-100/80 text-sm sm:text-base mb-6" style="color:rgba(244,240,232,0.8);">
       Have a hearing at this court? Speak directly with the attorney beforehand.
