@@ -4,33 +4,33 @@ import { counties } from "../data/counties";
 const PHONE = "484-944-0834";
 const PHONE_TEL = "484-944-0834".replace(/\D/g, "");
 ---
-<header class="sticky top-0 z-50 bg-navy-950/95 backdrop-blur supports-[backdrop-filter]:bg-navy-950/90 border-b border-gold-500/20" style="background-color: rgba(7,15,33,0.97);">
+<header id="site-header" class="sticky top-0 z-50 backdrop-blur border-b border-gold-500/30 transition-colors duration-300" style="background-color: rgba(4,9,20,0.86);">
   <div class="mx-auto max-w-7xl px-5 sm:px-8">
     <div class="flex items-center justify-between h-20 sm:h-24">
       <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Yakubu Law — Home">
-        <img src="/images/logo-crest.png" alt="Yakubu Law crest" class="h-12 sm:h-14 w-auto" />
+        <img src="/images/logo-crest.png" alt="Yakubu Law crest" class="h-12 sm:h-14 w-auto crest-glow" />
         <span class="hidden sm:flex flex-col leading-tight">
-          <span class="font-serif text-xl tracking-wide-sm text-cream-50" style="color:#faf8f4;">YAKUBU LAW</span>
-          <span class="text-[10px] tracking-wide-lg text-gold-400 uppercase" style="color:#d9bf7c;">Trial Ready Criminal Defense</span>
+          <span class="font-serif text-xl tracking-wide-sm text-cream-50">YAKUBU LAW</span>
+          <span class="text-[10px] tracking-wide-lg uppercase foil-text">Trial Ready Criminal Defense</span>
         </span>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-8 text-sm tracking-wide-sm uppercase" style="color:#f4f0e8;">
-        <a href="/about" class="hover:text-gold-400 transition-colors" style="--tw-text-opacity:1;">About</a>
+      <nav class="hidden lg:flex items-center gap-8 text-sm tracking-wide-sm uppercase text-cream-100/80">
+        <a href="/about" class="wipe-link hover:text-gold-400 transition-colors">About</a>
 
         <div class="relative group">
-          <button class="uppercase flex items-center gap-1 hover:text-gold-400 transition-colors py-8">
+          <button class="uppercase wipe-link flex items-center gap-1 hover:text-gold-400 transition-colors py-8">
             Practice Areas
           </button>
           <div class="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:block pt-0">
-            <div class="w-[560px] bg-navy-900 border border-gold-500/25 shadow-2xl p-6 grid grid-cols-2 gap-x-8 gap-y-3 normal-case tracking-normal" style="background-color:#0a1630;">
+            <div class="w-[560px] bg-navy-900 border border-gold-500/35 shadow-2xl p-6 grid grid-cols-2 gap-x-8 gap-y-3 normal-case tracking-normal">
               {practiceAreas.map((pa) => (
                 <div>
-                  <a href={`/practice-areas/${pa.slug}`} class="block text-cream-50 hover:text-gold-400 text-[13px] font-medium" style="color:#faf8f4;">{pa.name}</a>
+                  <a href={`/practice-areas/${pa.slug}`} class="block text-cream-50 hover:text-gold-400 text-[13px] font-medium">{pa.name}</a>
                   {pa.children && (
-                    <ul class="mt-1 space-y-1 pl-3 border-l" style="border-color: rgba(196,162,74,0.25);">
+                    <ul class="mt-1 space-y-1 pl-3 border-l border-gold-500/30">
                       {pa.children.map((c) => (
-                        <li><a href={`/practice-areas/${pa.slug}/${c.slug}`} class="text-[12px] text-cream-100/70 hover:text-gold-400" style="color:rgba(244,240,232,0.65);">{c.name}</a></li>
+                        <li><a href={`/practice-areas/${pa.slug}/${c.slug}`} class="text-[12px] text-cream-100/65 hover:text-gold-400">{c.name}</a></li>
                       ))}
                     </ul>
                   )}
@@ -41,27 +41,27 @@ const PHONE_TEL = "484-944-0834".replace(/\D/g, "");
         </div>
 
         <div class="relative group">
-          <button class="uppercase flex items-center gap-1 hover:text-gold-400 transition-colors py-8">
+          <button class="uppercase wipe-link flex items-center gap-1 hover:text-gold-400 transition-colors py-8">
             Counties
           </button>
           <div class="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:block">
-            <div class="w-64 bg-navy-900 border border-gold-500/25 shadow-2xl p-5 flex flex-col gap-3 normal-case tracking-normal" style="background-color:#0a1630;">
+            <div class="w-64 bg-navy-900 border border-gold-500/35 shadow-2xl p-5 flex flex-col gap-3 normal-case tracking-normal">
               {counties.map((c) => (
-                <a href={`/counties/${c.slug}`} class="text-cream-50 hover:text-gold-400 text-[13px]" style="color:#faf8f4;">{c.name}</a>
+                <a href={`/counties/${c.slug}`} class="text-cream-50 hover:text-gold-400 text-[13px]">{c.name}</a>
               ))}
             </div>
           </div>
         </div>
 
-        <a href="/faq" class="hover:text-gold-400 transition-colors">FAQ</a>
-        <a href="/contact" class="hover:text-gold-400 transition-colors">Contact</a>
+        <a href="/faq" class="wipe-link hover:text-gold-400 transition-colors">FAQ</a>
+        <a href="/contact" class="wipe-link hover:text-gold-400 transition-colors">Contact</a>
       </nav>
 
       <div class="flex items-center gap-4">
-        <a href={`tel:${PHONE_TEL}`} class="hidden sm:inline-flex items-center gap-2 border border-gold-500 text-gold-400 text-xs tracking-wide-sm uppercase px-4 py-2 hover:bg-gold-500 hover:text-navy-950 transition-colors" style="border-color:#c4a24a; color:#d9bf7c;">
+        <a href={`tel:${PHONE_TEL}`} class="hidden sm:inline-flex items-center gap-2 border border-gold-500 text-gold-400 text-xs tracking-wide-sm uppercase px-4 py-2 transition-all hover:bg-gold-500/10 hover:shadow-[0_0_22px_rgba(201,164,74,0.35)]">
           Call {PHONE}
         </a>
-        <button id="menu-toggle" class="lg:hidden text-cream-50 p-2" style="color:#faf8f4;" aria-label="Toggle menu" aria-expanded="false">
+        <button id="menu-toggle" class="lg:hidden text-cream-50 p-2" aria-label="Toggle menu" aria-expanded="false">
           <svg id="icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
           <svg id="icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="hidden"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
@@ -69,28 +69,28 @@ const PHONE_TEL = "484-944-0834".replace(/\D/g, "");
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden lg:hidden border-t" style="background-color:#0a1630; border-color: rgba(196,162,74,0.2);">
+  <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-t border-gold-500/25">
     <div class="px-5 py-6 flex flex-col gap-5 text-sm uppercase tracking-wide-sm">
-      <a href="/about" class="text-cream-50" style="color:#faf8f4;">About</a>
+      <a href="/about" class="text-cream-50">About</a>
       <div>
-        <p class="text-gold-400 mb-2 text-xs" style="color:#d9bf7c;">Practice Areas</p>
+        <p class="text-gold-400 mb-2 text-xs">Practice Areas</p>
         <div class="flex flex-col gap-2 pl-2 normal-case">
           {practiceAreas.map((pa) => (
-            <a href={`/practice-areas/${pa.slug}`} class="text-cream-100/85 text-[14px]" style="color:rgba(244,240,232,0.85);">{pa.name}</a>
+            <a href={`/practice-areas/${pa.slug}`} class="text-cream-100/85 text-[14px]">{pa.name}</a>
           ))}
         </div>
       </div>
       <div>
-        <p class="text-gold-400 mb-2 text-xs" style="color:#d9bf7c;">Counties</p>
+        <p class="text-gold-400 mb-2 text-xs">Counties</p>
         <div class="flex flex-col gap-2 pl-2 normal-case">
           {counties.map((c) => (
-            <a href={`/counties/${c.slug}`} class="text-cream-100/85 text-[14px]" style="color:rgba(244,240,232,0.85);">{c.name}</a>
+            <a href={`/counties/${c.slug}`} class="text-cream-100/85 text-[14px]">{c.name}</a>
           ))}
         </div>
       </div>
-      <a href="/faq" class="text-cream-50" style="color:#faf8f4;">FAQ</a>
-      <a href="/contact" class="text-cream-50" style="color:#faf8f4;">Contact</a>
-      <a href={`tel:${PHONE_TEL}`} class="mt-2 text-center border border-gold-500 text-gold-400 py-3" style="border-color:#c4a24a; color:#d9bf7c;">
+      <a href="/faq" class="text-cream-50">FAQ</a>
+      <a href="/contact" class="text-cream-50">Contact</a>
+      <a href={`tel:${PHONE_TEL}`} class="mt-2 text-center border border-gold-500 text-gold-400 py-3">
         Call {PHONE}
       </a>
     </div>
@@ -109,4 +109,8 @@ const PHONE_TEL = "484-944-0834".replace(/\D/g, "");
     iconClose?.classList.toggle("hidden");
     toggle.setAttribute("aria-expanded", String(!!isHidden));
   });
+  const header = document.getElementById("site-header");
+  window.addEventListener("scroll", () => {
+    if (header) header.style.backgroundColor = window.scrollY > 24 ? "rgba(4,9,20,0.97)" : "rgba(4,9,20,0.86)";
+  }, { passive: true });
 </script>
