@@ -18,6 +18,51 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
 const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${court.address}, ${court.cityStateZip}`
 )}`;
+
+const muniCount = court.townships ? court.townships.split(",").length : 0;
+const siblings = (chester.courts ?? []).filter((c) => c.slug !== court.slug);
+const isVacant = court.judge.toLowerCase().startsWith("vacant");
+
+const faq = [
+  court.townships && {
+    q: `Which municipalities does Magisterial District Court ${court.dcNumber} cover?`,
+    a: court.townships + ".",
+  },
+  court.policeDepartments && court.policeDepartments.length > 0 && {
+    q: `Which police departments file cases at Court ${court.dcNumber}?`,
+    a: `Cases at this court most often come from the ${court.policeDepartments.join(", ")}.`,
+  },
+  {
+    q: "Is a preliminary hearing a trial?",
+    a: "No. No one is found guilty or not guilty at a preliminary hearing. The Commonwealth only has to show there is enough evidence for the case to move forward to the Court of Common Pleas.",
+  },
+  {
+    q: "Where does my case go if it is held for court?",
+    a: "Cases held for court move to the Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses and most traffic citations are decided at the magisterial district court and go no further.",
+  },
+].filter(Boolean);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LegalService",
+      name: "Yakubu Law",
+      description: `Criminal defense representation for cases heard at Magisterial District Court ${court.dcNumber} in Chester County, Pennsylvania.`,
+      telephone: "+1-484-944-0834",
+      areaServed: { "@type": "AdministrativeArea", name: "Chester County, Pennsylvania" },
+      knowsLanguage: "en",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
+};
 ---
 <BaseLayout
   title={`D.C. ${court.dcNumber} — Chester County Magisterial District Court`}
@@ -73,8 +118,40 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
         </div>
       )}
 
+      <div class="mb-10">
+        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">About This Court</p>
+        <div class="text-cream-100/75 text-sm leading-relaxed space-y-4" style="color:rgba(244,240,232,0.75);">
+          <p>
+            Magisterial District Court {court.dcNumber} is one of sixteen magisterial district courts in Chester County.
+            {isVacant ? " The seat is currently vacant; the office continues to operate at its regular address, with coverage assigned by the county." : ` Judge ${court.judge} presides.`}
+            {muniCount > 0 && ` It serves ${muniCount === 1 ? "one municipality" : `${muniCount} municipalities`}, listed above.`}
+            {court.criminalProceedings && ` Criminal proceedings are heard on ${court.criminalProceedings}s.`}
+            {" "}If you were charged by an officer in one of those municipalities, this is almost certainly where your case begins.
+          </p>
+          <p>
+            Magisterial district courts handle the earliest stages of nearly every criminal case in Chester County. After an
+            arrest, a preliminary arraignment sets bail and gives you your next court date — Chester County's district judges
+            rotate through an on-call night schedule, so this can happen outside normal business hours.
+          </p>
+          <p>
+            The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The
+            Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the
+            Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses
+            and most traffic citations are decided at this court and go no further.
+          </p>
+          <p>
+            One Chester County detail worth knowing early: the District Attorney's published ARD instructions direct DUI
+            defendants to apply for the program <em>at the preliminary hearing</em>, and admission requires waiving that hearing
+            and all pretrial motions. That makes a first appearance at this court more consequential than many people expect.
+          </p>
+        </div>
+      </div>
+
       <div>
         <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-2" style="color:rgba(244,240,232,0.5);">Police Departments in This District</p>
+        {court.policeDepartments && court.policeDepartments.length > 0 && (
+          <p class="text-cream-100/60 text-sm leading-relaxed mb-2" style="color:rgba(244,240,232,0.6);">Cases filed at this court most often come from:</p>
+        )}
         {court.policeDepartments && court.policeDepartments.length > 0 && (
           <ul class="text-cream-100/80 text-sm leading-relaxed space-y-1" style="color:rgba(244,240,232,0.8);">
             {court.policeDepartments.map((dept) => (
@@ -95,6 +172,41 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
       {court.note && (
         <p class="text-cream-100/70 text-xs leading-relaxed mt-8 border-l-2 pl-4" style="border-color:#c4a24a; color:rgba(244,240,232,0.7);">{court.note}</p>
       )}
+
+      <div class="hairline-static my-10"></div>
+
+      <div class="mb-10">
+        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">Before Your Court Date</p>
+        <p class="text-cream-100/75 text-sm leading-relaxed" style="color:rgba(244,240,232,0.75);">
+          Every magisterial district court runs a little differently — parking, which entrance to use, how early to arrive, and
+          how a given courtroom handles its list. Those questions deserve a real answer rather than a guess, so call this court
+          directly at <a href={`tel:${court.phone.replace(/\D/g, "")}`} class="border-b border-gold-500" style="border-color:#c4a24a; color:#d9bf7c;">{court.phone}</a>, or call Yakubu Law at <a href={`tel:${PHONE_TEL}`} class="border-b border-gold-500" style="border-color:#c4a24a; color:#d9bf7c;">{PHONE}</a> to talk through your case.
+        </p>
+      </div>
+
+      <div class="mb-10">
+        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">Common Questions</p>
+        <div class="flex flex-col gap-1">
+          {faq.map((item) => (
+            <details class="group border-b py-3" style="border-color: rgba(196,162,74,0.2);">
+              <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 text-sm font-medium" style="color:#faf8f4;">
+                {item.q}
+                <span class="text-gold-400 text-lg group-open:rotate-45 transition-transform" style="color:#c4a24a;">+</span>
+              </summary>
+              <p class="text-cream-100/65 text-sm leading-relaxed mt-2" style="color:rgba(244,240,232,0.65);">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">Other Chester County Courts</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2">
+          {siblings.map((c) => (
+            <a href={`/counties/chester/${c.slug}`} class="text-cream-100/60 text-xs hover:text-gold-400 transition-colors" style="color:rgba(244,240,232,0.6);">D.C. {c.dcNumber} — {c.cityStateZip.split(",")[0]}</a>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -106,4 +218,5 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
       Call {PHONE}
     </a>
   </section>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 </BaseLayout>
