@@ -15,6 +15,8 @@ export type Court = {
   townships?: string; // not provided in the Bucks source list — left undefined intentionally
   policeDepartments?: string[]; // municipal police departments confirmed (High/Medium confidence) to report to this court, per police-departments-by-mdj-court.xlsx
   pspNote?: string; // note on municipalities within this court's territory covered by PA State Police rather than a municipal department
+  criminalProceedings?: string; // day criminal proceedings are heard (Chester County publishes this per court)
+  note?: string; // court-specific operational note (e.g. temporary coverage arrangements)
 };
 
 export type Facility = {
@@ -175,6 +177,178 @@ const montgomeryCourts: Omit<Court, "slug">[] = [
     policeDepartments: ["Norristown Borough Police Department"] },
 ];
 
+// Chester County MDJ data sourced from Chester County's own official district court
+// directory (chesco.org), provided by the client as screenshots of the county listing.
+// Chester publishes the weekday each court hears criminal proceedings and the exact
+// municipalities (including ward and voting-district splits) each court covers — both
+// captured below. Court 15-1-02 is currently vacant; the office still operates at its
+// regular address and phone.
+const chesterCourts: Omit<Court, "slug">[] = [
+  { dcNumber: "15-1-01", judge: "Marc Lieberman", address: "201 West Market Street, Suite 1307", cityStateZip: "West Chester, PA 19380", phone: "610-431-4814", fax: "610-455-1169",
+    townships: "Borough of West Chester (Wards 3, 6, 7), East Bradford Township, West Bradford Township",
+    criminalProceedings: "Wednesday",
+    policeDepartments: ["West Chester Borough Police Department"],
+    pspNote: "West Bradford Township is patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-1-02", judge: "Vacant", address: "1572 Paoli Pike", cityStateZip: "West Chester, PA 19380", phone: "610-455-1100", fax: "610-455-1105",
+    townships: "Malvern Borough, East Goshen Township, Easttown Township, Willistown Township, Tredyffrin Township (Precincts E-1, E-2, E-5, M-1, M-5, M-6, W-4), Westtown Township (Voting District 2)",
+    criminalProceedings: "Monday",
+    policeDepartments: ["Easttown Township Police Department", "Malvern Borough Police Department", "Tredyffrin Township Police Department", "Westtown-East Goshen Regional Police Department", "Willistown Township Police Department"] },
+  { dcNumber: "15-1-03", judge: "Gregory Hines", address: "One City Hall Place, Suite 200", cityStateZip: "Coatesville, PA 19320-3446", phone: "610-455-1155", fax: "610-455-1139",
+    townships: "City of Coatesville, Borough of South Coatesville",
+    criminalProceedings: "Wednesday",
+    policeDepartments: ["Coatesville City Police Department", "South Coatesville Borough Police Department"] },
+  { dcNumber: "15-1-04", judge: "Marian T. Vito", address: "21 West Market Street, Suite 100", cityStateZip: "West Chester, PA 19382", phone: "610-344-6622", fax: "610-455-1186",
+    townships: "Borough of West Chester (Wards 1, 2, 4, 5)",
+    criminalProceedings: "Tuesday",
+    policeDepartments: ["West Chester Borough Police Department"] },
+  { dcNumber: "15-2-01", judge: "James C. Kovaleski", address: "347 Bridge Street", cityStateZip: "Phoenixville, PA 19460", phone: "610-455-1125", fax: "610-455-1109",
+    townships: "Borough of Phoenixville, Charlestown Township, Schuylkill Township",
+    criminalProceedings: "Tuesday",
+    policeDepartments: ["Phoenixville Borough Police Department", "Schuylkill Township Police Department"],
+    pspNote: "Charlestown Township is patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-2-03", judge: "Anthony DiFrancesca", address: "Government Services Center, 601 Westtown Road, Suite 110", cityStateZip: "West Chester, PA 19382", phone: "610-436-5757", fax: "610-455-1187",
+    townships: "Thornbury Township, West Goshen Township, Westtown Township (Voting Districts 1, 3, 4, 5)",
+    criminalProceedings: "Friday",
+    policeDepartments: ["West Goshen Township Police Department", "Westtown-East Goshen Regional Police Department"] },
+  { dcNumber: "15-2-07", judge: "N. Paige Simmons", address: "75 East Uwchlan Avenue, Suite 110", cityStateZip: "Exton, PA 19341", phone: "610-455-1140", fax: "610-455-1136",
+    townships: "East Caln Township, West Pikeland Township, Upper Uwchlan Township, Uwchlan Township",
+    criminalProceedings: "Thursday",
+    policeDepartments: ["Downingtown Borough Police Department", "Upper Uwchlan Township Police Department", "Uwchlan Township Police Department", "West Pikeland Township Police Department"] },
+  { dcNumber: "15-3-01", judge: "John Hipple", address: "1101 Ridge Road, Suite B", cityStateZip: "Pottstown, PA 19465", phone: "610-455-1120", fax: "610-455-1108",
+    townships: "Borough of Spring City, East Coventry Township, East Nantmeal Township, East Pikeland Township, East Vincent Township, North Coventry Township, South Coventry Township, Warwick Township, West Vincent Township",
+    criminalProceedings: "Thursday",
+    policeDepartments: ["East Coventry Township Police Department", "East Pikeland Township Police Department", "East Vincent Township Police Department", "North Coventry Township Police Department", "Spring City Borough Police Department", "West Vincent Township Police Department"],
+    pspNote: "East Nantmeal Township, South Coventry Township, and Warwick Township are patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-3-04", judge: "Albert Iacocca", address: "916 West Cypress Street", cityStateZip: "Kennett Square, PA 19348", phone: "610-455-1170", fax: "610-455-1166",
+    townships: "Borough of Kennett Square, Birmingham Township, East Marlborough Township, Kennett Township, Newlin Township, Pennsbury Township, Pocopson Township",
+    criminalProceedings: "Wednesday",
+    policeDepartments: ["Birmingham Township Police Department", "East Marlborough Township Police Department", "Kennett Square Borough Police Department", "Kennett Township Police Department"],
+    pspNote: "Newlin Township, Pennsbury Township, and Pocopson Township are patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-3-05", judge: "Scott A. Massey", address: "305 South Third Street", cityStateZip: "Oxford, PA 19363", phone: "610-455-1160", fax: "610-455-1165",
+    townships: "Borough of Oxford, East Nottingham Township, Elk Township, Lower Oxford Township, New London Township, Oxford Township, Penn Township, Upper Oxford Township, West Nottingham Township",
+    criminalProceedings: "Tuesday",
+    policeDepartments: ["Oxford Borough Police Department", "West Nottingham Township Police Department"],
+    pspNote: "East Nottingham Township, Elk Township, Lower Oxford Township, New London Township, Penn Township, and Upper Oxford Township are patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-3-06", judge: "J. Timothy Arndt III", address: "4824 Horseshoe Pike", cityStateZip: "Honey Brook, PA 19344", phone: "610-455-1110", fax: "610-455-1106",
+    townships: "Borough of Elverson, Borough of Honey Brook, Honey Brook Township, Sadsbury Township, Wallace Township, West Brandywine Township, West Caln Township, West Nantmeal Township",
+    criminalProceedings: "Monday",
+    policeDepartments: ["Honey Brook Borough Police Department", "Sadsbury Township Police Department", "West Brandywine Township Police Department", "West Caln Township Police Department"],
+    pspNote: "Elverson Borough, Honey Brook Township, and West Nantmeal Township are patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-3-07", judge: "Joe Heffern", address: "315 First Avenue, Building 3", cityStateZip: "Parkesburg, PA 19365", phone: "610-455-1115", fax: "610-455-1107",
+    townships: "Borough of Atglen, Borough of Modena, Borough of Parkesburg, East Fallowfield Township, Highland Township, Londonderry Township, Valley Township, West Fallowfield Township, West Sadsbury Township",
+    criminalProceedings: "Monday",
+    policeDepartments: ["East Fallowfield Township Police Department", "Parkesburg Borough Police Department", "South Coatesville Borough Police Department", "Valley Township Police Department", "West Fallowfield Township Police Department", "West Sadsbury Township Police Department"],
+    pspNote: "Highland Township and Londonderry Township are patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+  { dcNumber: "15-4-01", judge: "Lauren Holt", address: "950 West Valley Road, Suite 3100", cityStateZip: "Wayne, PA 19087", phone: "610-455-1130", fax: "610-455-1135",
+    townships: "East Whiteland Township (Wards 3, 4, 5, 6), Tredyffrin Township (Precincts E-3, E-4, W-1, W-2, W-3, W-5, M-2, M-3, M-4, M-7)",
+    criminalProceedings: "Thursday",
+    policeDepartments: ["East Whiteland Township Police Department", "Tredyffrin Township Police Department"] },
+  { dcNumber: "15-4-02", judge: "Ann Feldman", address: "231 Boot Road", cityStateZip: "Downingtown, PA 19335", phone: "610-455-1145", fax: "610-455-1137",
+    townships: "Borough of Downingtown, Caln Township, East Brandywine Township",
+    criminalProceedings: "Wednesday",
+    policeDepartments: ["Caln Township Police Department", "Downingtown Borough Police Department", "East Brandywine Township Police Department"] },
+  { dcNumber: "15-4-03", judge: "Erin Bruno", address: "Whiteland Business Park, 748 Springdale Drive, Suite 110", cityStateZip: "Exton, PA 19341", phone: "610-455-1150", fax: "610-455-1168",
+    townships: "East Whiteland Township (Wards 1, 2), West Whiteland Township",
+    criminalProceedings: "Friday",
+    policeDepartments: ["East Whiteland Township Police Department", "West Whiteland Township Police Department"] },
+  { dcNumber: "15-4-04", judge: "Matthew Seavey", address: "914 West Cypress Street", cityStateZip: "Kennett Square, PA 19348", phone: "610-455-1175", fax: "610-455-1167",
+    townships: "Borough of Avondale, Borough of West Grove, Franklin Township, London Britain Township, London Grove Township, New Garden Township, West Marlborough Township",
+    criminalProceedings: "Friday",
+    policeDepartments: ["Southern Chester County Regional Police Department"],
+    pspNote: "Franklin Township, London Britain Township, London Grove Township, and West Marlborough Township are patrolled by the Pennsylvania State Police (Troop J) rather than a municipal department." },
+];
+
+// Delaware County MDJ data sourced from the county's own official directory
+// ("2025 Delaware County Magisterial District Judges, Magisterial Districts, Office
+// Locations and Municipalities," effective 10/8/2025), provided by the client.
+// Several municipalities are split across courts by ward and precinct — Upper Darby
+// Township alone is divided across six of these courts — so the municipality detail
+// below is recorded exactly as the county publishes it.
+const delawareCourts: Omit<Court, "slug">[] = [
+  { dcNumber: "32-1-20", judge: "Wilden H. Davis", address: "529 Penn Street", cityStateZip: "Chester, PA 19013-6033", phone: "610-876-2151", fax: "610-874-7864",
+    townships: "City of Chester (Wards 1, 2, Ward 6 Precinct 2, and Ward 7 Precincts 1, 3, 4)",
+    policeDepartments: ["City of Chester Police Department"] },
+  { dcNumber: "32-1-21", judge: "Dawn L. Vann", address: "529 Penn Street", cityStateZip: "Chester, PA 19013-6033", phone: "610-874-7180", fax: "610-874-7864",
+    townships: "City of Chester (Wards 3, 4, 5, Ward 6 Precinct 1, Ward 7 Precinct 2, Wards 8, 9)",
+    policeDepartments: ["City of Chester Police Department"] },
+  { dcNumber: "32-1-22", judge: "Shepard Garner", address: "529 Penn Street", cityStateZip: "Chester, PA 19013-6033", phone: "610-874-1790", fax: "610-874-7864",
+    townships: "City of Chester (Wards 10, 11), Marcus Hook Borough, Trainer Borough",
+    policeDepartments: ["City of Chester Police Department", "Marcus Hook Borough Police Department", "Trainer Borough Police Department"] },
+  { dcNumber: "32-1-23", judge: "Lee Grimes", address: "100 Clifton Avenue", cityStateZip: "Collingdale, PA 19023-3828", phone: "610-534-3443", fax: "610-534-5978",
+    townships: "Collingdale Borough (Wards 1, 2, 3, 7), Darby Borough (Wards 1, 2, and Ward 3 Precinct 2)",
+    policeDepartments: ["Collingdale Police Department", "Darby Borough Police Department"] },
+  { dcNumber: "32-1-27", judge: "David H. Lang", address: "796 Parkway Boulevard", cityStateZip: "Broomall, PA 19008", phone: "610-338-2250", fax: "610-338-2253",
+    townships: "Marple Township, Newtown Township",
+    policeDepartments: ["Marple Township Police Department", "Newtown Township Police Department"] },
+  { dcNumber: "32-1-28", judge: "Elizabeth Gallard", address: "349 West Baltimore Avenue", cityStateZip: "Media, PA 19063-2609", phone: "610-566-0872", fax: "610-566-2732",
+    townships: "Media Borough, Swarthmore Borough, Nether Providence Township",
+    policeDepartments: ["Media Borough Police Department", "Nether Providence Township Police Department", "Swarthmore Borough Police Department"] },
+  { dcNumber: "32-1-30", judge: "George B. Dawson", address: "Ridley Township Municipal Building, 100 MacDade Boulevard", cityStateZip: "Folsom, PA 19033-2594", phone: "610-532-0320", fax: "610-532-0953",
+    townships: "Eddystone Borough, Rutledge Borough, Ridley Township (Wards 1, 2, 3, 5, 6, 7, 8, 9)",
+    policeDepartments: ["Eddystone Borough Police Department", "Ridley Township Police Department", "Swarthmore Borough Police Department"] },
+  { dcNumber: "32-1-32", judge: "Michael Culp", address: "56 Powell Road", cityStateZip: "Springfield, PA 19064-2446", phone: "610-543-2366", fax: "610-543-1920",
+    townships: "Springfield Township (Ward 1 Precincts 1-2, Ward 2 Precincts 1-3, and Wards 3, 4, 5, 7), Morton Borough, Ridley Township (Ward 4)",
+    policeDepartments: ["Morton Borough Police Department", "Ridley Township Police Department", "Springfield Township Police Department"] },
+  { dcNumber: "32-1-33", judge: "Harry J. Karapalides", address: "1500 Garrett Road, Suites 150 & 200", cityStateZip: "Upper Darby, PA 19082-4505", phone: "610-626-6900", fax: "610-623-0463",
+    townships: "Millbourne Borough, Upper Darby Township (Ward 5 Precincts 1, 7; Ward 6 Precincts 1, 2, 3, 4, 5, 9, 10, 12; Ward 7 Precincts 3, 5, 11)",
+    policeDepartments: ["Millbourne Borough Police Department", "Upper Darby Township Police Department"] },
+  { dcNumber: "32-1-34", judge: "Benjamin Johns", address: "1500 Garrett Road, Suites 150 & 200", cityStateZip: "Upper Darby, PA 19082-4505", phone: "610-626-6900", fax: "610-623-0463",
+    townships: "Upper Darby Township (Ward 3 Precincts 2, 4, 6, 7, 8, 9, 10; Ward 4 Precincts 1, 2, 3, 4, 8, 9, 10; Ward 5 Precinct 3; Ward 7 Precincts 2, 4, 8, 10)",
+    policeDepartments: ["Upper Darby Township Police Department"] },
+  { dcNumber: "32-1-36", judge: "David R. Griffin", address: "526 West Ridge Road", cityStateZip: "Linwood, PA 19061-4219", phone: "610-859-9748", fax: "610-859-9751",
+    townships: "Upper Chichester Township (Wards 1, 3, 4, 5), Lower Chichester Township",
+    policeDepartments: ["Lower Chichester Township Police Department", "Upper Chichester Township Police Department"] },
+  { dcNumber: "32-2-37", judge: "Tammi L. Forbes", address: "150 South MacDade Boulevard, Suite E", cityStateZip: "Darby, PA 19023-2202", phone: "610-534-3504", fax: "610-534-0714",
+    townships: "Colwyn Borough, Darby Borough (Ward 3 Precinct 1), Sharon Hill Borough",
+    policeDepartments: ["Colwyn Borough Police Department", "Darby Borough Police Department", "Sharon Hill Police Department"] },
+  { dcNumber: "32-2-38", judge: "Diane Holefelder", address: "2901 Dutton Mill Road, Suite 120", cityStateZip: "Aston, PA 19014-1032", phone: "610-558-3520", fax: "610-558-3528",
+    townships: "Aston Township, Chester Township, Upper Chichester Township (Ward 2)",
+    policeDepartments: ["Aston Township Police Department", "Chester Township Police Department", "Upper Chichester Township Police Department"] },
+  { dcNumber: "32-2-39", judge: "Georgia L. Stone", address: "2 Cambridge Road, Suite 300", cityStateZip: "Brookhaven, PA 19015-1708", phone: "610-874-8178", fax: "610-874-7893",
+    townships: "Brookhaven Borough, Parkside Borough, Rose Valley Borough, Upland Borough",
+    policeDepartments: ["Brookhaven Borough Police Department", "Parkside Borough Police Department", "Upland Borough Police Department"],
+    pspNote: "Rose Valley Borough is patrolled by the Pennsylvania State Police (Troop K — Media Station) rather than a municipal department." },
+  { dcNumber: "32-2-40", judge: "Steven A. Sandone", address: "11 Bartram Avenue", cityStateZip: "Glenolden, PA 19036-1802", phone: "610-583-6646", fax: "610-583-1197",
+    townships: "Aldan Borough, Folcroft Borough, Darby Township",
+    policeDepartments: ["Aldan Borough Police Department", "Darby Township Police Department", "Folcroft Borough Police Department"] },
+  { dcNumber: "32-2-42", judge: "Michael A. Burns", address: "11 Bartram Avenue", cityStateZip: "Glenolden, PA 19036-1802", phone: "610-583-6647", fax: "610-583-1197",
+    townships: "Collingdale Borough (Wards 4, 5, 6), Glenolden Borough, Norwood Borough",
+    policeDepartments: ["Collingdale Police Department", "Glenolden Borough Police Department", "Norwood Borough Police Department"] },
+  { dcNumber: "32-2-43", judge: "Sloan Walker", address: "4655 West Chester Pike", cityStateZip: "Newtown Square, PA 19073", phone: "610-356-2997", fax: "610-356-0692",
+    townships: "Radnor Township",
+    policeDepartments: ["Radnor Township Police Department"] },
+  { dcNumber: "32-2-44", judge: "Mary Hopper", address: "1028 Lincoln Avenue", cityStateZip: "Prospect Park, PA 19076-1414", phone: "610-534-5627", fax: "610-534-5610",
+    townships: "Prospect Park Borough, Ridley Park Borough, Tinicum Township",
+    policeDepartments: ["Prospect Park Borough Police Department", "Ridley Park Borough Police Department", "Tinicum Township Police Department"] },
+  { dcNumber: "32-2-46", judge: "Andrew Goldberg", address: "939 North Providence Road", cityStateZip: "Media, PA 19063-1403", phone: "610-566-3495", fax: "610-566-7016",
+    townships: "Upper Providence Township",
+    policeDepartments: ["Upper Providence Township Police Department"] },
+  { dcNumber: "32-2-47", judge: "W. Keith Williams", address: "60 West Marshall Road", cityStateZip: "Lansdowne, PA 19050", phone: "610-259-8848", fax: "610-259-8920",
+    townships: "Lansdowne Borough, Yeadon Borough",
+    policeDepartments: ["Lansdowne Borough Police Department", "Yeadon Borough Police Department"] },
+  { dcNumber: "32-2-48", judge: "Walter A. Strohl", address: "27 South Pennell Road", cityStateZip: "Lima, PA 19037-0093", phone: "610-565-4110", fax: "610-565-1640",
+    townships: "Edgmont Township, Middletown Township, Chester Heights Borough",
+    policeDepartments: [],
+    pspNote: "Edgmont Township, Middletown Township, and Chester Heights Borough are patrolled by the Pennsylvania State Police (Troop K — Media Station) rather than a municipal department." },
+  { dcNumber: "32-2-49", judge: "Wendy B. Roberts", address: "485 Baltimore Pike", cityStateZip: "Glen Mills, PA 19342-1161", phone: "610-558-3605", fax: "610-558-3618",
+    townships: "Bethel Township, Chadds Ford Township, Concord Township, Thornbury Township",
+    policeDepartments: ["Bethel Township Police Department"],
+    pspNote: "Chadds Ford Township, Concord Township, and Thornbury Township are patrolled by the Pennsylvania State Police (Troop K — Media Station) rather than a municipal department." },
+  { dcNumber: "32-2-51", judge: "Christopher R. Mattox", address: "1500 Garrett Road, Suites 150 & 200", cityStateZip: "Upper Darby, PA 19082-4505", phone: "610-626-6900", fax: "610-623-0463",
+    townships: "East Lansdowne Borough, Upper Darby Township (Ward 5 Precincts 2, 4, 5, 6, 8; Ward 6 Precincts 6, 7, 8, 11; Ward 7 Precincts 1, 6, 7, 9)",
+    policeDepartments: ["East Lansdowne Police Department", "Upper Darby Township Police Department"] },
+  { dcNumber: "32-2-52", judge: "Kelly A. Micozzie-Aguirre", address: "409 Ashland Avenue, Suite 1", cityStateZip: "Secane, PA 19018-2705", phone: "610-622-8102", fax: "610-622-8105",
+    townships: "Clifton Heights Borough, Upper Darby Township (Ward 1 Precincts 4, 7; Ward 2; Ward 5 Precinct 9)",
+    policeDepartments: ["Clifton Heights Borough Police Department", "Upper Darby Township Police Department"] },
+  { dcNumber: "32-2-53", judge: "Elysia J. Mancini Duerr", address: "525 West Chester Pike, Suites 103 and 105", cityStateZip: "Havertown, PA 19083-4539", phone: "610-449-5189", fax: "610-789-9167",
+    townships: "Haverford Township, Upper Darby Township (Ward 4 Precincts 5, 6, 7, 11; Ward 5 Precinct 10)",
+    policeDepartments: ["Haverford Township Police Department", "Upper Darby Township Police Department"] },
+  { dcNumber: "32-2-54", judge: "James Merkins", address: "56 Powell Road", cityStateZip: "Springfield, PA 19064-2446", phone: "610-690-7668", fax: "610-543-1920",
+    townships: "Springfield Township (Ward 1 Precinct 3, Ward 6), Upper Darby Township (Ward 1 Precincts 1, 2, 3, 5, 6, 8, 9; Ward 3 Precincts 1, 3, 5, 11)",
+    note: "Per the county's current directory, this district is temporarily consolidated with Court 32-2-43, and hearings are held at Court 32-2-52. Confirm where your hearing is scheduled before travelling.",
+    policeDepartments: ["Springfield Township Police Department", "Upper Darby Township Police Department"] },
+];
+
 export const counties: County[] = [
   {
     slug: "bucks",
@@ -186,15 +360,165 @@ export const counties: County[] = [
   {
     slug: "chester",
     name: "Chester County",
-    courtCount: 17,
-    courtCountNote: "16 confirmed from source records; final court pending confirmation.",
-    status: "coming-soon",
+    courtCount: 16,
+    status: "sample",
+    courts: chesterCourts.map((c) => ({ ...c, slug: `dc-${c.dcNumber}` })),
+    courthouse: {
+      name: "Chester County Court of Common Pleas",
+      address: "Chester County Justice Center, 201 West Market Street",
+      cityStateZip: "West Chester, PA 19380",
+      phone: "610-344-6000",
+      note: "Preliminary hearings are heard at the Magisterial District Court covering the municipality where the case arose. Cases held for court then move to the Justice Center in West Chester for formal arraignment, pretrial proceedings, and trial.",
+    },
+    jail: {
+      name: "Chester County Prison",
+      address: "501 South Wawaset Road",
+      cityStateZip: "West Chester, PA 19382",
+      phone: "610-344-5040",
+    },
+    diversionPrograms: [
+      {
+        name: "ARD (Accelerated Rehabilitative Disposition)",
+        description:
+          "A pretrial diversion program for people with little or no prior record, screened by the District Attorney's Office, with charges dismissed and expungement available on successful completion. Chester County runs ARD on an unusually early clock: the county's own instructions direct DUI defendants to apply at the preliminary hearing, and admission requires waiving the preliminary hearing and all pretrial motions. That makes the decision one to discuss with an attorney before the first court date, not after.",
+      },
+      {
+        name: "Drug Court",
+        description:
+          "A pretrial diversion track for eligible people with a substance use disorder facing non-violent or first-offense charges. It runs a minimum of twelve months and up to two years, and successful completion makes the participant eligible to have the charges dismissed and petition for expungement.",
+      },
+      {
+        name: "Recovery Court",
+        description:
+          "Chester County's post-conviction counterpart to Drug Court, for people whose criminal history or charges fall at the higher end of the sentencing guidelines and who are therefore outside Drug Court's eligibility. Applications are due within thirty days of formal arraignment, and the program generally runs two to three years.",
+      },
+      {
+        name: "Mental Health Court",
+        description:
+          "For Chester County residents diagnosed with a serious and persistent mental illness that is connected to the charged conduct. It runs on two tracks — a pretrial diversion track of roughly one to two years, and a post-conviction track of roughly two to three years. Clinical eligibility is assessed separately from legal eligibility, which the District Attorney's Office determines.",
+      },
+      {
+        name: "Veterans Court",
+        description:
+          "Open to veterans and active-duty service members, expressly including Guard members and reservists, charged with a misdemeanor or felony in Chester County. Like Mental Health Court it runs a pretrial diversion track and a post-conviction track, and connects participants with the VA and community providers.",
+      },
+      {
+        name: "Law Enforcement Treatment Initiative (LETI)",
+        description:
+          "A pre-arrest option unique among the counties served here: a person with a substance use disorder can approach any law enforcement officer in Chester County and be referred to treatment rather than charged. Because it operates before charges are filed, it sits outside the court process entirely.",
+      },
+    ],
+    faq: [
+      {
+        question: "What happens after an arrest in Chester County?",
+        answer:
+          "Most cases begin with a preliminary arraignment and then a preliminary hearing at the Magisterial District Court covering the municipality where the arrest happened. Chester County's district judges rotate through an on-call night schedule, so preliminary arraignments can happen outside business hours. Cases held for court move to the Court of Common Pleas at the Justice Center in West Chester.",
+      },
+      {
+        question: "If I'm charged with DUI in Chester County, when do I have to apply for ARD?",
+        answer:
+          "Earlier than most people expect. The District Attorney's published ARD instructions direct DUI defendants to apply at their preliminary hearing, and admission to the program requires waiving that hearing along with all pretrial motions. That is a significant decision with real trade-offs, and it lands at the very first court date — which is exactly why it's worth talking through with an attorney before you appear.",
+      },
+      {
+        question: "Which court will hear my case — the Magisterial District Court or Common Pleas?",
+        answer:
+          "Preliminary matters — arraignment, the preliminary hearing, and most summary and traffic offenses — are handled at the Magisterial District Court for the municipality where the case arose. Chester County has sixteen of them, spread from Oxford and Kennett Square to Phoenixville and Wayne. Cases that continue past the preliminary hearing move to the Court of Common Pleas in West Chester.",
+      },
+      {
+        question: "What happens if I miss a court date in Chester County?",
+        answer:
+          "Missing a court date can result in a bench warrant. If that has already happened, it is far better addressed directly and promptly than avoided — the situation rarely improves on its own. Call to discuss the specific circumstances rather than waiting to see what happens.",
+      },
+      {
+        question: "Where is the county prison, and what should I know about bail?",
+        answer:
+          "Chester County Prison is at 501 South Wawaset Road, West Chester. Depending on which bail authority set it, bail may be posted at the Clerk of Courts, at a Magisterial District Court, or at the prison itself. One easily-missed obligation: the county requires a defendant released on bail to contact the Clerk of Courts within 48 hours of release.",
+      },
+    ],
   },
   {
     slug: "delaware",
     name: "Delaware County",
     courtCount: 26,
-    status: "coming-soon",
+    status: "sample",
+    courts: delawareCourts.map((c) => ({ ...c, slug: `dc-${c.dcNumber}` })),
+    courthouse: {
+      name: "Delaware County Court of Common Pleas",
+      address: "Delaware County Courthouse, 201 West Front Street",
+      cityStateZip: "Media, PA 19063",
+      phone: "610-891-4000",
+      note: "Preliminary hearings are heard at the Magisterial District Court covering the municipality where the case arose. Cases held for court move to the Court of Common Pleas in Media. Note that the courthouse and the county government center share the same Front Street address — check which building your hearing is in.",
+    },
+    jail: {
+      name: "George W. Hill Correctional Facility",
+      address: "500 Cheyney Road",
+      cityStateZip: "Thornton, PA 19373",
+      phone: "610-361-3200",
+    },
+    diversionPrograms: [
+      {
+        name: "ARD (Accelerated Rehabilitative Disposition)",
+        description:
+          "A pretrial diversion program for first-time and low-risk offenders, with charges dismissed on successful completion. Two Delaware County requirements matter here: the county's own application states that no application will be considered unless the applicant is represented by an attorney, and the application is due at least fourteen days before the scheduled formal arraignment. Applicants also sign a waiver of speedy-trial rights covering the period from arraignment to the pretrial conference.",
+      },
+      {
+        name: "Second Chance Court",
+        description:
+          "Established in 2017 in response to the opioid crisis, and structurally unlike most diversion programs: it operates as a voluntary pre-trial bail program, providing immediate access to treatment as a condition of bail rather than after a plea. Participants keep all of their trial rights and legal options. It is open to Delaware County residents facing non-violent opiate-related charges.",
+      },
+      {
+        name: "Drug Treatment Court",
+        description:
+          "A voluntary, intensive program running roughly thirty months, with early graduation possible at twenty-four. It has two tracks: a lower-level track where a plea is held in abeyance and charges are dismissed on completion, and a higher-level track carrying a supervised sentence. Requires county residency at the time of the offense and a clinical evaluation.",
+      },
+      {
+        name: "Mental Health Court",
+        description:
+          "For Delaware County residents 18 and older with a diagnosed serious mental illness that contributed to the charged conduct. Co-occurring substance use does not disqualify an applicant who otherwise meets the criteria. Non-violent offenses are preferred, and certain serious felonies are excluded outright.",
+      },
+      {
+        name: "Veterans Court",
+        description:
+          "For those who have served in a branch of the military. Non-violent offenses are preferred and others are considered case by case; veterans whose cases center on mental health or substance use may be routed to Mental Health Court or Drug Treatment Court instead.",
+      },
+      {
+        name: "Young Offenders Court",
+        description:
+          "An eighteen-month supervised program for first-time adults aged 18 to 25 at the time of the offense facing marijuana-related felony charges, designed specifically to let a young person avoid a felony conviction. Participants must maintain employment or full-time education and complete community service; successful completion dismisses the felony charges.",
+      },
+      {
+        name: "Misdemeanor Diversion Program",
+        description:
+          "An alternative to prosecution for low-level, non-violent misdemeanors. No plea is entered — participants complete community service and pay court costs, and the charges are dismissed on completion.",
+      },
+    ],
+    faq: [
+      {
+        question: "What happens after an arrest in Delaware County?",
+        answer:
+          "Most cases begin with a preliminary arraignment and then a preliminary hearing at the Magisterial District Court covering the municipality where the arrest happened. Delaware County also operates a central MDJ Arraignment Room in Media, at 600 North Jackson Street, for preliminary arraignments. Cases held for court then move to the Court of Common Pleas in Media for formal arraignment and trial.",
+      },
+      {
+        question: "Do I need a lawyer to apply for ARD in Delaware County?",
+        answer:
+          "Yes — and this is not a matter of advice but of county policy. Delaware County's own ARD application states that no application will be considered unless the applicant is represented by an attorney. The application is also due at least fourteen days before formal arraignment, which means the window to act is short and opens early in the case.",
+      },
+      {
+        question: "Which court will hear my case — the Magisterial District Court or Common Pleas?",
+        answer:
+          "Preliminary matters are handled at one of Delaware County's twenty-six Magisterial District Courts. Which one depends on where the case arose, and in Delaware County that can be unusually specific — several municipalities are split by ward and precinct, and Upper Darby Township alone is divided across six different courts. Cases continuing past the preliminary hearing move to the Court of Common Pleas in Media.",
+      },
+      {
+        question: "How does bail work in Delaware County?",
+        answer:
+          "The county's Pre-Trial and Bail Service Unit interviews charged individuals and prepares a bail recommendation for the judge. No appointment is needed — interviews are taken on a walk-in basis on weekdays, either before preliminary arraignment or after release from detention, and you bring the paperwork from your Magisterial District Court. Bail itself is posted through the Office of Judicial Support, which in Delaware County handles the role that a Clerk of Courts fills elsewhere.",
+      },
+      {
+        question: "Where is the county jail?",
+        answer:
+          "The George W. Hill Correctional Facility, at 500 Cheyney Road in Thornton, is Delaware County's jail. It has been operated directly by the county since April 2022, when the county ended its contract with the private company that had run it — it had been the only privately managed county jail in Pennsylvania.",
+      },
+    ],
   },
   {
     slug: "montgomery",
