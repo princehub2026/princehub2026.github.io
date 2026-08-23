@@ -27,7 +27,7 @@ export const practiceAreas: PracticeArea[] = [
       },
       {
         slug: "firearms",
-        name: "Firearms (Guns)",
+        name: "Firearms",
         short: "Pennsylvania firearms charges, rights, and licensing.",
         intro:
           "From possession charges to license restoration, firearms law in Pennsylvania is technical and unforgiving of mistakes. This is a focused area of the practice.",
@@ -63,8 +63,8 @@ export const practiceAreas: PracticeArea[] = [
         ],
       },
       {
-        slug: "narcotics",
-        name: "Narcotics (Drugs)",
+        slug: "drug-charges",
+        name: "Drug Charges",
         short: "Possession, distribution, and manufacturing charges.",
         intro:
           "Drug charges range from simple possession to distribution and manufacturing allegations, each carrying dramatically different exposure. Search and seizure issues are examined in every case.",
@@ -107,13 +107,6 @@ export const practiceAreas: PracticeArea[] = [
       "Juvenile cases move through a different system with different stakes. The goal is always to protect a young person's future, not just resolve today's charge.",
   },
   {
-    slug: "return-of-property",
-    name: "Return of Property",
-    short: "Recovering property seized by police.",
-    intro:
-      "Property seized during an arrest or investigation is not always returned automatically, even after a case concludes. A formal motion is often required.",
-  },
-  {
     slug: "traffic-violations",
     name: "Traffic Violations",
     short: "Citations with license and record consequences.",
@@ -128,11 +121,11 @@ export const practiceAreas: PracticeArea[] = [
       "A driver's license suspension affects work, family, and daily life. PennDOT appeals have strict deadlines that cannot be missed.",
   },
   {
-    slug: "pfa",
-    name: "PFA",
-    short: "Protection From Abuse petitions and defense.",
+    slug: "return-of-property",
+    name: "Return of Property",
+    short: "Recovering property seized by police.",
     intro:
-      "A Protection From Abuse order carries immediate and serious consequences, including loss of firearms rights and removal from a home. Both petitioners and defendants deserve skilled representation.",
+      "Property seized during an arrest or investigation is not always returned automatically, even after a case concludes. A formal motion is often required.",
   },
   {
     slug: "expungement",
@@ -140,6 +133,13 @@ export const practiceAreas: PracticeArea[] = [
     short: "Clearing eligible charges from a criminal record.",
     intro:
       "An eligible criminal record can quietly limit employment, housing, and licensing opportunities for years. Expungement and sealing remedies exist for a reason.",
+  },
+  {
+    slug: "pfa",
+    name: "PFA",
+    short: "Protection From Abuse petitions and defense.",
+    intro:
+      "A Protection From Abuse order carries immediate and serious consequences, including loss of firearms rights and removal from a home. Both petitioners and defendants deserve skilled representation.",
   },
 ];
 
