@@ -11,36 +11,26 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
 >
   <!-- Hero -->
   <section class="relative">
-    <div class="relative h-[78vh] min-h-[560px] sm:h-[85vh] sm:min-h-[640px] w-full overflow-hidden">
-      <img
-        src="https://commons.wikimedia.org/wiki/Special:FilePath/Shelby_County_Courthouse%2C_Adams_Avenue%2C_Memphis%2C_TN_%2853699223744%29.jpg?width=1920"
-        alt="Courthouse entrance"
-        class="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(7,15,33,0.55) 0%, rgba(7,15,33,0.72) 55%, rgba(7,15,33,0.88) 100%);"></div>
+    <div class="relative h-[86vh] min-h-[600px] sm:h-[92vh] sm:min-h-[660px] w-full overflow-hidden bg-navy-950">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shelby_County_Courthouse%2C_Adams_Avenue%2C_Memphis%2C_TN_%2853699223744%29.jpg?width=1920" alt="Courthouse entrance" class="absolute inset-0 w-full h-full object-cover kenburns" style="filter: grayscale(1) contrast(1.12) brightness(0.82);" loading="eager" />
+      <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.78;"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(201,164,74,0.22) 0%, rgba(201,164,74,0) 60%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, rgba(4,9,20,0.85) 100%), linear-gradient(180deg, rgba(4,9,20,0.35), transparent 30%, transparent 60%, rgba(4,9,20,0.95));"></div>
 
       <div class="relative h-full flex flex-col items-center justify-center text-center px-6">
-        <img src="/images/logo-crest.png" alt="" class="h-16 sm:h-20 w-auto mb-6 opacity-95" />
-        <h1 class="font-serif text-white text-4xl sm:text-6xl leading-[1.08] max-w-3xl" style="color:#faf8f4;">
+        <img src="/images/logo-crest.png" alt="" class="h-16 sm:h-20 w-auto mb-6" style="filter: drop-shadow(0 0 24px rgba(201,164,74,0.5));" />
+        <h1 class="font-serif font-medium text-cream-50 text-[44px] sm:text-7xl leading-[1.05] max-w-4xl" style="text-shadow: 0 2px 30px rgba(0,0,0,0.5);">
           No charge too serious.<br /> No case too small.
         </h1>
-        <p class="mt-5 text-cream-100/90 text-base sm:text-lg tracking-wide-sm max-w-xl" style="color:rgba(244,240,232,0.9);">
+        <div class="glow-rule w-20 mt-8"></div>
+        <p class="mt-7 text-cream-100/80 text-base sm:text-lg tracking-wide-sm max-w-xl">
           Prepared to take every case to trial — from DUI to homicide.
         </p>
-        <div class="mt-9 flex flex-col sm:flex-row items-center gap-4">
-          <a
-            href={`tel:${PHONE_TEL}`}
-            class="px-8 py-3.5 bg-gold-500 text-navy-950 text-sm tracking-wide-sm uppercase font-medium hover:bg-gold-400 transition-colors"
-            style="background-color:#c4a24a; color:#070f21;"
-          >
+        <div class="mt-10 flex flex-col sm:flex-row items-center gap-4">
+          <a href={`tel:${PHONE_TEL}`} class="px-9 py-4 btn-foil text-sm tracking-wide-sm uppercase font-medium">
             Call {PHONE}
           </a>
-          <a
-            href="/contact"
-            class="px-8 py-3.5 border border-cream-100/60 text-cream-50 text-sm tracking-wide-sm uppercase hover:border-gold-400 hover:text-gold-400 transition-colors"
-            style="border-color: rgba(244,240,232,0.5); color:#faf8f4;"
-          >
+          <a href="/contact" class="px-9 py-4 border border-cream-100/45 text-cream-50 text-sm tracking-wide-sm uppercase transition-all hover:border-gold-500 hover:text-gold-400 hover:shadow-[0_0_22px_rgba(201,164,74,0.25)]">
             Free Consultation
           </a>
         </div>
@@ -48,9 +38,9 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
     </div>
 
     <!-- Slim CTA utility bar directly under hero -->
-    <div class="bg-navy-950 border-t border-b" style="background-color:#070f21; border-color: rgba(196,162,74,0.3);">
+    <div class="bg-navy-1000 border-t border-b border-gold-500/40">
       <a href={`tel:${PHONE_TEL}`} class="flex items-center justify-center gap-3 py-4 text-center">
-        <span class="text-gold-400 text-xs sm:text-sm tracking-wide-lg uppercase" style="color:#d9bf7c;">
+        <span class="text-gold-400 text-xs sm:text-sm tracking-wide-lg uppercase" style="text-shadow: 0 0 18px rgba(201,164,74,0.4);">
           Free Consultation — Call 24/7 — {PHONE}
         </span>
       </a>
@@ -60,19 +50,15 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   <CountyBand />
 
   <!-- Closing band -->
-  <section class="bg-navy-950 py-16 sm:py-20" style="background-color:#070f21;">
+  <section class="bg-navy-950 glow-top py-20 sm:py-24 noise">
     <div class="mx-auto max-w-2xl px-6 text-center">
-      <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-3" style="color:#d9bf7c;">
+      <p class="text-gold-500 text-xs tracking-wide-lg uppercase mb-4 reveal" style="letter-spacing:0.3em;">
         Swift. Sharp. Strategic.
       </p>
-      <h2 class="font-serif text-cream-50 text-2xl sm:text-3xl" style="color:#faf8f4;">
+      <h2 class="font-serif font-medium text-cream-50 text-3xl sm:text-4xl leading-snug reveal">
         Direct access to the attorney handling your case — from the first call.
       </h2>
-      <a
-        href="/contact"
-        class="inline-block mt-8 px-8 py-3.5 bg-gold-500 text-navy-950 text-sm tracking-wide-sm uppercase font-medium hover:bg-gold-400 transition-colors"
-        style="background-color:#c4a24a; color:#070f21;"
-      >
+      <a href="/contact" class="inline-block mt-10 px-9 py-4 btn-foil text-sm tracking-wide-sm uppercase font-medium reveal">
         Request a Free Consultation
       </a>
     </div>
