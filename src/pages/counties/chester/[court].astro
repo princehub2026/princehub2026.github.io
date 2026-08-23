@@ -20,6 +20,8 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
 )}`;
 
 const muniCount = court.townships ? court.townships.split(",").length : 0;
+const city = court.cityStateZip.split(",")[0];
+const deptCount = court.policeDepartments ? court.policeDepartments.length : 0;
 const siblings = (chester.courts ?? []).filter((c) => c.slug !== court.slug);
 const isVacant = court.judge.toLowerCase().startsWith("vacant");
 
@@ -66,155 +68,187 @@ const schema = {
 ---
 <BaseLayout
   title={`D.C. ${court.dcNumber} — Chester County Magisterial District Court`}
-  description={`Magisterial District Court ${court.dcNumber} in Chester County, PA — Judge ${court.judge}. Address, phone, and directions.`}
+  description={`Magisterial District Court ${court.dcNumber} in Chester County, PA — Judge ${court.judge}. Address, phone, municipalities served, and directions.`}
 >
-  <section class="bg-navy-950 pt-16 pb-14 sm:pt-20 sm:pb-20" style="background-color:#070f21;">
-    <div class="mx-auto max-w-3xl px-6">
-      <nav class="text-[11px] tracking-wide-sm uppercase text-cream-100/45 mb-6 flex flex-wrap gap-x-2" style="color:rgba(244,240,232,0.45);">
+  <!-- MASTHEAD -->
+  <section class="bg-navy-950 pt-14 pb-12 sm:pt-16 sm:pb-14 relative overflow-hidden" style="background-color:#070f21;">
+    <div class="absolute inset-0 opacity-[0.04] flex items-center justify-center pointer-events-none">
+      <img src="/images/logo-crest.png" alt="" aria-hidden="true" class="h-[380px] w-auto" />
+    </div>
+    <div class="mx-auto max-w-3xl px-6 relative">
+      <nav class="text-[11px] tracking-wide-sm uppercase text-cream-100/45 mb-8 flex flex-wrap gap-x-2" style="color:rgba(244,240,232,0.45);">
         <a href="/counties" class="hover:text-gold-400">Counties</a><span aria-hidden="true">/</span>
         <a href="/counties/chester" class="hover:text-gold-400">Chester County</a><span aria-hidden="true">/</span>
         <span>D.C. {court.dcNumber}</span>
       </nav>
 
-      <p class="text-gold-400 text-xs tracking-wide-lg uppercase" style="color:#d9bf7c;">
-        Chester County Magisterial District Court {court.dcNumber}
+      {court.photo ? (
+        <div class="mb-8 border" style="border-color:rgba(196,162,74,0.35);">
+          <img src={court.photo} alt={`Magisterial District Court ${court.dcNumber}, ${city}, Pennsylvania`} class="w-full h-56 sm:h-72 object-cover" loading="eager" />
+        </div>
+      ) : (
+        <div class="mb-8 text-center py-8 border-t border-b" style="border-color:rgba(196,162,74,0.3);">
+          <p class="text-gold-500 text-[10px] tracking-wide-lg uppercase mb-3" style="color:#c4a24a;">Magisterial District</p>
+          <p class="font-serif text-gold-400 text-5xl sm:text-6xl leading-none" style="color:#d9bf7c;">{court.dcNumber}</p>
+          <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mt-3" style="color:rgba(244,240,232,0.5);">Chester County · {city}</p>
+        </div>
+      )}
+
+      <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl text-center" style="color:#faf8f4;">{court.judge}</h1>
+      <p class="text-cream-100/55 text-sm text-center mt-2" style="color:rgba(244,240,232,0.55);">
+        {isVacant ? "Seat currently vacant — office operating as usual" : "Presiding Magisterial District Judge"}
       </p>
-      <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl mt-2" style="color:#faf8f4;">
-        {court.judge}
-      </h1>
 
-      <div class="mt-10 grid sm:grid-cols-2 gap-8">
+      <!-- AT A GLANCE -->
+      <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-y-6 text-center border-t pt-8" style="border-color:rgba(196,162,74,0.2);">
         <div>
-          <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-1" style="color:rgba(244,240,232,0.5);">Address</p>
-          <p class="text-cream-50" style="color:#faf8f4;">{court.address}<br/>{court.cityStateZip}</p>
-          <a href={directionsUrl} target="_blank" rel="noopener" class="inline-block mt-2 text-xs tracking-wide-sm uppercase border-b border-gold-500 pb-0.5" style="border-color:#c4a24a; color:#d9bf7c;">
-            Get Directions →
-          </a>
+          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{muniCount || "—"}</p>
+          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Municipalities</p>
         </div>
         <div>
-          <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-1" style="color:rgba(244,240,232,0.5);">Phone</p>
-          <a href={`tel:${court.phone.replace(/\D/g, "")}`} class="text-cream-50 hover:text-gold-400" style="color:#faf8f4;">{court.phone}</a>
-          {court.fax && (
-            <>
-              <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mt-4 mb-1" style="color:rgba(244,240,232,0.5);">Fax</p>
-              <p class="text-cream-50" style="color:#faf8f4;">{court.fax}</p>
-            </>
-          )}
-          {court.criminalProceedings && (
-            <>
-              <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mt-4 mb-1" style="color:rgba(244,240,232,0.5);">Criminal Proceedings</p>
-              <p class="text-cream-50" style="color:#faf8f4;">{court.criminalProceedings}</p>
-            </>
-          )}
+          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{deptCount || "—"}</p>
+          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Police Departments</p>
         </div>
-      </div>
-
-      <div class="hairline-static my-10"></div>
-
-      {court.townships && (
-        <div class="mb-10">
-          <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-2" style="color:rgba(244,240,232,0.5);">Municipalities Served by This Court</p>
-          <p class="text-cream-100/80 text-sm leading-relaxed" style="color:rgba(244,240,232,0.8);">{court.townships}</p>
+        <div>
+          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">{court.criminalProceedings ? court.criminalProceedings.slice(0, 3) : "—"}</p>
+          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Criminal Day</p>
         </div>
-      )}
-
-      <div class="mb-10">
-        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">About This Court</p>
-        <div class="text-cream-100/75 text-sm leading-relaxed space-y-4" style="color:rgba(244,240,232,0.75);">
-          <p>
-            Magisterial District Court {court.dcNumber} is one of sixteen magisterial district courts in Chester County.
-            {isVacant ? " The seat is currently vacant; the office continues to operate at its regular address, with coverage assigned by the county." : ` Judge ${court.judge} presides.`}
-            {muniCount > 0 && ` It serves ${muniCount === 1 ? "one municipality" : `${muniCount} municipalities`}, listed above.`}
-            {court.criminalProceedings && ` Criminal proceedings are heard on ${court.criminalProceedings}s.`}
-            {" "}If you were charged by an officer in one of those municipalities, this is almost certainly where your case begins.
-          </p>
-          <p>
-            Magisterial district courts handle the earliest stages of nearly every criminal case in Chester County. After an
-            arrest, a preliminary arraignment sets bail and gives you your next court date — Chester County's district judges
-            rotate through an on-call night schedule, so this can happen outside normal business hours.
-          </p>
-          <p>
-            The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The
-            Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the
-            Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses
-            and most traffic citations are decided at this court and go no further.
-          </p>
-          <p>
-            One Chester County detail worth knowing early: the District Attorney's published ARD instructions direct DUI
-            defendants to apply for the program <em>at the preliminary hearing</em>, and admission requires waiving that hearing
-            and all pretrial motions. That makes a first appearance at this court more consequential than many people expect.
-          </p>
-        </div>
-      </div>
-
-      <div>
-        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-2" style="color:rgba(244,240,232,0.5);">Police Departments in This District</p>
-        {court.policeDepartments && court.policeDepartments.length > 0 && (
-          <p class="text-cream-100/60 text-sm leading-relaxed mb-2" style="color:rgba(244,240,232,0.6);">Cases filed at this court most often come from:</p>
-        )}
-        {court.policeDepartments && court.policeDepartments.length > 0 && (
-          <ul class="text-cream-100/80 text-sm leading-relaxed space-y-1" style="color:rgba(244,240,232,0.8);">
-            {court.policeDepartments.map((dept) => (
-              <li>{dept}</li>
-            ))}
-          </ul>
-        )}
-        {(!court.policeDepartments || court.policeDepartments.length === 0) && !court.pspNote && (
-          <p class="text-cream-100/60 text-sm leading-relaxed" style="color:rgba(244,240,232,0.6);">
-            We're still confirming which department(s) report to this court — check back soon, or call the attorney directly.
-          </p>
-        )}
-        {court.pspNote && (
-          <p class="text-cream-100/50 text-xs leading-relaxed mt-3" style="color:rgba(244,240,232,0.5);">{court.pspNote}</p>
-        )}
-      </div>
-
-      {court.note && (
-        <p class="text-cream-100/70 text-xs leading-relaxed mt-8 border-l-2 pl-4" style="border-color:#c4a24a; color:rgba(244,240,232,0.7);">{court.note}</p>
-      )}
-
-      <div class="hairline-static my-10"></div>
-
-      <div class="mb-10">
-        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">Before Your Court Date</p>
-        <p class="text-cream-100/75 text-sm leading-relaxed" style="color:rgba(244,240,232,0.75);">
-          Every magisterial district court runs a little differently — parking, which entrance to use, how early to arrive, and
-          how a given courtroom handles its list. Those questions deserve a real answer rather than a guess, so call this court
-          directly at <a href={`tel:${court.phone.replace(/\D/g, "")}`} class="border-b border-gold-500" style="border-color:#c4a24a; color:#d9bf7c;">{court.phone}</a>, or call Yakubu Law at <a href={`tel:${PHONE_TEL}`} class="border-b border-gold-500" style="border-color:#c4a24a; color:#d9bf7c;">{PHONE}</a> to talk through your case.
-        </p>
-      </div>
-
-      <div class="mb-10">
-        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">Common Questions</p>
-        <div class="flex flex-col gap-1">
-          {faq.map((item) => (
-            <details class="group border-b py-3" style="border-color: rgba(196,162,74,0.2);">
-              <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 text-sm font-medium" style="color:#faf8f4;">
-                {item.q}
-                <span class="text-gold-400 text-lg group-open:rotate-45 transition-transform" style="color:#c4a24a;">+</span>
-              </summary>
-              <p class="text-cream-100/65 text-sm leading-relaxed mt-2" style="color:rgba(244,240,232,0.65);">{item.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <p class="text-cream-100/50 text-[11px] tracking-wide-sm uppercase mb-3" style="color:rgba(244,240,232,0.5);">Other Chester County Courts</p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2">
-          {siblings.map((c) => (
-            <a href={`/counties/chester/${c.slug}`} class="text-cream-100/60 text-xs hover:text-gold-400 transition-colors" style="color:rgba(244,240,232,0.6);">D.C. {c.dcNumber} — {c.cityStateZip.split(",")[0]}</a>
-          ))}
+        <div>
+          <p class="font-serif text-gold-400 text-2xl" style="color:#d9bf7c;">16</p>
+          <p class="text-cream-100/45 text-[10px] tracking-wide-sm uppercase mt-1" style="color:rgba(244,240,232,0.45);">Courts in County</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="py-14 sm:py-16 text-center" style="background-color:#f4f0e8;">
-    <p class="text-navy-900 text-sm sm:text-base mb-6" style="color:#0a1630;">
+  <!-- CONTACT / LOGISTICS -->
+  <section class="py-12 sm:py-14" style="background-color:#faf8f4;">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="grid sm:grid-cols-2 gap-8">
+        <div>
+          <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-2" style="color:#a9873a;">Address</p>
+          <p class="text-navy-900" style="color:#0a1630;">{court.address}<br/>{court.cityStateZip}</p>
+          <a href={directionsUrl} target="_blank" rel="noopener" class="inline-block mt-3 text-xs tracking-wide-sm uppercase border-b pb-0.5" style="border-color:#c4a24a; color:#a9873a;">Get Directions →</a>
+        </div>
+        <div>
+          <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-2" style="color:#a9873a;">Contact</p>
+          <a href={`tel:${court.phone.replace(/\D/g, "")}`} class="text-navy-900 block hover:text-gold-600" style="color:#0a1630;">{court.phone}</a>
+          {court.fax && <p class="text-navy-900/60 text-sm mt-1" style="color:rgba(10,22,48,0.6);">Fax {court.fax}</p>}
+          {court.criminalProceedings && <p class="text-navy-900/60 text-sm mt-3" style="color:rgba(10,22,48,0.6);">Criminal proceedings: {court.criminalProceedings}s</p>}
+        </div>
+      </div>
+
+      {court.townships && (
+        <div class="mt-10 pt-8 border-t" style="border-color:rgba(196,162,74,0.3);">
+          <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-2" style="color:#a9873a;">Municipalities Served by This Court</p>
+          <p class="text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">{court.townships}</p>
+        </div>
+      )}
+
+      <div class="mt-8 pt-8 border-t" style="border-color:rgba(196,162,74,0.3);">
+        <p class="text-gold-600 text-[11px] tracking-wide-sm uppercase mb-2" style="color:#a9873a;">Police Departments in This District</p>
+        {deptCount > 0 && (
+          <ul class="text-navy-900/75 text-sm leading-relaxed grid sm:grid-cols-2 gap-x-8 gap-y-1" style="color:rgba(10,22,48,0.75);">
+            {court.policeDepartments.map((dept) => (<li>{dept}</li>))}
+          </ul>
+        )}
+        {deptCount === 0 && !court.pspNote && (
+          <p class="text-navy-900/60 text-sm leading-relaxed" style="color:rgba(10,22,48,0.6);">We're still confirming which department(s) report to this court — check back soon, or call the attorney directly.</p>
+        )}
+        {court.pspNote && <p class="text-navy-900/55 text-xs leading-relaxed mt-3" style="color:rgba(10,22,48,0.55);">{court.pspNote}</p>}
+      </div>
+
+      {court.note && (
+        <p class="text-navy-900/70 text-xs leading-relaxed mt-8 border-l-2 pl-4" style="border-color:#c4a24a; color:rgba(10,22,48,0.7);">{court.note}</p>
+      )}
+    </div>
+  </section>
+
+  <!-- ABOUT THIS COURT -->
+  <section class="bg-navy-900 py-14 sm:py-16" style="background-color:#0a1630;">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-6 text-center" style="color:#d9bf7c;">About This Court</p>
+      <div class="text-cream-100/75 text-sm sm:text-base leading-relaxed space-y-5" style="color:rgba(244,240,232,0.75);">
+        <p>
+          Magisterial District Court {court.dcNumber} is one of sixteen magisterial district courts in Chester County.
+          {isVacant ? " The seat is currently vacant; the office continues to operate at its regular address, with coverage assigned by the county." : ` Judge ${court.judge} presides.`}
+          {muniCount > 0 && ` It serves ${muniCount === 1 ? "one municipality" : `${muniCount} municipalities`}, listed above.`}
+          {court.criminalProceedings && ` Criminal proceedings are heard on ${court.criminalProceedings}s.`}
+          {" "}If you were charged by an officer in one of those municipalities, this is almost certainly where your case begins.
+        </p>
+        <p>
+          Magisterial district courts handle the earliest stages of nearly every criminal case in Chester County. After an
+          arrest, a preliminary arraignment sets bail and gives you your next court date — Chester County's district judges
+          rotate through an on-call night schedule, so this can happen outside normal business hours.
+        </p>
+        <p>
+          The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The
+          Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the
+          Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses
+          and most traffic citations are decided at this court and go no further.
+        </p>
+        <p>
+          One Chester County detail worth knowing early: the District Attorney's published ARD instructions direct DUI
+          defendants to apply for the program <em>at the preliminary hearing</em>, and admission requires waiving that hearing
+          and all pretrial motions. That makes a first appearance at this court more consequential than many people expect.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE YOUR COURT DATE -->
+  <section class="py-14 sm:py-16" style="background-color:#f4f0e8;">
+    <div class="mx-auto max-w-2xl px-6 text-center">
+      <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4" style="color:#a9873a;">Before Your Court Date</p>
+      <p class="font-serif text-lg sm:text-xl leading-relaxed text-navy-900" style="color:#0a1630;">
+        Every magisterial district court runs a little differently.
+      </p>
+      <p class="mt-5 text-navy-900/75 text-sm leading-relaxed" style="color:rgba(10,22,48,0.75);">
+        Parking, which entrance to use, how early to arrive, how a given courtroom handles its list — those questions deserve a
+        real answer rather than a guess. Call this court directly at <a href={`tel:${court.phone.replace(/\D/g, "")}`} class="border-b" style="border-color:#c4a24a; color:#a9873a;">{court.phone}</a>, or call Yakubu Law at <a href={`tel:${PHONE_TEL}`} class="border-b" style="border-color:#c4a24a; color:#a9873a;">{PHONE}</a> to talk through your case.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-navy-900 py-14 sm:py-16" style="background-color:#0a1630;">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="text-gold-400 text-xs tracking-wide-lg uppercase mb-8 text-center" style="color:#d9bf7c;">Common Questions</p>
+      <div class="flex flex-col gap-1">
+        {faq.map((item) => (
+          <details class="group border-b py-4" style="border-color: rgba(196,162,74,0.25);">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 text-cream-50 text-sm font-medium" style="color:#faf8f4;">
+              {item.q}
+              <span class="text-gold-400 text-lg group-open:rotate-45 transition-transform" style="color:#c4a24a;">+</span>
+            </summary>
+            <p class="text-cream-100/65 text-sm leading-relaxed mt-3" style="color:rgba(244,240,232,0.65);">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SIBLING COURTS -->
+  <section class="py-12 sm:py-14" style="background-color:#faf8f4;">
+    <div class="mx-auto max-w-4xl px-6">
+      <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-6 text-center" style="color:#a9873a;">Other Chester County Courts</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3">
+        {siblings.map((c) => (
+          <a href={`/counties/chester/${c.slug}`} class="block border-t pt-2 group" style="border-color:rgba(196,162,74,0.3);">
+            <p class="text-gold-600 text-[10px] tracking-wide-sm uppercase" style="color:#a9873a;">D.C. {c.dcNumber}</p>
+            <p class="text-navy-900/70 text-xs mt-0.5 group-hover:text-navy-900" style="color:rgba(10,22,48,0.7);">{c.cityStateZip.split(",")[0]}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy-950 py-14 sm:py-16 text-center" style="background-color:#070f21;">
+    <p class="text-cream-100/80 text-sm sm:text-base mb-6" style="color:rgba(244,240,232,0.8);">
       Have a hearing at this court? Speak directly with the attorney beforehand.
     </p>
-    <a href={`tel:${PHONE_TEL}`} class="inline-block px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors" style="background-color:#0a1630; color:#faf8f4;">
+    <a href={`tel:${PHONE_TEL}`} class="inline-block px-8 py-3.5 text-navy-900 text-sm tracking-wide-sm uppercase font-medium transition-colors" style="background-color:#c4a24a; color:#0a1630;">
       Call {PHONE}
     </a>
   </section>
