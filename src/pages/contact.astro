@@ -16,7 +16,7 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
 
   <section class="bg-cream-50 py-14 sm:py-20">
     <div class="mx-auto max-w-4xl px-6 grid sm:grid-cols-5 gap-12">
-      <div class="sm:col-span-2">
+      <div class="sm:col-span-2 sm:border-r sm:border-gold-500/30 sm:pr-10">
         <a
           href={`tel:${PHONE_TEL}`}
           class="block text-center px-6 py-5 bg-navy-950 text-cream-50 mb-8 border border-gold-500/40 shadow-[0_0_28px_-6px_rgba(201,164,74,0.35)] transition-shadow hover:shadow-[0_0_34px_-4px_rgba(201,164,74,0.5)]"
@@ -36,8 +36,8 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
           [Address placeholder — to be replaced]<br/>Pennsylvania
         </p>
         <img
-          src="/images/consultation-call.jpg"
-          alt="Attorney Prince Charles Yakubu taking a client call"
+          src="/images/attorney-contact.jpg"
+          alt="Attorney Prince Charles Yakubu at the courthouse"
           class="w-full aspect-[4/3] object-cover mt-8"
         />
       </div>
@@ -58,12 +58,18 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
             <label for="email" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">Email</label>
             <input id="email" name="email" type="email" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-3 focus:outline-none focus:border-gold-500" />
           </div>
-          <div>
-            <label for="county" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">County</label>
-            <select id="county" name="county" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-3 focus:outline-none focus:border-gold-500">
-              <option value="">Select a county</option>
-              {counties.map((c) => <option value={c.slug}>{c.name}</option>)}
-            </select>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="county" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">County</label>
+              <select id="county" name="county" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-3 focus:outline-none focus:border-gold-500">
+                <option value="">Select a county</option>
+                {counties.map((c) => <option value={c.slug}>{c.name}</option>)}
+              </select>
+            </div>
+            <div>
+              <label for="docket" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">Docket Number <span class="normal-case text-navy-900/40">(optional)</span></label>
+              <input id="docket" name="docket" type="text" placeholder="If known — it's on your court paperwork" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-3 placeholder:text-navy-900/35 placeholder:text-sm focus:outline-none focus:border-gold-500" />
+            </div>
           </div>
           <div>
             <label for="message" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">Message</label>
