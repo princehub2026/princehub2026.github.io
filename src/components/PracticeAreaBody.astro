@@ -1,4 +1,5 @@
 ---
+import { practiceAreas } from "../data/practiceAreas";
 import type { PracticeArea } from "../data/practiceAreas";
 import { getPracticeContent } from "../data/practiceContent";
 
@@ -11,6 +12,14 @@ const { area, parentPath, breadcrumb } = Astro.props;
 const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
 const content = getPracticeContent(area.slug);
+
+const related = practiceAreas.filter((pa) => pa.slug !== area.slug).slice(0, 7);
+const bandPhotos = [
+  { src: "/images/hero-courthouse.jpg", pos: "50% 30%" },
+  { src: "/images/courthouse-steps.jpg", pos: "50% 45%" },
+  { src: "/images/attorney-autumn.jpg", pos: "50% 25%" },
+];
+const band = bandPhotos[area.slug.length % bandPhotos.length];
 
 const schema = content
   ? {
@@ -42,8 +51,9 @@ const schema = content
     }
   : null;
 ---
-<section class="bg-navy-950 glow-top noise pt-14 pb-12 sm:pt-20 sm:pb-16">
-  <div class="mx-auto max-w-4xl px-6">
+<section class="relative overflow-hidden bg-navy-950 glow-top noise pt-14 pb-12 sm:pt-20 sm:pb-16">
+  <img src="/images/logo-crest.png" alt="" aria-hidden="true" class="hidden sm:block absolute h-[340px] w-auto pointer-events-none select-none" style="position:absolute; right:-3rem; top:50%; transform:translateY(-50%); opacity:0.09;" />
+  <div class="relative mx-auto max-w-4xl px-6">
     <nav class="text-[11px] tracking-wide-sm uppercase text-cream-100/45 mb-6 flex flex-wrap gap-x-2">
       {breadcrumb.map((b, i) => (
         <>
@@ -80,7 +90,8 @@ const schema = content
 
 {content && (
   <section class={`py-14 sm:py-20 ${area.children ? "bg-cream-100" : "bg-cream-50"}`}>
-    <div class="mx-auto max-w-3xl px-6">
+    <div class="mx-auto max-w-6xl px-6 lg:grid lg:grid-cols-12 lg:gap-14">
+      <article class="lg:col-span-8">
       {content.sections.map((s, i) => (
         <div class={i > 0 ? "mt-12 sm:mt-16" : ""}>
           <h2 class="font-serif text-2xl sm:text-3xl text-navy-900 leading-snug">{s.heading}</h2>
@@ -102,7 +113,49 @@ const schema = content
           )}
         </div>
       ))}
+      </article>
+
+      <aside class="hidden lg:block lg:col-span-4">
+        <div class="sticky top-24">
+          <div class="bg-navy-950 border border-gold-500/30 shadow-[0_0_28px_-8px_rgba(201,164,74,0.35)]">
+            <img src="/images/attorney-card.jpg" alt="Prince Charles Yakubu, criminal defense attorney" class="w-full aspect-square object-cover" loading="lazy" />
+            <div class="p-6 text-center">
+              <p class="font-serif text-cream-50 text-xl leading-snug">Prince Charles Yakubu</p>
+              <p class="text-gold-400 text-[10px] tracking-wide-lg uppercase mt-1.5">Trial Ready Criminal Defense</p>
+              <a href={`tel:${PHONE_TEL}`} class="block mt-5 px-6 py-3 btn-foil text-sm tracking-wide-sm uppercase font-medium">
+                Call {PHONE}
+              </a>
+              <p class="text-cream-100/55 text-[11px] tracking-wide-sm uppercase mt-3">Free Consultation &middot; Available 24/7</p>
+            </div>
+          </div>
+
+          <div class="mt-8 border-t border-gold-500/30 pt-5">
+            <p class="text-gold-600 text-[11px] tracking-wide-lg uppercase mb-4">Other Practice Areas</p>
+            <ul class="space-y-2.5">
+              {related.map((pa) => (
+                <li>
+                  <a href={`/practice-areas/${pa.slug}`} class="block border border-gold-500/35 bg-white/50 px-4 py-3 text-center text-navy-900/80 text-sm hover:border-gold-500 hover:text-gold-600 hover:shadow-[0_0_14px_-4px_rgba(201,164,74,0.4)] transition-all">{pa.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </aside>
     </div>
+  </section>
+)}
+
+{content && (
+  <section class="relative h-[30vh] min-h-[240px] sm:h-[38vh] w-full overflow-hidden">
+    <img
+      src={band.src}
+      alt="Attorney Prince Charles Yakubu"
+      class="absolute inset-0 w-full h-full object-cover"
+      style={`filter: grayscale(0.3) contrast(1.05) brightness(0.9); object-position: ${band.pos};`}
+      loading="lazy"
+    />
+    <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.6;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,164,74,0.14) 0%, rgba(201,164,74,0) 60%), linear-gradient(180deg, rgba(6,13,29,0.35) 0%, rgba(6,13,29,0.55) 100%);"></div>
   </section>
 )}
 
