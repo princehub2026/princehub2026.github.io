@@ -12,13 +12,13 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   <!-- Hero -->
   <section class="relative">
     <div class="relative h-[86vh] min-h-[600px] sm:h-[92vh] sm:min-h-[660px] w-full overflow-hidden bg-navy-950">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shelby_County_Courthouse%2C_Adams_Avenue%2C_Memphis%2C_TN_%2853699223744%29.jpg?width=1920" alt="Courthouse entrance" class="absolute inset-0 w-full h-full object-cover kenburns" style="filter: grayscale(1) contrast(1.12) brightness(0.82);" loading="eager" />
+      <img src="/images/hero-courthouse.jpg" alt="Attorney Prince Charles Yakubu outside the Montgomery County Courthouse" class="absolute inset-0 w-full h-full object-cover kenburns" style="filter: grayscale(0.35) contrast(1.08) brightness(0.85); object-position: 50% 32%;" loading="eager" />
       <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.78;"></div>
       <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(201,164,74,0.22) 0%, rgba(201,164,74,0) 60%);"></div>
       <div class="absolute inset-0" style="background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, rgba(4,9,20,0.85) 100%), linear-gradient(180deg, rgba(4,9,20,0.35), transparent 30%, transparent 60%, rgba(4,9,20,0.95));"></div>
 
       <div class="relative h-full flex flex-col items-center justify-center text-center px-6">
-        <img src="/images/logo-crest.png" alt="" class="h-16 sm:h-20 w-auto mb-6" style="filter: drop-shadow(0 0 24px rgba(201,164,74,0.5));" />
+        <img src="/images/logo-crest.png" alt="Yakubu Law crest" class="h-24 sm:h-28 w-auto mb-6" style="filter: drop-shadow(0 0 24px rgba(201,164,74,0.5));" />
         <h1 class="font-serif font-medium text-cream-50 text-[44px] sm:text-7xl leading-[1.05] max-w-4xl" style="text-shadow: 0 2px 30px rgba(0,0,0,0.5);">
           No charge too serious.<br /> No case too small.
         </h1>
@@ -48,6 +48,27 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   </section>
 
   <CountyBand />
+
+  <!-- Meet the attorney -->
+  <section class="bg-cream-50 py-16 sm:py-24">
+    <div class="mx-auto max-w-5xl px-6 grid sm:grid-cols-5 gap-10 sm:gap-14 items-center">
+      <div class="sm:col-span-2 reveal">
+        <img src="/images/attorney-columns.jpg" alt="Prince Charles Yakubu, criminal defense attorney" class="w-full aspect-[4/5] object-cover" loading="lazy" />
+      </div>
+      <div class="sm:col-span-3 reveal">
+        <p class="text-gold-600 text-xs tracking-wide-lg uppercase mb-4">The Attorney</p>
+        <h2 class="font-serif text-navy-900 text-3xl sm:text-4xl leading-snug">Prince Charles Yakubu</h2>
+        <div class="glow-rule w-12 mt-5 mb-6"></div>
+        <p class="text-navy-900/80 leading-relaxed">
+          Former public defender. Trained in the Philadelphia DA's Homicide Unit. Every case is
+          handled directly by the attorney — from the first call through final resolution.
+        </p>
+        <a href="/about" class="inline-block mt-8 text-[12px] tracking-wide-sm uppercase text-gold-600 border-b border-gold-500/50 pb-0.5 wipe-link hover:text-gold-500">
+          Meet the Attorney
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Closing band -->
   <section class="bg-navy-950 glow-top py-20 sm:py-24 noise">
