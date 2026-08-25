@@ -24,4 +24,17 @@ import { practiceAreas } from "../../data/practiceAreas";
       ))}
     </div>
   </section>
+
+  <!-- Photo band -->
+  <section class="relative h-[38vh] min-h-[300px] sm:h-[48vh] w-full overflow-hidden">
+    <img
+      src="/images/attorney-autumn.jpg"
+      alt="Attorney Prince Charles Yakubu"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="filter: grayscale(0.25) contrast(1.05) brightness(0.9); object-position: 50% 25%;"
+      loading="lazy"
+    />
+    <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.55;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,164,74,0.16) 0%, rgba(201,164,74,0) 60%), linear-gradient(180deg, rgba(6,13,29,0.3) 0%, rgba(6,13,29,0.5) 100%);"></div>
+  </section>
 </BaseLayout>
