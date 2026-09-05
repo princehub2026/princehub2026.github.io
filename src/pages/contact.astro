@@ -3,6 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { counties } from "../data/counties";
 const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
+// Web3Forms relay key — submissions are forwarded to Prince@yakubulaw.com.
+// Public by design (it appears in the page source); it identifies the destination
+// inbox only and can be rotated at web3forms.com if it is ever abused.
+const WEB3FORMS_KEY = "77a6036d-982b-4541-b6dd-07354262c6a0";
 ---
 <BaseLayout
   title="Contact"
@@ -62,7 +66,11 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
       </div>
 
       <div class="sm:col-span-3">
-        <form id="contact-form" class="flex flex-col gap-5">
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="flex flex-col gap-5">
+          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+          <input type="hidden" name="subject" value="New consultation request — yakubulaw.com" />
+          <input type="hidden" name="from_name" value="Yakubu Law website" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="name" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">Name</label>
@@ -101,13 +109,18 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
           </p>
           <button
             type="submit"
-            class="self-start mt-2 px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
+            id="form-submit"
+            class="self-start mt-2 px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors disabled:opacity-60"
            
           >
             Send
           </button>
-          <p id="form-note" class="hidden text-sm text-navy-900/70 mt-2">
-            Online submission isn't connected yet — please call <a href={`tel:${PHONE_TEL}`} class="underline">{PHONE}</a> in the meantime, and this form will route directly once set up.
+          <p id="form-ok" class="hidden text-sm text-navy-900/80 mt-2">
+            Thank you — your message has been sent. If this is urgent, call
+            <a href={`tel:${PHONE_TEL}`} class="underline">{PHONE}</a> rather than waiting on email.
+          </p>
+          <p id="form-err" class="hidden text-sm text-navy-900/80 mt-2">
+            That didn't send. Please call <a href={`tel:${PHONE_TEL}`} class="underline">{PHONE}</a> instead.
           </p>
         </form>
       </div>
@@ -115,11 +128,26 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   </section>
 
   <script>
-    const form = document.getElementById("contact-form");
-    const note = document.getElementById("form-note");
-    form?.addEventListener("submit", (e) => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const ok = document.getElementById("form-ok");
+    const err = document.getElementById("form-err");
+    const btn = document.getElementById("form-submit") as HTMLButtonElement | null;
+
+    form?.addEventListener("submit", async (e) => {
       e.preventDefault();
-      note?.classList.remove("hidden");
+      ok?.classList.add("hidden");
+      err?.classList.add("hidden");
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      try {
+        const res = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        if (!res.ok) throw new Error("bad status");
+        form.reset();
+        ok?.classList.remove("hidden");
+      } catch {
+        err?.classList.remove("hidden");
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = "Send"; }
+      }
     });
   </script>
 </BaseLayout>
