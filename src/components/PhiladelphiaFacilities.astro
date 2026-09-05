@@ -1,0 +1,40 @@
+---
+import { philadelphiaFacilityGroups } from "../data/philadelphiaFacilities";
+---
+{philadelphiaFacilityGroups.map((group, gi) => (
+  <section class={gi % 2 === 0 ? "bg-cream-100 py-14 sm:py-16" : "bg-cream-50 py-14 sm:py-16"}>
+    <div class="mx-auto max-w-4xl px-6">
+      <p class="text-gold-600 text-xs tracking-wide-lg uppercase">{group.eyebrow}</p>
+      <h2 class="font-serif text-navy-900 text-2xl sm:text-3xl mt-3">{group.heading}</h2>
+      <div class="hairline-static mt-6"></div>
+
+      {group.localityNote && (
+        <p class="text-navy-900/60 text-sm mt-6">{group.localityNote}</p>
+      )}
+
+      <div class="mt-8 grid sm:grid-cols-2 gap-x-10 gap-y-8">
+        {group.facilities.map((f) => (
+          <div>
+            <p class="font-serif text-navy-900 text-lg leading-snug">{f.name}</p>
+            <p class="text-navy-900/70 text-sm mt-1.5">
+              {f.address}{f.cityStateZip ? <>, {f.cityStateZip}</> : null}
+            </p>
+            {f.phone && (
+              <a href={`tel:${f.phone.replace(/\D/g, "")}`} class="inline-block text-navy-900/70 text-sm mt-0.5 hover:text-gold-600">{f.phone}</a>
+            )}
+            {f.note && (
+              <p class="text-navy-900/55 text-sm mt-2.5 leading-relaxed">{f.note}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {group.footnote && (
+        <>
+          <div class="hairline-static mt-10"></div>
+          <p class="text-navy-900/60 text-sm mt-6 leading-relaxed">{group.footnote}</p>
+        </>
+      )}
+    </div>
+  </section>
+))}
