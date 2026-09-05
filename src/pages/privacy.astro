@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const EMAIL = "Prince@yakubulaw.com";
+const PHONE = "484-944-0834";
+
+const sections = [
+  {
+    heading: "What this site collects",
+    paragraphs: [
+      "Nothing, unless you send it. There is no account to create and no login. The only information collected is what you choose to type into the consultation form on the contact page — your name, your phone number, your email address, and whatever you write in the message field — or what you send directly by phone, text or email.",
+    ],
+  },
+  {
+    heading: "What happens to a form submission",
+    paragraphs: [
+      "The consultation form is processed by Web3Forms, a third-party form service, which passes the submission along as an email to this office. The firm's email is hosted with Microsoft 365. Submissions are read by the attorney. They are not added to a marketing list, and no automated reply is sent — every inquiry is reviewed personally.",
+      "Your information is not sold, rented, or traded. It is not shared with lead-generation services, advertising networks, or other law firms.",
+    ],
+  },
+  {
+    heading: "Please do not send confidential details through this site",
+    paragraphs: [
+      "Email and web forms are not secure channels, and sending a message through this site does not create an attorney-client relationship. Send enough to describe the situation and how to reach you. Save the details for a conversation.",
+    ],
+  },
+  {
+    heading: "Cookies and tracking",
+    paragraphs: [
+      "This site does not use advertising cookies, cross-site tracking, or third-party marketing pixels. Fonts are loaded from Google Fonts, which means your browser makes a request to Google's servers when a page loads.",
+    ],
+  },
+  {
+    heading: "Text messages",
+    paragraphs: [
+      "If you text the office number, standard message and data rates from your carrier apply. Texts are read by the attorney and are used only to respond to you. The office does not send marketing text messages.",
+    ],
+  },
+  {
+    heading: "Keeping and removing information",
+    paragraphs: [
+      "Inquiries that do not become cases are kept only as long as they are useful for responding to you and for checking future conflicts of interest. If you would like an inquiry deleted, write to the address below and say so.",
+      "Client files are governed by the Pennsylvania Rules of Professional Conduct rather than by this page.",
+    ],
+  },
+  {
+    heading: "Children",
+    paragraphs: [
+      "This site is intended for adults. It does not knowingly collect information from anyone under 13. A parent or guardian inquiring about a minor's case should call rather than use the form.",
+    ],
+  },
+  {
+    heading: "Changes",
+    paragraphs: [
+      "If this policy changes, the revised version will be posted on this page.",
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Privacy Policy"
+  description="How Yakubu Law handles information submitted through this website — what is collected, where it goes, and what is never done with it."
+>
+  <section class="bg-navy-950 glow-top noise pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+    <p class="text-gold-400 text-xs tracking-wide-lg uppercase">Privacy</p>
+    <h1 class="font-serif text-cream-50 text-3xl sm:text-4xl mt-3">Privacy Policy</h1>
+    <div class="glow-rule w-16 mx-auto mt-6"></div>
+  </section>
+
+  <section class="bg-cream-50 py-14 sm:py-20">
+    <div class="mx-auto max-w-2xl px-6">
+      {sections.map((s, i) => (
+        <div class={i > 0 ? "mt-10" : ""}>
+          <h2 class="font-serif text-xl sm:text-2xl text-navy-900 leading-snug">{s.heading}</h2>
+          {s.paragraphs.map((p) => (
+            <p class="mt-3 text-navy-900/80 text-[15.5px] leading-relaxed">{p}</p>
+          ))}
+        </div>
+      ))}
+
+      <div class="mt-12 border-t border-gold-500/30 pt-6">
+        <p class="text-navy-900/80 text-[15.5px] leading-relaxed">
+          Questions about this policy: <a href={`mailto:${EMAIL}`} class="text-gold-600 border-b border-gold-500/50 pb-0.5 hover:text-gold-500">{EMAIL}</a>
+          &nbsp;&middot;&nbsp; {PHONE}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
