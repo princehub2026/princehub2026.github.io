@@ -26,14 +26,40 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
           <span class="font-serif text-xl">{PHONE}</span>
         </a>
         <p class="text-navy-900/75 text-sm leading-relaxed">
-          We understand that contacting an attorney is often an important first step.
-          Leave your name, phone number, and a brief message, and we ask that you allow
-          up to two business days for a return call.
+          Calls come directly to me. If you reach voicemail I am in a hearing — leave your
+          name and number and I will call you back.
         </p>
+
         <div class="hairline-static my-8"></div>
-        <p class="text-navy-900/50 text-xs tracking-wide-sm uppercase mb-1">Office</p>
-        <p class="text-navy-900/70 text-sm">
-          [Address placeholder — to be replaced]<br/>Pennsylvania
+
+        <a
+          href="https://ujsportal.pacourts.us"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block border border-gold-500/35 bg-navy-950 px-6 py-7 text-center transition-shadow hover:shadow-[0_0_30px_-6px_rgba(201,164,74,0.45)]"
+        >
+          <svg viewBox="0 0 64 64" role="img" aria-hidden="true" class="mx-auto w-[4.5rem] h-[4.5rem]" fill="none" stroke="#c9a44a" stroke-width="1.4" stroke-linecap="round">
+            <rect x="7" y="13" width="50" height="44" />
+            <path d="M7 26h50" />
+            <path d="M20 7v11M44 7v11" />
+            <path d="M17 37h7M28.5 37h7M17 47h7" />
+            <circle cx="43" cy="47" r="5" stroke-width="1.6" />
+          </svg>
+          <p class="font-serif text-cream-50 text-lg mt-4">When is my next court date?</p>
+          <p class="text-cream-100/60 text-sm mt-2 leading-relaxed">
+            Look up any Pennsylvania case on the courts' public docket portal.
+          </p>
+          <span class="inline-block mt-4 text-[11px] tracking-wide-lg uppercase text-gold-400 border-b border-gold-500/60 pb-0.5">
+            Search the docket →
+          </span>
+        </a>
+
+        <div class="hairline-static my-8"></div>
+
+        <p class="text-navy-900/50 text-xs tracking-wide-sm uppercase mb-1">Where I Practice</p>
+        <p class="text-navy-900/70 text-sm leading-relaxed">
+          Bucks, Chester, Delaware, Montgomery and Philadelphia counties.<br/>
+          Consultations by phone, 24/7. Meetings by appointment.
         </p>
         <img
           src="/images/attorney-contact.jpg"
@@ -75,6 +101,11 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
             <label for="message" class="block text-[11px] tracking-wide-sm uppercase text-navy-900/60 mb-1.5">Message</label>
             <textarea id="message" name="message" rows="5" class="w-full border-0 border-b border-navy-900/25 bg-transparent py-3 focus:outline-none focus:border-gold-500"></textarea>
           </div>
+          <p class="text-navy-900/55 text-xs leading-relaxed mt-1">
+            Submitting this form does not create an attorney-client relationship. Please don't
+            include confidential details about your case until we've spoken and confirmed there
+            is no conflict.
+          </p>
           <button
             type="submit"
             class="self-start mt-2 px-8 py-3.5 bg-navy-900 text-cream-50 text-sm tracking-wide-sm uppercase font-medium hover:bg-navy-800 transition-colors"
