@@ -41,6 +41,10 @@ const justCharged: { q: string; a: string }[] = [
     a: "Before the first court date, not after it. Early is when the most options are still open — what gets said, what gets preserved, and what can still be negotiated all narrow as the case moves. If you are not sure whether your situation is serious, that is itself a reason to call and ask.",
   },
   {
+    q: "What happens if I am not a citizen and I am charged with a crime?",
+    a: "The criminal case and your immigration status are separate matters, but they are tied together. A conviction can affect the right to remain in the United States, to travel, or to become a citizen later — and that is true for lawful permanent residents, visa holders and students, sometimes from charges that sound minor. An expungement under Pennsylvania law does not necessarily erase a conviction for immigration purposes. In Padilla v. Kentucky, the United States Supreme Court held that a criminal defense attorney has a duty to advise a non-citizen client about the immigration consequences of a plea. That advice matters before a case is resolved, because how a charge is graded and how it is resolved is where the risk is actually decided. Immigration law is its own field, and some situations call for working alongside an immigration attorney — but the criminal side of it starts by telling your defense attorney about your status in the first conversation. <a href=\"/contact\" class=\"text-gold-600 border-b border-gold-500/50 pb-0.5 hover:text-gold-500\">Start that conversation here.</a>",
+  },
+  {
     q: "What if I cannot afford a private attorney?",
     a: "You may qualify for the public defender in your county, and you should apply rather than go unrepresented. Either way, do not go to a court date with no one beside you.",
   },
@@ -85,7 +89,7 @@ const categories: Category[] = [
         {categories.map((c) => (
           <a href={`#${c.slug}`} class="group block bg-navy-950/60 border border-gold-500/20 px-4 py-4 sm:py-5 text-center transition-all hover:border-gold-500/60 hover:shadow-[0_0_22px_-4px_rgba(201,164,74,0.35)] min-h-[64px] flex flex-col items-center justify-center">
             <span class="font-serif text-cream-50 text-[15px] sm:text-base leading-snug group-hover:text-gold-400 transition-colors">{c.title}</span>
-            <span class="text-cream-100/40 text-[10px] tracking-wide-sm uppercase mt-1">{c.questions.length} questions</span>
+            <span class="text-cream-100/40 text-[10px] tracking-wide-sm uppercase mt-1">{c.questions.length} {c.questions.length === 1 ? "question" : "questions"}</span>
           </a>
         ))}
       </div>
@@ -111,7 +115,9 @@ const categories: Category[] = [
                   <span class="text-navy-900 font-medium text-[15px]">{item.q}</span>
                   <span class="text-gold-500 shrink-0 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
                 </summary>
-                <p class="mt-3 text-navy-900/70 text-sm leading-relaxed">{item.a}</p>
+                {item.a.includes("<a ")
+                  ? <p class="mt-3 text-navy-900/70 text-sm leading-relaxed" set:html={item.a}></p>
+                  : <p class="mt-3 text-navy-900/70 text-sm leading-relaxed">{item.a}</p>}
               </details>
             ))}
           </div>
