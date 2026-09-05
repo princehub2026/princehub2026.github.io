@@ -673,7 +673,6 @@ export const counties: County[] = [
       phone: "610-278-3224",
       note: "Preliminary hearings are heard at the Magisterial District Court covering the municipality where the case arose. Formal arraignment, pretrial proceedings, and trial move to the Court of Common Pleas in Norristown.",
       // Photo: Douglas Muth, CC BY-SA 2.0, via Wikimedia Commons — credited in Footer.astro
-      photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Montgomery%20County%20Courthouse%20Pennsylvania%20-%20Douglas%20Muth.jpg?width=1920",
     },
     jail: {
       name: "Montgomery County Correctional Facility",
