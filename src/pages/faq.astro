@@ -16,7 +16,38 @@ interface Category {
   questions: { q: string; a: string }[];
 }
 
+// Curated orientation set for the "Just charged?" band on the homepage. Written to be short
+// enough for someone reading it in a parking lot, and deliberately procedural — no deadlines,
+// dollar figures or eligibility rules that would need separate verification.
+const justCharged: { q: string; a: string }[] = [
+  {
+    q: "I was just charged. What actually happens next?",
+    a: "You will have been given paperwork before you left. Somewhere on it is a date, a time and the name or number of a court — that is your next appearance. Keep that paperwork. Everything that follows runs off it, and it is the first thing any attorney will ask you for.",
+  },
+  {
+    q: "Does being charged mean I have been convicted?",
+    a: "No. A charge is an accusation. It means the Commonwealth intends to try to prove something. Nothing has been decided, and the burden is on them, not on you.",
+  },
+  {
+    q: "Who should I talk to about what happened?",
+    a: "Your attorney, and nobody else. Not the police, not the other people involved, not friends, and not over social media. If you or someone you care about is in custody, assume every phone call from the facility is recorded — because it is.",
+  },
+  {
+    q: "How do I find my court date if I lost the paperwork?",
+    a: "Pennsylvania publishes case information on the courts' public docket portal at ujsportal.pacourts.us. You can search by name and find the docket, the court, and the scheduled date.",
+  },
+  {
+    q: "When should I call a lawyer?",
+    a: "Before the first court date, not after it. Early is when the most options are still open — what gets said, what gets preserved, and what can still be negotiated all narrow as the case moves. If you are not sure whether your situation is serious, that is itself a reason to call and ask.",
+  },
+  {
+    q: "What if I cannot afford a private attorney?",
+    a: "You may qualify for the public defender in your county, and you should apply rather than go unrepresented. Either way, do not go to a court date with no one beside you.",
+  },
+];
+
 const categories: Category[] = [
+  { slug: "just-charged", title: "Just Charged? Start Here", questions: justCharged },
   { slug: "criminal-process", title: "The Criminal Process", questions: pc("criminal-defense") },
   { slug: "preliminary-hearings", title: "Preliminary Hearings", questions: pc("preliminary-hearings") },
   { slug: "warrants", title: "Warrants", summary: legacy("warrants")?.summary, consequences: legacy("warrants")?.consequences, questions: legacy("warrants")?.questions ?? [] },
