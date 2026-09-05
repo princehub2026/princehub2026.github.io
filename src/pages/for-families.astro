@@ -1,0 +1,184 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const PHONE = "484-944-0834";
+const PHONE_TEL = PHONE.replace(/\D/g, "");
+
+const firstSteps = [
+  {
+    title: "Find the case before you do anything else",
+    body: "Pennsylvania publishes case information on the courts' public docket portal at ujsportal.pacourts.us. A search by name will usually show the charges, the court, the docket number and the next scheduled date. Write the docket number down. Everything after this runs off it, and it is the first thing an attorney will ask you for.",
+  },
+  {
+    title: "Assume every call from a jail is recorded",
+    body: "Because it is, and the recordings are routinely obtained by prosecutors. Tell them you love them. Tell them you are working on it. Do not let them explain what happened, apologize, argue about the facts, or talk about the other people involved — not on the phone, not in a jail email, not in a visit, not in a letter.",
+  },
+  {
+    title: "Keep every piece of paper",
+    body: "The citation, the criminal complaint, the bail paperwork, the property receipt, anything handed over on the way out the door. Photograph all of it. Paperwork goes missing in the first week more often than anything else.",
+  },
+  {
+    title: "Do not contact the other side",
+    body: "Not the complainant, not their family, not through a friend, and not to apologize or 'clear it up.' Well-meaning contact from a defendant's family is one of the fastest ways to turn one case into two, and it can violate a bail condition the person did not know they had.",
+  },
+  {
+    title: "Do not post about it — and do not delete anything either",
+    body: "Nothing on social media helps, and deleting messages or accounts after a charge can look far worse than what was there. Leave it alone and tell the attorney what exists.",
+  },
+  {
+    title: "Write down what you remember now",
+    body: "Names, times, who was present, what was said, who called whom. Memory is at its best today. Give those notes to the attorney rather than to anyone else — your notes are not protected the way your loved one's conversation with their lawyer is.",
+  },
+];
+---
+<BaseLayout
+  title="For Parents & Loved Ones"
+  description="What to do in the first days after someone you love is arrested or charged in Pennsylvania — finding the case, recorded jail calls, what not to say, and what your role is."
+>
+  <!-- Header band -->
+  <section class="bg-navy-950 glow-top noise pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+    <img src="/images/logo-crest.png" alt="" aria-hidden="true" class="h-10 w-auto mx-auto mb-5 opacity-90 crest-glow" />
+    <p class="text-gold-400 text-xs tracking-wide-lg uppercase">For Parents &amp; Loved Ones</p>
+    <h1 class="font-serif text-cream-50 text-4xl sm:text-5xl mt-3 leading-tight">Someone you love has been charged</h1>
+    <div class="glow-rule w-16 mx-auto mt-6"></div>
+    <p class="mt-6 text-cream-100/75 text-base sm:text-lg max-w-2xl mx-auto px-6 leading-relaxed">
+      Most of the calls this office takes do not come from the person charged. They come from a mother,
+      a father, a spouse, a sibling. This page is written for you.
+    </p>
+    <a href={`tel:${PHONE_TEL}`} class="inline-block mt-7 text-gold-400 text-xs sm:text-sm tracking-wide-lg uppercase border-b border-gold-500 pb-1 hover:text-gold-300 transition-colors">
+      Free Consultation — Call 24/7: {PHONE}
+    </a>
+  </section>
+
+  <!-- The first day -->
+  <section class="bg-cream-50 py-14 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="font-serif text-2xl sm:text-3xl text-navy-900 leading-snug">The first day</h2>
+      <div class="glow-rule w-12 mt-4 mb-8"></div>
+      <ol class="space-y-8">
+        {firstSteps.map((s, i) => (
+          <li class="flex gap-5">
+            <span class="font-serif text-gold-600 text-2xl leading-none shrink-0 w-8 pt-0.5" aria-hidden="true">{i + 1}</span>
+            <div>
+              <h3 class="font-serif text-lg sm:text-xl text-navy-900 leading-snug">{s.title}</h3>
+              <p class="mt-2 text-navy-900/80 text-[15.5px] leading-relaxed">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Photo band -->
+  <section class="relative h-[30vh] min-h-[240px] sm:h-[36vh] w-full overflow-hidden">
+    <img src="/images/courthouse-steps.jpg" alt="Attorney Prince Charles Yakubu" class="absolute inset-0 w-full h-full object-cover" style="filter: grayscale(0.3) contrast(1.05) brightness(0.9); object-position: 50% 45%;" loading="lazy" />
+    <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.6;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,164,74,0.14) 0%, rgba(201,164,74,0) 60%), linear-gradient(180deg, rgba(6,13,29,0.35) 0%, rgba(6,13,29,0.55) 100%);"></div>
+  </section>
+
+  <!-- Your role -->
+  <section class="bg-cream-100 py-14 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="font-serif text-2xl sm:text-3xl text-navy-900 leading-snug">Where you fit — and where you don't</h2>
+      <div class="glow-rule w-12 mt-4 mb-6"></div>
+      <p class="text-navy-900/80 text-[15.5px] sm:text-base leading-relaxed">
+        This is the part families are rarely told plainly, so it gets said here first. If your adult son,
+        daughter or spouse is the one charged, they are the client — even when you are the one paying.
+        The attorney's confidentiality and loyalty run to them. What you are told about the case is their
+        decision to make, not the attorney's and not yours.
+      </p>
+      <p class="mt-4 text-navy-900/80 text-[15.5px] sm:text-base leading-relaxed">
+        That is not a wall put up against you. It is the same protection that keeps the Commonwealth from
+        learning what was said in that room. It is also why some conversations happen one-to-one: privilege
+        can be weakened when a third person sits in, so having a parent in every meeting is not always the
+        favor it appears to be. Most families, once they hear the reason, prefer it this way.
+      </p>
+      <p class="mt-4 text-navy-900/80 text-[15.5px] sm:text-base leading-relaxed">
+        Within those lines, families are genuinely useful — often decisively so:
+      </p>
+      <ul class="mt-5 space-y-2.5">
+        {[
+          "You have the paperwork, the timeline, and the phone numbers nobody else has.",
+          "You know what was going on in their life, which matters at sentencing and in negotiations long before that.",
+          "You can gather employment records, school records, service records and letters that take weeks to collect.",
+          "You are, very often, the person who makes sure they are awake, dressed and at the courthouse on the right morning.",
+          "You can be the steady one. A case that runs for months is exhausting, and that steadiness is worth more than it sounds.",
+        ].map((item) => (
+          <li class="flex gap-3 text-navy-900/80 text-[15px] leading-relaxed">
+            <span class="text-gold-500 shrink-0 mt-0.5" aria-hidden="true">&#183;</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Particular situations -->
+  <section class="bg-cream-50 py-14 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="font-serif text-2xl sm:text-3xl text-navy-900 leading-snug">Some situations of their own</h2>
+      <div class="glow-rule w-12 mt-4 mb-8"></div>
+
+      <div class="space-y-8">
+        <div class="border-t border-gold-500/30 pt-5">
+          <h3 class="font-serif text-lg sm:text-xl text-navy-900">If your child is under 18</h3>
+          <p class="mt-2 text-navy-900/80 text-[15.5px] leading-relaxed">
+            Juvenile cases run through a different system, with different terminology and a different
+            stated purpose. A parent's role there is formally larger than it is in adult court — and the
+            long-term question is almost always what the record will look like when the child is twenty-five.
+          </p>
+          <a href="/practice-areas/juvenile-defense" class="inline-block mt-3 text-[12px] tracking-wide-sm uppercase text-gold-600 border-b border-gold-500/50 pb-0.5 hover:text-gold-500">Juvenile Defense &rarr;</a>
+        </div>
+
+        <div class="border-t border-gold-500/30 pt-5">
+          <h3 class="font-serif text-lg sm:text-xl text-navy-900">If your child is a college student</h3>
+          <p class="mt-2 text-navy-900/80 text-[15.5px] leading-relaxed">
+            There will likely be a university disciplinary process running alongside the criminal case, on
+            its own timeline and under its own rules. What a student says to a dean or a conduct officer is
+            not privileged, and the school's hearing is frequently scheduled first.
+          </p>
+          <a href="/practice-areas/college-campus-cases" class="inline-block mt-3 text-[12px] tracking-wide-sm uppercase text-gold-600 border-b border-gold-500/50 pb-0.5 hover:text-gold-500">College &amp; Campus Cases &rarr;</a>
+        </div>
+
+        <div class="border-t border-gold-500/30 pt-5">
+          <h3 class="font-serif text-lg sm:text-xl text-navy-900">If they are not a U.S. citizen</h3>
+          <p class="mt-2 text-navy-900/80 text-[15.5px] leading-relaxed">
+            Immigration consequences can attach to charges that sound minor, and they are shaped by how a
+            case is resolved — which means they belong in the conversation at the beginning of a case, not
+            after it is over.
+          </p>
+          <a href="/faq/#just-charged" class="inline-block mt-3 text-[12px] tracking-wide-sm uppercase text-gold-600 border-b border-gold-500/50 pb-0.5 hover:text-gold-500">Read the FAQ &rarr;</a>
+        </div>
+
+        <div class="border-t border-gold-500/30 pt-5">
+          <h3 class="font-serif text-lg sm:text-xl text-navy-900">What this costs</h3>
+          <p class="mt-2 text-navy-900/80 text-[15.5px] leading-relaxed">
+            Representation is generally handled on a flat fee. Every case is different, so no price can be
+            quoted before the facts are known — but once a fee is quoted, there are no hidden costs added
+            behind it. That conversation happens on the first call, free, before anyone commits to anything.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="bg-navy-950 glow-top noise py-16 sm:py-20 text-center">
+    <div class="mx-auto max-w-2xl px-6">
+      <h2 class="font-serif font-medium text-cream-50 text-2xl sm:text-3xl leading-snug">
+        Call before the first court date, not after it.
+      </h2>
+      <p class="mt-5 text-cream-100/70 text-sm sm:text-base leading-relaxed">
+        Early is when the most options are still open. If you are not sure whether the situation is serious,
+        that is itself a reason to call and ask. Every call is answered by the attorney who would handle the case.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href={`tel:${PHONE_TEL}`} class="px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium">Call {PHONE}</a>
+        <a href="/contact" class="px-8 py-3.5 border border-cream-100/45 text-cream-50 text-sm tracking-wide-sm uppercase transition-all hover:border-gold-500 hover:text-gold-400">Free Consultation</a>
+      </div>
+      <p class="mt-10 text-cream-100/45 text-xs leading-relaxed max-w-xl mx-auto">
+        This page provides general information about Pennsylvania law. It is not legal advice, and reading it
+        does not create an attorney-client relationship.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
