@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { counties } from "../../data/counties";
+import PhiladelphiaFacilities from "../../components/PhiladelphiaFacilities.astro";
 
 export function getStaticPaths() {
   return counties.map((c) => ({
@@ -36,19 +37,11 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
           Municipal Court and Court of Common Pleas, rather than a network of Magisterial
           District Courts as in the surrounding counties.
         </p>
-        <p class="mt-6 text-sm text-navy-900/50">
-          [Jail and detention-facility information for Philadelphia to be added here.]
-        </p>
-        <a
-          href={`tel:${PHONE_TEL}`}
-          class="inline-block mt-10 px-8 py-3.5 btn-foil text-sm tracking-wide-sm uppercase font-medium"
-         
-        >
-          Call {PHONE}
-        </a>
       </div>
     </section>
   )}
+
+  {county.slug === "philadelphia" && <PhiladelphiaFacilities />}
 
   {county.status === "coming-soon" && (
     <section class="bg-cream-50 py-16 sm:py-20">
