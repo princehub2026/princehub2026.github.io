@@ -1,0 +1,45 @@
+---
+import { campusCounties } from "../data/campuses";
+---
+<section class="bg-cream-100 py-14 sm:py-20 border-t border-gold-500/20">
+  <div class="mx-auto max-w-5xl px-6">
+    <p class="text-gold-600 text-xs tracking-wide-lg uppercase">Campuses in the Five Counties Served</p>
+    <h2 class="font-serif text-2xl sm:text-3xl text-navy-900 leading-snug mt-3">
+      Where the case is heard depends on where it happened
+    </h2>
+    <div class="glow-rule w-12 mt-4 mb-6"></div>
+    <p class="text-navy-900/80 text-[15.5px] sm:text-base leading-relaxed max-w-3xl">
+      A student charged near campus is prosecuted in the county where the conduct is alleged to have
+      occurred — not where the school is headquartered and not where the student is from. That is why
+      the campuses below are grouped by county. A few of them sit on a county or municipal line, which
+      can change which court handles the case.
+    </p>
+
+    <div class="mt-10 sm:mt-12 space-y-10 sm:space-y-12">
+      {campusCounties.map((c) => (
+        <div class="border-t border-gold-500/30 pt-5">
+          <a href={`/counties/${c.countySlug}`} class="group inline-flex items-baseline gap-2">
+            <h3 class="font-serif text-lg sm:text-xl text-navy-900 group-hover:text-gold-600 transition-colors">{c.countyName}</h3>
+            <span class="text-gold-600 text-[11px] tracking-wide-sm uppercase opacity-0 group-hover:opacity-100 transition-opacity">Courts &rarr;</span>
+          </a>
+          <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+            {c.campuses.map((campus) => (
+              <li class="text-[15px] leading-snug">
+                <span class="text-navy-900/85">{campus.name}</span>
+                <span class="block text-navy-900/50 text-[12.5px] mt-0.5">{campus.place}</span>
+                {campus.note && (
+                  <span class="block text-gold-600/90 text-[12px] mt-1 leading-relaxed">{campus.note}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-10 text-navy-900/50 text-xs leading-relaxed max-w-3xl">
+      Listing a campus here reflects the counties in which this practice appears. It does not indicate
+      any affiliation with, or endorsement by, any college or university.
+    </p>
+  </div>
+</section>
