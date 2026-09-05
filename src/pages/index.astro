@@ -12,12 +12,12 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
   <!-- Hero -->
   <section class="relative">
     <div class="relative h-[86vh] min-h-[600px] sm:h-[92vh] sm:min-h-[660px] w-full overflow-hidden bg-navy-950">
-      <img src="/images/hero-courthouse.jpg" alt="Attorney Prince Charles Yakubu outside the Montgomery County Courthouse" class="absolute inset-0 w-full h-full object-cover kenburns" style="filter: grayscale(0.35) contrast(1.08) brightness(0.85); object-position: 50% 32%;" loading="eager" />
+      <img src="/images/hero-courthouse.jpg" alt="Attorney Prince Charles Yakubu outside the Montgomery County Courthouse" class="absolute inset-0 w-full h-full object-cover kenburns" style="filter: grayscale(0.35) contrast(1.08) brightness(0.85); object-position: 50% 88%;" loading="eager" />
       <div class="absolute inset-0" style="background-color:#0b1730; mix-blend-mode:multiply; opacity:0.78;"></div>
       <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(201,164,74,0.22) 0%, rgba(201,164,74,0) 60%);"></div>
       <div class="absolute inset-0" style="background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, rgba(4,9,20,0.85) 100%), linear-gradient(180deg, rgba(4,9,20,0.35), transparent 30%, transparent 60%, rgba(4,9,20,0.95));"></div>
 
-      <div class="relative h-full flex flex-col items-center justify-center text-center px-6">
+      <div class="relative h-full flex flex-col items-center justify-center text-center px-6 pb-24 sm:pb-32">
         <img src="/images/logo-crest.png" alt="Yakubu Law crest" class="h-24 sm:h-28 w-auto mb-6" style="filter: drop-shadow(0 0 24px rgba(201,164,74,0.5));" />
         <h1 class="font-serif font-medium text-cream-50 text-[44px] sm:text-7xl leading-[1.05] max-w-4xl" style="text-shadow: 0 2px 30px rgba(0,0,0,0.5);">
           No charge too serious.<br /> No case too small.
@@ -36,6 +36,17 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
         </div>
       </div>
     </div>
+
+    <!-- Just charged? — first-step orientation, directly under the hero -->
+    <a
+      href="/faq/#just-charged"
+      class="group block bg-cream-50 border-b border-gold-500/30 py-5 sm:py-6 text-center transition-colors hover:bg-cream-100"
+    >
+      <span class="font-serif text-navy-900 text-lg sm:text-xl">Just charged? Here is what happens next.</span>
+      <span class="block mt-1.5 text-[11px] tracking-wide-lg uppercase text-gold-600 group-hover:text-gold-700">
+        The first 72 hours &rarr;
+      </span>
+    </a>
 
     <!-- Slim CTA utility bar directly under hero -->
     <div class="bg-navy-1000 border-t border-b border-gold-500/40">
@@ -62,6 +73,11 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
         <p class="text-navy-900/80 leading-relaxed">
           Former public defender. Trained in the Philadelphia DA's Homicide Unit. Every case is
           handled directly by the attorney — from the first call through final resolution.
+        </p>
+        <p class="mt-5 text-navy-900/80 leading-relaxed">
+          For five years I defended people who could not choose their lawyer, with a caseload that
+          never stopped. I built this practice to do that same work with a fraction of the cases —
+          and to take the calls myself.
         </p>
         <a href="/about" class="inline-block mt-8 text-[12px] tracking-wide-sm uppercase text-gold-600 border-b border-gold-500/50 pb-0.5 wipe-link hover:text-gold-500">
           Meet the Attorney
