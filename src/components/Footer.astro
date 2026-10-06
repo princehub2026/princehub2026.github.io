@@ -1,6 +1,7 @@
 ---
 import { practiceAreas } from "../data/practiceAreas";
 import { counties } from "../data/counties";
+import { FIRM } from "../data/firm";
 const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
 ---
@@ -37,9 +38,13 @@ const PHONE_TEL = PHONE.replace(/\D/g, "");
         <p class="text-sm">
           <a href={`tel:${PHONE_TEL}`} class="text-cream-50 font-medium hover:text-gold-400 transition-colors">{PHONE}</a>
         </p>
-        <p class="text-sm mt-2 text-cream-100/65">
-          Consultations by phone, 24/7.<br/>
-          Meetings by appointment across the five counties served.
+        <address class="not-italic text-sm mt-3 text-cream-100/80 leading-relaxed">
+          {FIRM.street}<br/>
+          {FIRM.locality}, {FIRM.region} {FIRM.postalCode}
+        </address>
+        <p class="text-sm mt-3 text-cream-100/65 leading-relaxed">
+          {FIRM.appointmentNote}<br/>
+          {FIRM.satelliteNote}
         </p>
         <a href="/contact" class="inline-block mt-4 text-xs tracking-wide-sm uppercase text-gold-400 border-b border-gold-500 pb-0.5 hover:text-gold-400/80">
           Free Consultation →
