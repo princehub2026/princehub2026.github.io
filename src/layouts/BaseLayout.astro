@@ -3,12 +3,17 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import StickyCallBar from "../components/StickyCallBar.astro";
 import "../styles/global.css";
+import { firmNode } from "../data/firm";
 
 interface Props {
   title: string;
   description: string;
 }
 const { title, description } = Astro.props;
+
+// Sitewide identity for search engines. One node, one @id, every page — so the site
+// never describes itself as two different businesses.
+const firmSchema = { "@context": "https://schema.org", ...firmNode };
 ---
 <!doctype html>
 <html lang="en">
@@ -28,6 +33,7 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={`${title} | Yakubu Law`} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <script type="application/ld+json" set:html={JSON.stringify(firmSchema)}></script>
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body>
