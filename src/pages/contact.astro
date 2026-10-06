@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { counties } from "../data/counties";
+import { FIRM } from "../data/firm";
 const PHONE = "484-944-0834";
 const PHONE_TEL = PHONE.replace(/\D/g, "");
 // Web3Forms relay key — submissions are forwarded to Prince@yakubulaw.com.
@@ -67,10 +68,21 @@ const WEB3FORMS_KEY = "77a6036d-982b-4541-b6dd-07354262c6a0";
 
         <div class="hairline-static my-8"></div>
 
+        <p class="text-navy-900/50 text-xs tracking-wide-sm uppercase mb-1">Office</p>
+        <address class="not-italic text-navy-900/80 text-sm leading-relaxed">
+          {FIRM.street}<br/>
+          {FIRM.locality}, {FIRM.region} {FIRM.postalCode}
+        </address>
+        <p class="text-navy-900/70 text-sm leading-relaxed mt-2">
+          Meetings by appointment. {FIRM.satelliteNote}
+        </p>
+
+        <div class="hairline-static my-8"></div>
+
         <p class="text-navy-900/50 text-xs tracking-wide-sm uppercase mb-1">Where I Practice</p>
         <p class="text-navy-900/70 text-sm leading-relaxed">
           Bucks, Chester, Delaware, Montgomery and Philadelphia counties.<br/>
-          Consultations by phone, 24/7. Meetings by appointment.
+          Consultations by phone, 24/7.
         </p>
         <img
           src="/images/attorney-contact.jpg"
