@@ -3,6 +3,7 @@ import { practiceAreas } from "../data/practiceAreas";
 import type { PracticeArea } from "../data/practiceAreas";
 import { getPracticeContent } from "../data/practiceContent";
 import CampusList from "./CampusList.astro";
+import { firmNode } from "../data/firm";
 
 interface Props {
   area: PracticeArea;
@@ -27,18 +28,8 @@ const schema = content
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "LegalService",
-          name: "Yakubu Law",
+          ...firmNode,
           description: `${area.name} representation across Bucks, Chester, Delaware, Montgomery, and Philadelphia counties, Pennsylvania.`,
-          telephone: "+1-484-944-0834",
-          areaServed: [
-            { "@type": "AdministrativeArea", name: "Bucks County, Pennsylvania" },
-            { "@type": "AdministrativeArea", name: "Chester County, Pennsylvania" },
-            { "@type": "AdministrativeArea", name: "Delaware County, Pennsylvania" },
-            { "@type": "AdministrativeArea", name: "Montgomery County, Pennsylvania" },
-            { "@type": "AdministrativeArea", name: "Philadelphia, Pennsylvania" },
-          ],
-          knowsLanguage: "en",
         },
         {
           "@type": "FAQPage",
