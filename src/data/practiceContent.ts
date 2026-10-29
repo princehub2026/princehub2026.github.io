@@ -29,8 +29,8 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "How a Pennsylvania criminal case moves",
         paragraphs: [
-          "Every criminal case in Pennsylvania follows the same life cycle, and knowing where a case is in that cycle is the first step in defending it. After an arrest, the accused is brought before a Magisterial District Judge or hearing officer for a preliminary arraignment — usually within hours — where the charges are read and bail is set. For many lower-level offenses, police release the person and mail a summons instead of holding them.",
-          "The preliminary hearing follows at the magisterial district court — or the Municipal Court in Philadelphia — scheduled within 14 days for someone in custody or 21 days for someone released. There the Commonwealth must show a prima facie case — enough evidence, if believed, that a crime occurred and the accused committed it. Charges held for court move to the Court of Common Pleas for formal arraignment, which starts the clock on pretrial motions: suppression of evidence, habeas corpus challenges, and discovery. The case then resolves by dismissal, diversion, negotiated plea, or trial — before a judge or a jury of twelve and two alternates. Sentencing follows Pennsylvania's guidelines, and post-sentence rights include a direct appeal to the Superior Court and, later, post-conviction relief under the PCRA.",
+          "Every criminal case in Pennsylvania follows the same life cycle, and knowing where a case is in that cycle is the first step in defending it. After an arrest, the accused is brought before a Magisterial District Judge (in Philadelphia, an Arraignment Court Magistrate) for a preliminary arraignment — usually within hours — where the charges are read and bail is set. For many lower-level offenses, police release the person and mail a summons instead of holding them.",
+          "The preliminary hearing follows at the magisterial district court — or the Municipal Court in Philadelphia — scheduled within 14 days for someone in custody or 21 days for someone released. There the Commonwealth must show a prima facie case — enough evidence, if believed, that a crime occurred and the accused committed it. Charges held for court move to the Court of Common Pleas for formal arraignment, which starts the clock on pretrial motions: suppression of evidence, habeas corpus challenges, and discovery. The case then resolves by dismissal, diversion, negotiated plea, or trial — before a judge or a twelve-person jury, plus alternates as the trial judge directs. Sentencing follows Pennsylvania's guidelines, and post-sentence rights include a direct appeal to the Superior Court and, later, post-conviction relief under the PCRA.",
           "Pennsylvania's speedy-trial rule, Rule 600, requires trial within 365 days of the complaint, excluding defense-caused delay, and a defendant held in jail pretrial is entitled to release on nominal bail after 180 days. These deadlines are enforceable — but only if someone is counting."
         ]
       },
@@ -60,7 +60,7 @@ export const practiceContent: Record<string, PracticeContent> = {
     faq: [
       {
         q: "What happens right after an arrest in Pennsylvania?",
-        a: "After an arrest, the person is brought before a Magisterial District Judge or hearing officer for a preliminary arraignment, usually within hours. The judge reads the charges, explains the right to counsel and to a preliminary hearing, and sets bail. For many lower-level offenses, police release the person and mail a summons instead. The preliminary hearing is then scheduled within 14 days if the person is in custody, or 21 days if released."
+        a: "After an arrest, the person is brought before a Magisterial District Judge (in Philadelphia, an Arraignment Court Magistrate) for a preliminary arraignment, usually within hours. The judge reads the charges, explains the right to counsel and to a preliminary hearing, and sets bail. For many lower-level offenses, police release the person and mail a summons instead. The preliminary hearing is then scheduled within 14 days if the person is in custody, or 21 days if released."
       },
       {
         q: "What is the difference between a felony, a misdemeanor, and a summary offense?",
@@ -503,7 +503,7 @@ export const practiceContent: Record<string, PracticeContent> = {
         ]
       },
       {
-        heading: "Technical violations after Act 44 — the rules changed",
+        heading: "Technical violations after Act 44 of 2023 — the rules changed",
         paragraphs: [
           "Pennsylvania's 2023 probation reform changed the landscape for technical violations — missed appointments, failed screens, unpaid costs. There is now a statutory presumption against confinement for most technical violations, with jail capped at 14 days for a first violation and 30 for a second. Exceptions exist — absconding, weapons- or sexual-conduct-related violations, repeated program failures, or an identifiable threat to public safety — and a new conviction remains full-exposure: the court can resentence up to the original maximum. Because courts are still adjusting to this framework, invoking the presumptions and caps explicitly, on the record, matters.",
           "State parole runs on its own track: technical violators face capped recommitments with presumptive reparole, while convicted violators can forfeit their street time — the time spent at liberty on parole — extending the sentence's end date. Every recalculation order deserves a check; credit errors are common and appealable."
@@ -517,7 +517,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "What is the difference between a technical violation and a new-charge violation?",
-        a: "A technical violation breaks a condition of supervision — missed appointments, failed drug tests, unpaid costs — without a new conviction. A direct violation is a conviction for a new offense. The difference now controls outcomes: Pennsylvania's Act 44 presumes against jailing technical violators and caps confinement, while a new conviction exposes a probationer to resentencing up to the original maximum."
+        a: "A technical violation breaks a condition of supervision — missed appointments, failed drug tests, unpaid costs — without a new conviction. A direct violation is a conviction for a new offense. The difference now controls outcomes: Pennsylvania's Act 44 of 2023 presumes against jailing technical violators and caps confinement, while a new conviction exposes a probationer to resentencing up to the original maximum."
       },
       {
         q: "Can I still be jailed for a technical violation?",
@@ -734,11 +734,11 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "What is an occupational limited license, and who qualifies?",
-        a: "An occupational limited license allows driving for work, study, and medical treatment during many suspensions; PennDOT decides petitions within 20 days. DUI, ARD, and refusal suspensions are not eligible — those drivers use the ignition interlock limited license, available immediately to most first-time DUI offenders. Neither limited license authorizes commercial driving. See PennDOT's website for the most up-to-date information."
+        a: "An occupational limited license allows driving for work, study, and medical treatment during many suspensions; PennDOT decides petitions within 20 days. DUI, ARD, and refusal suspensions are not eligible — those drivers use the ignition interlock limited license, available immediately to most first-time DUI offenders. Neither limited license authorizes commercial driving. See <a href=\"https://www.pa.gov/agencies/dmv/driver-services/license-suspensions\" target=\"_blank\" rel=\"noopener\">PennDOT's website</a> for the most up-to-date information."
       },
       {
         q: "What actually happens at the appeal hearing?",
-        a: "A common pleas judge hears the case without a jury. PennDOT introduces the certified driving record — and in refusal cases, officer testimony establishing reasonable grounds, a test request, proper warnings, and a refusal. We can cross-examine and present evidence, such as medical proof a breath test could not be completed or records showing the reported conviction or points are wrong."
+        a: "A common pleas judge hears the case without a jury. PennDOT introduces the certified driving record — and in refusal cases, officer testimony establishing reasonable grounds, a test request, proper warnings, and a refusal. I can cross-examine and present evidence, such as medical proof a breath test could not be completed or records showing the reported conviction or points are wrong."
       }
     ]
   },
@@ -796,7 +796,7 @@ export const practiceContent: Record<string, PracticeContent> = {
         heading: "Expungement, sealing, and Clean Slate — three different things",
         paragraphs: [
           "Expungement destroys the record. Sealing — 'limited access' in Pennsylvania — hides it from the public and most employers, while police, courts, and certain licensing and federal screenings can still see it. Clean Slate is Pennsylvania's automatic sealing law: qualifying records seal by operation of law, with no petition and no fee, on a rolling monthly cycle. Knowing which remedy a record qualifies for — and which it never will — is the entire game.",
-          "The eligibility map, as it stands after the 2023 Clean Slate expansion: charges that ended in dismissal, withdrawal, or acquittal can be expunged at any time, and Clean Slate seals them automatically on an ongoing basis. Summary convictions can be expunged after five arrest-free years. Most second- and third-degree misdemeanors seal automatically after seven conviction-free years; eligible first-degree misdemeanors can be sealed by petition after seven; certain felonies — including qualifying drug felonies — after ten. Restitution must be paid first. First- and second-degree felonies, crimes of violence, firearms offenses, sex offenses, and most domestic-violence-related convictions are excluded from sealing entirely — for those, a pardon is the remaining path, and since 2023 a full pardon leads to automatic expungement."
+          "The eligibility map, as it stands after the 2023 Clean Slate expansion (Act 36 of 2023): charges that ended in dismissal, withdrawal, or acquittal can be expunged at any time, and Clean Slate seals them automatically on an ongoing basis. Summary convictions can be expunged after five arrest-free years. Most second- and third-degree misdemeanors seal automatically after seven conviction-free years; eligible first-degree misdemeanors can be sealed by petition after seven; certain felonies — including qualifying drug felonies — after ten. Restitution must be paid first. First- and second-degree felonies, crimes of violence, firearms offenses, sex offenses, and most domestic-violence-related convictions are excluded from sealing entirely — for those, a pardon is the remaining path, and since 2023 a full pardon leads to automatic expungement."
         ]
       },
       {
