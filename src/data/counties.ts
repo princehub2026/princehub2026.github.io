@@ -574,7 +574,7 @@ export const counties: County[] = [
     courtProse: [
       "Magisterial district courts handle the earliest stages of nearly every criminal case in Delaware County. After an arrest, a preliminary arraignment sets bail and gives you your next court date. The county also operates a central MDJ Arraignment Room in Media, at 600 North Jackson Street, where preliminary arraignments are held.",
       "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Delaware County Court of Common Pleas at 201 West Front Street in Media. Summary offenses and most traffic citations are decided at this court and go no further.",
-      "One Delaware County detail worth knowing early: the county's own ARD application states that no application will be considered unless the applicant is represented by an attorney, and it is due at least fourteen days before formal arraignment. The window opens early in the case and does not stay open long.",
+      "One Delaware County detail worth knowing early: the ARD application is due at least fourteen days before formal arraignment. The window opens early in the case and does not stay open long.",
     ],
     courts: delawareCourts.map((c) => ({ ...c, slug: `dc-${c.dcNumber}` })),
     courthouse: {
@@ -594,7 +594,7 @@ export const counties: County[] = [
       {
         name: "ARD (Accelerated Rehabilitative Disposition)",
         description:
-          "A pretrial diversion program for first-time and low-risk offenders, with charges dismissed on successful completion. Two Delaware County requirements matter here: the county's own application states that no application will be considered unless the applicant is represented by an attorney, and the application is due at least fourteen days before the scheduled formal arraignment. Applicants also sign a waiver of speedy-trial rights covering the period from arraignment to the pretrial conference.",
+          "A pretrial diversion program for first-time and low-risk offenders, with charges dismissed on successful completion. The application is due at least fourteen days before the scheduled formal arraignment, and applicants sign a waiver of speedy-trial rights covering the period from arraignment to the pretrial conference.",
       },
       {
         name: "Second Chance Court",
@@ -634,9 +634,9 @@ export const counties: County[] = [
           "Most cases begin with a preliminary arraignment and then a preliminary hearing at the Magisterial District Court covering the municipality where the arrest happened. Delaware County also operates a central MDJ Arraignment Room in Media, at 600 North Jackson Street, for preliminary arraignments. Cases held for court then move to the Court of Common Pleas in Media for formal arraignment and trial.",
       },
       {
-        question: "Do I need a lawyer to apply for ARD in Delaware County?",
+        question: "What's the ARD application deadline in Delaware County?",
         answer:
-          "Yes — and this is not a matter of advice but of county policy. Delaware County's own ARD application states that no application will be considered unless the applicant is represented by an attorney. The application is also due at least fourteen days before formal arraignment, which means the window to act is short and opens early in the case.",
+          "The application is due at least fourteen days before formal arraignment, so the window opens early in the case and does not stay open long. Requirements can change, so confirming the current application process directly with the county — rather than close to the deadline — is the safest approach.",
       },
       {
         question: "Which court will hear my case — the Magisterial District Court or Common Pleas?",
