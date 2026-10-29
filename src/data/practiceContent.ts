@@ -457,8 +457,8 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "The charges — and the state-federal divide",
         paragraphs: [
-          "Pennsylvania's hacking statutes — unlawful use of a computer, disruption of service, computer trespass — are third-degree felonies. In cases involving child sexual abuse material, knowing possession or intentional viewing is a third-degree felony for a first offense and dissemination the same, with both escalating to second-degree felonies for repeat offenses or aggravating factors — and each file can be charged as a separate count. Unlawful contact with a minor and sexual extortion carry their own gradings, and convictions under the CSAM statutes carry sex-offender registration of fifteen years to life.",
-          "The most consequential fact in many of these cases is which courthouse they land in. Federal law imposes a five-year mandatory minimum for receipt or distribution — a mandatory Pennsylvania simply does not have. Cases involving distribution evidence, large collections, or multi-state conduct are more likely to be adopted federally. Early, quiet advocacy about charging decisions, made while the forensic review is still underway, can be the most important work in the entire case."
+          "Pennsylvania's hacking statutes — unlawful use of a computer, disruption of service, computer trespass — are third-degree felonies. In cases involving child sexual abuse material, knowing possession or intentional viewing is a third-degree felony for a first offense and dissemination the same, with both escalating to second-degree felonies for repeat offenses or aggravating factors — and each file can be charged as a separate count. Unlawful contact with a minor and sexual extortion carry their own gradings, and convictions under the CSAM statutes carry sex-offender registration of 15 to 25 years, with lifetime registration possible for a sexually violent predator designation or a second qualifying conviction.",
+          "The most consequential fact in many of these cases is which courthouse they land in. Federal law imposes a five-year mandatory minimum for receipt or distribution on a first offense — a mandatory Pennsylvania does not impose on a first offense, though Pennsylvania's own mandatory minimum for a repeat CSAM offender (25 years to life) is far harsher than the federal floor. Cases involving distribution evidence, large collections, or multi-state conduct are more likely to be adopted federally. Early, quiet advocacy about charging decisions, made while the forensic review is still underway, can be the most important work in the entire case."
         ]
       },
       {
@@ -603,8 +603,8 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "The record does not erase itself — and school runs on its own track",
         paragraphs: [
-          "The most persistent myth in juvenile law is that records disappear at 18. They do not. Juvenile records are confidential but exist until a court orders expungement: dismissed cases and completed diversions can be expunged within months, misdemeanor-level adjudications generally after two clean years, felony-level after five — and someone must actually file. Serious sexual offenses committed at 14 or older cannot be expunged at all. Unexpunged records can surface in FBI fingerprint checks, military enlistment, and licensing.",
-          "Meanwhile, Pennsylvania's Safe Schools laws require information sharing between courts, probation, and school districts, so school discipline — suspension, expulsion, alternative placement — often proceeds in parallel with the court case. Defending a juvenile means managing both tracks at once, because a good court outcome can be undone by an unmanaged school one."
+          "The most persistent myth in juvenile law is that records disappear at 18. They do not. Juvenile records are confidential but exist until a court orders expungement: dismissed cases and completed diversions can be expunged within months, misdemeanor-level adjudications generally after two clean years, felony-level after five — and someone must actually file. Rape, involuntary deviate sexual intercourse, and aggravated indecent assault committed at 14 or older cannot be expunged at all; other serious offenses still follow the standard two- or five-year track. Unexpunged records can surface in FBI fingerprint checks, military enlistment, and licensing.",
+          "Meanwhile, Pennsylvania law requires juvenile probation to share certain delinquency information with the child's school, so school discipline — suspension, expulsion, alternative placement — often proceeds in parallel with the court case. Defending a juvenile means managing both tracks at once, because a good court outcome can be undone by an unmanaged school one."
         ]
       }
     ],
@@ -619,11 +619,11 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "Will my child's juvenile record disappear automatically?",
-        a: "No — that is a common myth. Juvenile records are confidential but remain until a court orders expungement. Dismissed cases and completed diversions can be expunged within months; misdemeanor-level adjudications generally after two clean years, felony-level after five. Someone must file for expungement — and serious sexual offenses committed at 14 or older cannot be expunged."
+        a: "No — that is a common myth. Juvenile records are confidential but remain until a court orders expungement. Dismissed cases and completed diversions can be expunged within months; misdemeanor-level adjudications generally after two clean years, felony-level after five. Someone must file for expungement — and rape, involuntary deviate sexual intercourse, and aggravated indecent assault committed at 14 or older cannot be expunged at all."
       },
       {
         q: "Will the school find out about my child's case?",
-        a: "Usually, yes. Pennsylvania's Safe Schools laws require information sharing between courts, probation, and school districts for certain offenses. School discipline — suspension, expulsion, or alternative placement — can proceed separately from the court case, so both tracks need attention at the same time."
+        a: "Usually, yes. Pennsylvania law requires juvenile probation to share certain delinquency information with school districts. School discipline — suspension, expulsion, or alternative placement — can proceed separately from the court case, so both tracks need attention at the same time."
       }
     ]
   },
@@ -634,13 +634,13 @@ export const practiceContent: Record<string, PracticeContent> = {
         heading: "Rule 588 — the motion that gets property back",
         paragraphs: [
           "Property seized by police is not returned automatically, even when a case ends well. The remedy is a motion for return of property under Rule 588, filed in the Court of Common Pleas for the county where the property is held. The person seeking return must show entitlement to lawful possession; the burden then shifts to the Commonwealth to prove the property is contraband or was used in crime. Absent that proof, the rule says the property shall be restored — and since Commonwealth v. Irland (2018), the Commonwealth cannot keep property without actual statutory forfeiture authority.",
-          "Timing is the trap. A person charged with a crime must file while the case is pending or within roughly 30 days after the charges conclude. Waiting longer generally waives the remedy entirely — which is why return motions belong on the calendar the day a case resolves, not months later when the inconvenience becomes acute."
+          "Timing is the trap. A person charged with a crime must file while the case is pending or within 30 days after the case concludes — a strict, jurisdictional deadline, not a loose guideline. Waiting longer generally waives the remedy entirely — which is why return motions belong on the calendar the day a case resolves, not months later when the inconvenience becomes acute."
         ]
       },
       {
         heading: "Forfeiture is a different fight — with a higher burden on the Commonwealth",
         paragraphs: [
-          "A return motion is the owner asking for property back; forfeiture is the Commonwealth suing to keep it. Pennsylvania's 2017 forfeiture reforms raised the stakes for prosecutors: once the claimant shows lawful ownership, the Commonwealth must prove unlawful use by clear and convincing evidence, and courts can reject forfeitures grossly disproportionate to the offense. Cash near drugs, cars driven to an alleged transaction, phones in a pocket — proximity alone is contestable, and the elevated burden makes many of these fights winnable."
+          "A return motion is the owner asking for property back; forfeiture is the Commonwealth suing to keep it. Pennsylvania raised the stakes for prosecutors in 2017 on two fronts: the legislature's forfeiture reform now requires the Commonwealth, once the claimant shows lawful ownership, to prove unlawful use by clear and convincing evidence, and the Pennsylvania Supreme Court separately ruled that same year that courts can reject forfeitures grossly disproportionate to the offense. Cash near drugs, cars driven to an alleged transaction, phones in a pocket — proximity alone is contestable, and the elevated burden makes many of these fights winnable."
         ]
       },
       {
@@ -657,7 +657,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "Is there a deadline to ask for seized property back?",
-        a: "Effectively, yes. A motion generally must be filed while the case is pending, or within roughly 30 days after the case is resolved. Waiting longer will generally waive the remedy, so return motions are best filed alongside the criminal case or immediately after disposition."
+        a: "Effectively, yes. A motion generally must be filed while the case is pending, or within 30 days after the case is resolved — a strict, jurisdictional deadline, not a loose guideline. Waiting longer will generally waive the remedy, so return motions are best filed alongside the criminal case or immediately after disposition."
       },
       {
         q: "What property can't be returned?",
@@ -665,7 +665,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "What is the difference between a return motion and forfeiture?",
-        a: "A return motion is the owner asking the court for property back. Forfeiture is the Commonwealth suing to keep it permanently. Since Pennsylvania's 2017 reforms, the Commonwealth must prove unlawful use by clear and convincing evidence, and courts can reject forfeitures grossly disproportionate to the offense."
+        a: "A return motion is the owner asking the court for property back. Forfeiture is the Commonwealth suing to keep it permanently. Since a 2017 legislative reform, the Commonwealth must prove unlawful use by clear and convincing evidence, and the Pennsylvania Supreme Court has separately ruled that courts can reject forfeitures grossly disproportionate to the offense."
       }
     ]
   },
@@ -762,7 +762,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "Violations and consequences",
         paragraphs: [
-          "Violating a PFA is indirect criminal contempt: police can arrest without a warrant on probable cause and must seize any firearms in the respondent's possession. Conviction carries a $300 to $1,000 fine plus up to six months in jail, decided by a judge without a jury — and the same conduct can generate separate criminal charges for stalking, harassment, or assault. A final PFA also triggers the federal firearm prohibition while it lasts, appears in civil court records that landlords and employers can find, and — though it is not a criminal conviction — a contempt conviction is. The order deserves to be taken exactly as seriously as a criminal case, because its consequences behave like one."
+          "Violating a PFA is indirect criminal contempt: police can arrest without a warrant on probable cause and must seize any firearms in the respondent's possession. Conviction carries a $300 to $1,000 fine plus up to six months in jail, decided by a judge without a jury — and the same conduct can generate separate criminal charges for stalking, harassment, or assault. A final PFA between intimate partners that meets federal criteria also triggers the federal firearm prohibition while it lasts; it appears in civil court records that landlords and employers can find, and — though it is not a criminal conviction — a contempt conviction is. The order deserves to be taken exactly as seriously as a criminal case, because its consequences behave like one."
         ]
       }
     ],
@@ -785,7 +785,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "Will a PFA affect my job, my guns, or my custody case?",
-        a: "A final PFA requires surrendering firearms and triggers a federal possession ban while the order lasts, which matters for any job requiring a weapon. The PFA itself is civil — not a criminal conviction — but it appears in court records, a contempt conviction is criminal, and the custody and residence terms in a PFA often shape a later custody case."
+        a: "A final PFA requires surrendering firearms, and most final PFAs between intimate partners also trigger a federal possession ban while the order lasts, which matters for any job requiring a weapon. The PFA itself is civil — not a criminal conviction — but it appears in court records, a contempt conviction is criminal, and the custody and residence terms in a PFA often shape a later custody case."
       }
     ]
   },
@@ -796,7 +796,7 @@ export const practiceContent: Record<string, PracticeContent> = {
         heading: "Expungement, sealing, and Clean Slate — three different things",
         paragraphs: [
           "Expungement destroys the record. Sealing — 'limited access' in Pennsylvania — hides it from the public and most employers, while police, courts, and certain licensing and federal screenings can still see it. Clean Slate is Pennsylvania's automatic sealing law: qualifying records seal by operation of law, with no petition and no fee, on a rolling monthly cycle. Knowing which remedy a record qualifies for — and which it never will — is the entire game.",
-          "The eligibility map, as it stands after the 2023 Clean Slate expansion (Act 36 of 2023): charges that ended in dismissal, withdrawal, or acquittal can be expunged at any time, and Clean Slate seals them automatically on an ongoing basis. Summary convictions can be expunged after five arrest-free years. Most second- and third-degree misdemeanors seal automatically after seven conviction-free years; eligible first-degree misdemeanors can be sealed by petition after seven; certain felonies — including qualifying drug felonies — after ten. Restitution must be paid first. First- and second-degree felonies, crimes of violence, firearms offenses, sex offenses, and most domestic-violence-related convictions are excluded from sealing entirely — for those, a pardon is the remaining path, and since 2023 a full pardon leads to automatic expungement."
+          "The eligibility map, as it stands after the 2023 Clean Slate expansion (Act 36 of 2023): charges that ended in dismissal, withdrawal, or acquittal can be expunged at any time, and Clean Slate seals them automatically on an ongoing basis. Summary convictions can be expunged after five arrest-free years. Most second- and third-degree misdemeanors seal automatically after seven conviction-free years; eligible first-degree misdemeanors can be sealed by petition after seven. Qualifying lower-level drug felonies seal automatically after ten years, and certain other third-degree felonies — property and fraud offenses — can be sealed by petition after ten. Restitution must be paid first. First- and second-degree felonies, crimes of violence, firearms offenses, sex offenses, and most domestic-violence-related convictions are excluded from sealing entirely — for those, a pardon is the remaining path, and since 2023 a full pardon leads to automatic expungement."
         ]
       },
       {
@@ -821,7 +821,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "What can be cleared, and how long are the waiting periods?",
-        a: "Dismissed and withdrawn charges can be expunged anytime. Summary convictions can be expunged after five arrest-free years. Most low-level misdemeanors seal automatically after seven conviction-free years; eligible first-degree misdemeanors can be sealed by petition after seven years, and certain felonies — including qualifying drug felonies — after ten. Restitution must be paid first."
+        a: "Dismissed and withdrawn charges can be expunged anytime. Summary convictions can be expunged after five arrest-free years. Most low-level misdemeanors seal automatically after seven conviction-free years; eligible first-degree misdemeanors can be sealed by petition after seven years. Qualifying lower-level drug felonies seal automatically after ten years, and certain other third-degree felonies — property and fraud offenses — can be sealed by petition after ten. Restitution must be paid first."
       },
       {
         q: "Can I expunge my record after ARD?",
