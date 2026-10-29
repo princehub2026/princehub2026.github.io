@@ -734,7 +734,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "What is an occupational limited license, and who qualifies?",
-        a: "An occupational limited license allows driving for work, study, and medical treatment during many suspensions; PennDOT decides petitions within 20 days. DUI, ARD, and refusal suspensions are not eligible — those drivers use the ignition interlock limited license, available immediately to most first-time DUI offenders. Neither limited license authorizes commercial driving. See <a href="https://www.pa.gov/agencies/dmv/driver-services/license-suspensions" target="_blank" rel="noopener">PennDOT's website</a> for the most up-to-date information."
+        a: "An occupational limited license allows driving for work, study, and medical treatment during many suspensions; PennDOT decides petitions within 20 days. DUI, ARD, and refusal suspensions are not eligible — those drivers use the ignition interlock limited license, available immediately to most first-time DUI offenders. Neither limited license authorizes commercial driving. See <a href=\"https://www.pa.gov/agencies/dmv/driver-services/license-suspensions\" target=\"_blank\" rel=\"noopener\">PennDOT's website</a> for the most up-to-date information."
       },
       {
         q: "What actually happens at the appeal hearing?",
