@@ -179,7 +179,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "The paths back to firearm rights",
         paragraphs: [
-          "Pennsylvania law provides several distinct restoration routes, each filed in the Court of Common Pleas for the county where the applicant lives. Section 6105(d) covers people whose disqualifying conviction has been pardoned or vacated. Section 6105(f) covers mental-health commitments and expired PFA-based prohibitions — the court may grant relief if it determines the applicant can possess a firearm without risk to themselves or anyone else. Section 6105.1 addresses older convictions under prior law that are graded today at no more than two years. And for involuntary 302 commitments, Section 6111.1(g) allows a court to review whether the evidence actually supported the commitment — and if it did not, the record itself is expunged, which removes the prohibition at its root."
+          "Pennsylvania law provides several distinct restoration routes, each filed in the Court of Common Pleas for the county where the applicant lives. Section 6105(d) covers people whose disqualifying conviction has been pardoned or vacated. Section 6105(f)(1) covers mental-health commitments — the court may grant relief if it determines the applicant can possess a firearm without risk to themselves or anyone else. Section 6105(f)(2) covers expired PFA-based prohibitions under a separate standard, built around notice to and the involvement of the original PFA petitioner rather than a risk finding. Section 6105.1 addresses older convictions under prior law that are graded today at no more than two years. And for involuntary 302 commitments, Section 6111.1(g) allows a court to review whether the evidence actually supported the commitment — and if it did not, the record itself is expunged, which removes the prohibition at its root."
         ]
       },
       {
@@ -199,7 +199,7 @@ export const practiceContent: Record<string, PracticeContent> = {
     faq: [
       {
         q: "How does a firearms rights restoration petition work in Pennsylvania?",
-        a: "A petition is filed in the Court of Common Pleas for the county where the applicant lives. Depending on the disability, relief may proceed under Section 6105(d) for pardoned or vacated convictions, Section 6105(f) for mental-health commitments and expired PFA orders, or Section 6105.1 for older, lower-graded offenses. The court holds a hearing and decides whether restoration is appropriate."
+        a: "A petition is filed in the Court of Common Pleas for the county where the applicant lives. Depending on the disability, relief may proceed under Section 6105(d) for pardoned or vacated convictions, Section 6105(f)(1) for mental-health commitments, Section 6105(f)(2) for expired PFA orders, or Section 6105.1 for older, lower-graded offenses. The court holds a hearing and decides whether restoration is appropriate."
       },
       {
         q: "If a Pennsylvania court restores my gun rights, does federal law still prohibit me?",
@@ -228,7 +228,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "Challenging a PICS denial",
         paragraphs: [
-          "The challenge process has real deadlines. A denied buyer may challenge the accuracy of the record within 30 days; the State Police must state the basis for the denial within 20 days and issue a final decision within 60. If the denial is upheld, an appeal lies to the Attorney General, who holds a full de novo hearing at which the Commonwealth bears the burden of proof — and that decision is further appealable to the Commonwealth Court. This ladder is distinct from the license-to-carry appeal route, and choosing the right one matters."
+          "The challenge process has real deadlines. A denied buyer may challenge the accuracy of the record within 30 days; the State Police must state the basis for the denial within 5 business days and issue a final decision within 60. If the denial is upheld, an appeal lies to the Attorney General, who holds a full de novo hearing at which the Commonwealth bears the burden of proof — and that decision is further appealable to the Commonwealth Court. This ladder is distinct from the license-to-carry appeal route, and choosing the right one matters."
         ]
       },
       {
@@ -310,7 +310,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "Act 235 is not a license to carry",
         paragraphs: [
-          "The most common — and most dangerous — misunderstanding in this field is treating the Act 235 card as a carry license. It is not. Act 235 certification does not substitute for a license to carry under Section 6106, and the State Police say the same thing in their own materials. The certification covers carrying a lethal weapon as an incident of employment. Carrying concealed or in a vehicle off duty — including commuting to and from a post with the duty weapon — requires a separate license to carry. A guard stopped on the way home with a duty weapon and no LTC is facing a felony carry charge, not a paperwork problem."
+          "The most common — and most dangerous — misunderstanding in this field is treating the Act 235 card as a carry license. It is not. Act 235 certification does not substitute for a license to carry under Section 6109, and the State Police say the same thing in their own materials. The certification covers carrying a lethal weapon as an incident of employment. Carrying concealed or in a vehicle off duty — including commuting to and from a post with the duty weapon — requires a separate license to carry. A guard stopped on the way home with a duty weapon and no LTC is facing a felony carry charge, not a paperwork problem."
         ]
       },
       {
@@ -366,7 +366,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "What a drug conviction touches",
         paragraphs: [
-          "Pennsylvania repealed the automatic driver's license suspension for drug convictions in 2018, so a conviction alone no longer suspends a license. But the other collateral consequences remain serious: professional-license discipline, firearm prohibitions under both state and federal law, public-housing consequences, and — most severely — immigration. For non-citizens, nearly any controlled-substance conviction creates removal exposure, and a PWID conviction is treated as an aggravated felony. Those consequences get weighed here before any resolution is considered, not after."
+          "Pennsylvania repealed the automatic driver's license suspension for drug convictions in 2018, so a conviction alone no longer suspends a license. But the other collateral consequences remain serious: professional-license discipline, firearm prohibitions under both state and federal law, public-housing consequences, and — most severely — immigration. For non-citizens, nearly any controlled-substance conviction creates removal exposure, and a PWID conviction is generally treated as an aggravated felony — though under Moncrieffe v. Holder (2013), a conviction for distributing a small amount of marijuana for no remuneration falls outside that category even when Pennsylvania grades it as a felony. Those consequences get weighed here before any resolution is considered, not after."
         ]
       }
     ],
@@ -499,7 +499,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "Gagnon I and Gagnon II",
         paragraphs: [
-          "Violation proceedings run in two stages. Gagnon I is a prompt preliminary hearing: whether there is probable cause that a violation occurred and whether the detainer should hold. Gagnon II is the final hearing before the judge, where the Commonwealth must prove the violation by a preponderance of the evidence — a lower standard than trial, with hearsay more freely admitted — and the judge decides whether to continue, modify, or revoke supervision. Counsel is provided as of right, evidence can be presented and challenged, and in new-conviction cases the real fight is usually over the disposition rather than the violation itself."
+          "Violation proceedings run in two stages. Gagnon I is a prompt preliminary hearing: whether there is probable cause that a violation occurred and whether the detainer should hold. Gagnon II is the final hearing before the judge, where the Commonwealth must prove the violation by a preponderance of the evidence — a lower standard than trial, with hearsay more freely admitted — and the judge decides whether to continue, modify, or revoke supervision. Counsel is provided as of right under Pa.R.Crim.P. 708(B), evidence can be presented and challenged, and in new-conviction cases the real fight is usually over the disposition rather than the violation itself."
         ]
       },
       {
