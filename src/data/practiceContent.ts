@@ -122,7 +122,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "Can the officer just read the police reports, or do witnesses have to appear?",
-        a: "Some hearsay is allowed. In practice, the Commonwealth usually needs at least one witness with firsthand knowledge — an officer simply reading from reports arguably shows that a witness lacks adequate memory of the events."
+        a: "Some hearsay is allowed — for things like property value, lab reports, and chain of custody. But under the Pennsylvania Supreme Court's decision in Commonwealth v. McClelland, the Commonwealth cannot rely on hearsay alone to prove the defendant's identity as the perpetrator; for that element, it generally needs at least one witness with firsthand knowledge, not just an officer reading from someone else's report."
       }
     ]
   },
@@ -274,7 +274,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       {
         heading: "Revocation comes fast — and is appealable",
         paragraphs: [
-          "Because a pending charge punishable by more than one year is itself a disqualifier, sheriffs typically revoke a license promptly after any felony or first-degree misdemeanor arrest — long before any conviction. The revocation notice must be in writing and state the specific reason, and the license must be surrendered within five days. Both denials and revocations are appealable to the Court of Common Pleas in the licensee's home county.",
+          "Because a pending charge punishable by more than one year is itself a disqualifier, sheriffs typically revoke a license promptly after any felony or first-degree misdemeanor arrest — long before any conviction. The revocation notice must be in writing and state the specific reason, and the license must be surrendered within five days. Both denials and revocations are appealable to the Court of Common Pleas in the licensee's home county — except in Philadelphia, where an appeal goes first to the Board of License and Inspection Review, and only the Board's decision is then reviewable by the Court of Common Pleas.",
           "The interaction between a criminal case and a license is worth planning from day one: how a charge resolves — the grading, whether it ends in dismissal, ARD, or a non-disqualifying disposition — determines whether the license comes back. Defending the criminal case and preserving the license are the same project, handled together."
         ]
       }
@@ -290,7 +290,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "Can a license-to-carry denial or revocation be appealed?",
-        a: "Yes. A person whose license is denied or revoked may appeal to the Court of Common Pleas for the county where they live. Revocation notices must be written, must state the specific reason, and the license must be surrendered within five days. On appeal, the issuing authority has to support its decision with evidence — a stale or unproven incident is often not enough."
+        a: "Yes. Outside Philadelphia, a person whose license is denied or revoked may appeal to the Court of Common Pleas for the county where they live. In Philadelphia, the appeal goes first to the Board of License and Inspection Review, with the Court of Common Pleas reviewing only the Board's decision afterward. Revocation notices must be written, must state the specific reason, and the license must be surrendered within five days. On appeal, the issuing authority has to support its decision with evidence — a stale or unproven incident is often not enough."
       },
       {
         q: "Does a criminal charge automatically cost me my license to carry?",
@@ -719,7 +719,7 @@ export const practiceContent: Record<string, PracticeContent> = {
         heading: "What the appeal can and cannot do",
         paragraphs: [
           "The hearing is a fresh civil proceeding before a judge. PennDOT must first establish its grounds through the certified driving record; the driver then rebuts. What can be attacked: whether the reported conviction actually supports the suspension imposed, wrong offense codes, miscounted points, and credit miscalculations. In refusal cases, PennDOT must prove four things — reasonable grounds for the DUI arrest, a request to test, an actual refusal, and proper warnings — and each element is contestable, including medical inability to complete a breath test and defects in the warning form the officer read.",
-          "What the appeal cannot do is re-litigate the underlying conviction: a license appeal tests PennDOT's action, not the traffic or DUI case. And for drivers who cannot win the appeal, limited licenses fill the gap — the occupational limited license for many point and non-DUI suspensions, and the ignition interlock limited license for DUI and refusal suspensions, available immediately to most first-time DUI offenders. Neither restores commercial driving, and time never starts running on a suspension until the license is actually surrendered to PennDOT — a credit trap that catches people who thought they had already served their time."
+          "What the appeal cannot do is re-litigate the underlying conviction: a license appeal tests PennDOT's action, not the traffic or DUI case. And for drivers who cannot win the appeal, limited licenses fill the gap — the occupational limited license for many point and non-DUI suspensions (not for a revoked license, including a habitual-offender revocation), and the ignition interlock limited license for DUI and refusal suspensions — available immediately for most first-time DUI suspensions, though a refusal suspension generally has to be partly served first. Neither restores commercial driving, and time never starts running on a suspension until the license is surrendered to PennDOT, or, if it's already lost or not in the driver's possession, until a notarized acknowledgment of that is filed — a credit trap that catches people who assume the clock started on its own."
         ]
       }
     ],
@@ -734,7 +734,7 @@ export const practiceContent: Record<string, PracticeContent> = {
       },
       {
         q: "What is an occupational limited license, and who qualifies?",
-        a: "An occupational limited license allows driving for work, study, and medical treatment during many suspensions; PennDOT decides petitions within 20 days. DUI, ARD, and refusal suspensions are not eligible — those drivers use the ignition interlock limited license, available immediately to most first-time DUI offenders. Neither limited license authorizes commercial driving. See <a href=\"https://www.pa.gov/agencies/dmv/driver-services/license-suspensions\" target=\"_blank\" rel=\"noopener\">PennDOT's website</a> for the most up-to-date information."
+        a: "An occupational limited license allows driving for work, study, and medical treatment during many suspensions; PennDOT decides petitions within 20 days. It isn't available for a revoked license — including a habitual-offender revocation — or until a DUI, ARD, or refusal suspension has been served, with narrow exceptions for some first DUI suspensions. Most of those drivers instead use the ignition interlock limited license, available immediately for most first-time DUI suspensions, though a refusal suspension generally has to be partly served first. Neither limited license authorizes commercial driving. See <a href=\"https://www.pa.gov/agencies/dmv/driver-services/license-suspensions\" target=\"_blank\" rel=\"noopener\">PennDOT's website</a> for the most up-to-date information."
       },
       {
         q: "What actually happens at the appeal hearing?",
