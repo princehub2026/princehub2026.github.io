@@ -26,7 +26,7 @@ export const faqTopics: FaqTopic[] = [
     summary:
       "A VOP allegation means the court believes the terms of an existing probation or parole sentence were not followed — a new charge is not required to trigger one.",
     consequences:
-      "A VOP finding can result in the original sentence being reimposed, including incarceration that was previously suspended.",
+      "A VOP finding can result in increased conditions or, in some cases, incarceration — including a sentence that was previously suspended — though Pennsylvania law now limits incarceration for purely technical violations.",
     questions: [
       { q: "What counts as a violation?", a: "Common triggers include a new arrest, missed check-ins, failed drug tests, or not completing required programs." },
       { q: "Will I get a trial for a VOP?", a: "VOP hearings use a different, lower standard of proof than a criminal trial, which makes early legal representation especially important." },
@@ -55,7 +55,7 @@ export const faqTopics: FaqTopic[] = [
       "A PFA can result in immediate removal from a shared home and loss of firearms rights, often before a full hearing takes place.",
     questions: [
       { q: "Is a PFA a criminal charge?", a: "No, a PFA is a civil proceeding, though violating one can result in criminal charges." },
-      { q: "How much time do I have to respond to a PFA?", a: "A final hearing is typically scheduled within about ten days of a temporary order — the response window is short." },
+      { q: "How much time do I have to respond to a PFA?", a: "A final hearing is typically scheduled within about ten business days of when the petition was filed — the response window is short." },
       { q: "Does a PFA affect gun ownership?", a: "Yes. A final PFA order generally requires the surrender of firearms for its duration." },
     ],
   },
