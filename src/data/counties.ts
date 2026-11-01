@@ -426,12 +426,12 @@ export const counties: County[] = [
       {
         name: "ARD (Accelerated Rehabilitative Disposition)",
         description:
-          "A pretrial diversion program for first-time, non-violent offenders, placed at the District Attorney's discretion and resulting in dismissal rather than a conviction. Bucks County runs it on an unusually early clock: the application is filed at the magisterial district court rather than the Justice Center, the form must be returned on or before the day of the preliminary hearing, and admission requires waiving that hearing. Cases completed after April 1, 2013 are expunged automatically. Note that a DUI-ARD still counts as a prior for sentencing on a later DUI within ten years.",
+          "A pretrial diversion program for first-time, non-violent offenders, placed at the District Attorney's discretion and resulting in dismissal rather than a conviction. Bucks County runs it on an unusually early clock: the application is filed at the magisterial district court rather than the Justice Center, the form must be returned on or before the day of the preliminary hearing, and admission requires waiving that hearing. Cases completed after April 1, 2013 are expunged automatically. Note that driving under the influence within ten years of completing a DUI-ARD is now its own separate, more serious offense under Act 58 of 2025, rather than simply adding a sentencing enhancement to the new DUI as a prior offense.",
       },
       {
         name: "Recovery Court",
         description:
-          "Bucks County's adult drug court, for non-violent defendants with substance use disorders — reached either as a probation or parole violator or post-plea before sentencing. It runs a minimum of fifteen months across five phases, and graduation requires completed treatment, stable housing, employment or a diploma, and six months clean and arrest-free. It was named a National Mentor Court for 2025 through 2027.",
+          "Bucks County's adult drug court, for non-violent defendants with substance use disorders — reached either as a probation or parole violator or post-plea before sentencing. It runs a minimum of fifteen months across five phases, and graduation requires completed treatment and an aftercare plan, stable housing, a diploma or GED, employment or an approved use of time, and six months clean and arrest-free. It was named a National Mentor Court for 2025 through 2027.",
       },
       {
         name: "Wellness Court",
@@ -489,7 +489,7 @@ export const counties: County[] = [
     status: "sample",
     courtProse: [
       "Magisterial district courts handle the earliest stages of nearly every criminal case in Chester County. After an arrest, a preliminary arraignment sets bail and gives you your next court date — Chester County's district judges rotate through an on-call night schedule, so this can happen outside normal business hours.",
-      "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses and most traffic citations are decided at this court and go no further.",
+      "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Chester County Court of Common Pleas at the Justice Center, 201 West Market Street in West Chester. Summary offenses and most traffic citations are decided at this court; a summary conviction can be appealed to the Court of Common Pleas for a new trial, but the case otherwise ends there.",
       "One Chester County detail worth knowing early: the District Attorney's published ARD instructions direct DUI defendants to apply for the program at the preliminary hearing, and admission requires waiving that hearing and all pretrial motions. That makes a first appearance at this court more consequential than many people expect.",
     ],
     courts: chesterCourts.map((c) => ({ ...c, slug: `dc-${c.dcNumber}` })),
@@ -573,7 +573,7 @@ export const counties: County[] = [
     status: "sample",
     courtProse: [
       "Magisterial district courts handle the earliest stages of nearly every criminal case in Delaware County. After an arrest, a preliminary arraignment sets bail and gives you your next court date. The county also operates a central MDJ Arraignment Room in Media, at 600 North Jackson Street, where preliminary arraignments are held.",
-      "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Delaware County Court of Common Pleas at 201 West Front Street in Media. Summary offenses and most traffic citations are decided at this court and go no further.",
+      "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Delaware County Court of Common Pleas at 201 West Front Street in Media. Summary offenses and most traffic citations are decided at this court; a summary conviction can be appealed to the Court of Common Pleas for a new trial, but the case otherwise ends there.",
       "One Delaware County detail worth knowing early: the ARD application is due at least fourteen days before formal arraignment. The window opens early in the case and does not stay open long.",
     ],
     courts: delawareCourts.map((c) => ({ ...c, slug: `dc-${c.dcNumber}` })),
@@ -662,8 +662,8 @@ export const counties: County[] = [
     status: "sample",
     courtProse: [
       "Magisterial district courts handle the earliest stages of nearly every criminal case in Montgomery County. After an arrest, a preliminary arraignment sets bail and gives you your next court date.",
-      "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Montgomery County Court of Common Pleas at 2 East Airy Street in Norristown for formal arraignment and, if it comes to it, trial. Summary offenses and most traffic citations are decided at this court and go no further.",
-      "One Montgomery County detail worth knowing early: a DUI-ARD application here requires a CRN (Court Reporting Network) evaluation — an added step several neighbouring counties do not require. It is far easier to start that early than to discover the requirement late.",
+      "The preliminary hearing comes next, and it is not a trial. Nobody is found guilty or not guilty here. The Commonwealth only has to show there is enough evidence for the case to move forward. Cases held for court go to the Montgomery County Court of Common Pleas at 2 East Airy Street in Norristown for formal arraignment and, if it comes to it, trial. Summary offenses and most traffic citations are decided at this court; a summary conviction can be appealed to the Court of Common Pleas for a new trial, but the case otherwise ends there.",
+      "One Montgomery County detail worth knowing early: a DUI-ARD application here requires a CRN (Court Reporting Network) evaluation, as in most Pennsylvania counties. It is far easier to start that early than to discover the requirement late.",
     ],
     courts: montgomeryCourts.map((c) => ({ ...c, slug: `dc-${c.dcNumber}` })),
     courthouse: {
@@ -684,7 +684,7 @@ export const counties: County[] = [
       {
         name: "ARD (Accelerated Rehabilitative Disposition)",
         description:
-          "A pretrial diversion program for eligible first-time offenders, most commonly used in DUI cases. Montgomery County requires a CRN (Court Reporting Network) evaluation as part of the DUI-ARD application — an added step some neighboring counties don't require, so it's worth planning for early.",
+          "A pretrial diversion program for eligible first-time offenders, most commonly used in DUI cases. Montgomery County requires a CRN (Court Reporting Network) evaluation as part of the DUI-ARD application, as do most Pennsylvania counties, so it's worth planning for early.",
       },
       {
         name: "Montgomery County Drug Court",
